@@ -13,7 +13,7 @@ namespace hypertension_bot
     {
         private static TelegramBotClient _telegramBot = new TelegramBotClient(Setting.Istance.Configuration.BotToken);
 
-        static void Main(string[] args )
+        static void Main(string[] args)
         {
             var _receiverOptions = new ReceiverOptions
             {
