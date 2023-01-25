@@ -1,0 +1,1 @@
+26/01/2023 00:30:41 | The type initializer for 'hypertension_bot.program' threw an exception.
