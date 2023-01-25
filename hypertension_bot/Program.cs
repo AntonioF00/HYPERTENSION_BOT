@@ -19,7 +19,7 @@ namespace hypertension_bot
 
             }catch(Exception ex)
             {
-                LogHelper.Log($"{System.DateTime.Now} | {ex.Message}");
+                LogHelper.Log($"{System.DateTime.Now} | {ex.ToString()}");
             }
 
             Console.ReadLine();
@@ -38,9 +38,7 @@ namespace hypertension_bot
                     _telegramBot.SendTextMessageAsync(e.Message.Chat.Id, $"Sorry i don't understand u...");
                 }
             }
-
         }
-
     }
 }
 

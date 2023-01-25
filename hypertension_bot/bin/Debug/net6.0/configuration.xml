@@ -6,7 +6,7 @@
   <ConnectionType>POSTGRESQL</ConnectionType>
 
   <!--Bot settings-->
-  <BotToken>5716861057:AAGG32pOo33omMhGFEF6j0YMJOXwYNHMjrk</BotToken>
+  <BotToken>5716861057:AAGG32pOo33omMhGFEF6j0YMJOXwYNHMjrk_test_Hypertension_bot</BotToken>
   <WitToken>TOL255PV5YN7NCIULDK7JQWV5MG72WP4</WitToken>
 
   <!-- Querys-->
