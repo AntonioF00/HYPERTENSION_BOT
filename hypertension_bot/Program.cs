@@ -82,18 +82,16 @@ namespace hypertension_bot
                 {
                     // Echo received message text
                     _data.SentMessage = await botClient.SendTextMessageAsync(
-                    chatId: _data.ChatId,
-                    text: "Hello " + _data.FirstName + " " + _data.LastName + "",
-
-                    cancellationToken: cancellationToken);
+                                                                                chatId: _data.ChatId,
+                                                                                text: "Hello " + _data.FirstName + " " + _data.LastName + "",
+                                                                                cancellationToken: cancellationToken);
                 }
                 else
                 {
                     _data.SentMessage = await botClient.SendTextMessageAsync(
-                   chatId: _data.ChatId,
-                   text: "scusami " + _data.FirstName + " " + _data.LastName + " non ti ho capito!",
-
-                   cancellationToken: cancellationToken);
+                                                                               chatId: _data.ChatId,
+                                                                               text: "scusami " + _data.FirstName + " " + _data.LastName + " non ti ho capito!",
+                                                                               cancellationToken: cancellationToken);
                 }
             }
             catch (Exception ex)
