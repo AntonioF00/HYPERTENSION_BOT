@@ -6,8 +6,6 @@ using Telegram.Bot.Exceptions;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
-using Message = Telegram.Bot.Types.Message;
-using Poll = Telegram.Bot.Types.Poll;
 
 namespace hypertension_bot
 {
