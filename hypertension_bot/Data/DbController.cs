@@ -3,6 +3,7 @@ using System;
 using hypertension_bot.Settings;
 using System.Data.Common;
 using hypertension_bot.Loggers;
+using hypertension_bot.Models;
 
 namespace hypertension_bot.Data
 {
@@ -21,14 +22,19 @@ namespace hypertension_bot.Data
         /// query il cui ritorno è void
         /// </summary>
         /// <param name="query">stringa contenente la query definita nel configuration.xml</param>
-        public void execute(string query)
+        public void execute(string query, string diastolic, string sistolic)
         {
             try
             {
                 if(_connection.State != System.Data.ConnectionState.Open)
                     _connection.Open();
 
-                _connection.Query(query);
+                _connection.Query(query, 
+                new Dictionary<string, object>()
+                {
+                    ["diastolic"] = diastolic,
+                    ["sistolic"] = sistolic
+                });
 
                 _connection.Close();
             }

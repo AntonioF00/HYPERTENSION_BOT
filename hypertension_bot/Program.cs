@@ -19,7 +19,7 @@ namespace hypertension_bot
 
         static readonly Datas _data = new();
 
-        static HelloMessage _helloMessage = new();
+        static readonly HelloMessage _helloMessage = new();
 
 
         static async Task Main(string[] args)
@@ -83,7 +83,7 @@ namespace hypertension_bot
                     // Echo received message text
                     _data.SentMessage = await botClient.SendTextMessageAsync(
                                                                                 chatId: _data.ChatId,
-                                                                                text: "Hello " + _data.FirstName + " " + _data.LastName + "",
+                                                                                text: "Ciao " + _data.FirstName + " " + _data.LastName + "",
                                                                                 cancellationToken: cancellationToken);
                 }
                 else
