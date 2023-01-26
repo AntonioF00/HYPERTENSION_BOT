@@ -5,6 +5,7 @@ namespace hypertension_bot.Models
     public class HelloMessage
     {
         public List<string> Messages { get; }
+        public List<string> ReplyMessages { get; }
 
         public HelloMessage()
         {
@@ -18,6 +19,12 @@ namespace hypertension_bot.Models
             Messages.Add("buonasera");
             Messages.Add("Buonasera");
             Messages.Add("BUONASERA");
+
+            ReplyMessages = new List<string>();
+            ReplyMessages.Add("Ciao");
+            ReplyMessages.Add("Ciao!, sono felice di vederti");
+            ReplyMessages.Add("E' da un pò che non ci sentiamo");
+
         }
     }
 }

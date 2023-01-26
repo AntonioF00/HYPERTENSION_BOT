@@ -21,6 +21,10 @@ namespace hypertension_bot
 
         static readonly HelloMessage _helloMessage = new();
 
+        static readonly ErrorMessage _errorMessage = new();
+
+        static Random _rnd = new();
+
 
         static async Task Main(string[] args)
         {
@@ -83,14 +87,18 @@ namespace hypertension_bot
                     // Echo received message text
                     _data.SentMessage = await botClient.SendTextMessageAsync(
                                                                                 chatId: _data.ChatId,
-                                                                                text: "Ciao " + _data.FirstName + " " + _data.LastName + "",
+                                                                                text: $"{_helloMessage.ReplyMessages[_rnd.Next(3)]} {_data.FirstName}! ",
+                                                                                cancellationToken: cancellationToken);
+                    _data.SentMessage = await botClient.SendTextMessageAsync(
+                                                                                chatId: _data.ChatId,
+                                                                                text: $"{_data.FirstName}, ti va di dirmi i tuoi valori di oggi? \n(scrivimeli in questo modo.. ad esempio '120 30'... grazie!)",
                                                                                 cancellationToken: cancellationToken);
                 }
                 else
                 {
                     _data.SentMessage = await botClient.SendTextMessageAsync(
                                                                                chatId: _data.ChatId,
-                                                                               text: "scusami " + _data.FirstName + " " + _data.LastName + " non ti ho capito!",
+                                                                               text: $"{_errorMessage.Messages[_rnd.Next(5)]}",
                                                                                cancellationToken: cancellationToken);
                 }
             }
