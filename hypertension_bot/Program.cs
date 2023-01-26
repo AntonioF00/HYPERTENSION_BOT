@@ -87,7 +87,7 @@ namespace hypertension_bot
                     // Echo received message text
                     _data.SentMessage = await botClient.SendTextMessageAsync(
                                                                                 chatId: _data.ChatId,
-                                                                                text: $"{_helloMessage.ReplyMessages[_rnd.Next(3)]} {_data.FirstName}! ",
+                                                                                text: $"{_helloMessage.ReplyMessages[_rnd.Next(4)]} {_data.FirstName}! ",
                                                                                 cancellationToken: cancellationToken);
                     _data.SentMessage = await botClient.SendTextMessageAsync(
                                                                                 chatId: _data.ChatId,

@@ -24,6 +24,7 @@ namespace hypertension_bot.Models
             ReplyMessages.Add("Ciao");
             ReplyMessages.Add("Ciao!, sono felice di vederti");
             ReplyMessages.Add("E' da un pò che non ci sentiamo");
+            ReplyMessages.Add("Finalmente posso dire ch'è un BUONGIORNO, Ciao");
 
         }
     }
