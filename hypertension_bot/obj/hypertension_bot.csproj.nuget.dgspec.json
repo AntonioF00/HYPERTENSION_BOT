@@ -65,9 +65,9 @@
               "target": "Package",
               "version": "[18.0.0, )"
             },
-            "WindowsAzure.ServiceBus": {
+            "Telegram.Bot.Extensions": {
               "target": "Package",
-              "version": "[6.2.2, )"
+              "version": "[1.0.0, )"
             }
           },
           "imports": [
