@@ -25,6 +25,8 @@ namespace hypertension_bot.Models
         private long  _id;
         private Message?  _sentMessage;
 
+        private bool _done;
+
 
         public int BlockLevel { get => _blockLevel; set => _blockLevel = 0; }
         public bool MessDeleted { get => _messDeleted; set => _messDeleted = false; }
@@ -41,5 +43,6 @@ namespace hypertension_bot.Models
         public string LastName { get => _lastName; set => _lastName = value; }
         public long Id { get => _id; set => _id = value; }
         public Message SentMessage { get => _sentMessage; set => _sentMessage = value; }
+        public bool Done { get => _done; set => _done = value; }
     }
 }

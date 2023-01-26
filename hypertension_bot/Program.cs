@@ -24,6 +24,12 @@ namespace hypertension_bot
 
         private static readonly ErrorMessage _errorMessage = new();
 
+        private static readonly ErrorMessage _insertMessage = new();
+
+        private static int _diastolic;
+
+        private static int _sistolic;
+
         private static Random _rnd = new();
 
         static async Task Main(string[] args)
@@ -81,8 +87,16 @@ namespace hypertension_bot
                 _data.LastName      = update.Message.From.LastName;
                 _data.Id            = update.Message.From.Id;
 
-                //if message is Hello .. bot answer Hello + name of user.
-                if (_helloMessage.Messages.Contains(_data.MessageText))
+                if (_data.MessageText.Equals("Si") && _data.Done)
+                {
+                    _data.Done = false;
+
+                    _data.SentMessage = await botClient.SendTextMessageAsync(
+                                                            chatId: _data.ChatId,
+                                                            text: $"{_insertMessage.Messages[_rnd.Next(4)]}\nA presto {_data.FirstName}!",
+                                                            cancellationToken: cancellationToken);
+                }
+                else if (_helloMessage.Messages.Contains(_data.MessageText))
                 {
                     _data.SentMessage = await botClient.SendTextMessageAsync(
                                                                                 chatId: _data.ChatId,
@@ -92,29 +106,25 @@ namespace hypertension_bot
                                                                                 chatId: _data.ChatId,
                                                                                 text: $"{_data.FirstName}, ti va di dirmi i tuoi valori di oggi? \n(scrivimeli in questo modo...\nad esempio '120 30'...\nGRAZIE!)",
                                                                                 cancellationToken: cancellationToken);
-                }else if (!string.IsNullOrEmpty(_data.MessageText))
+                }
+                else if (!string.IsNullOrEmpty(_data.MessageText))
                 {
-                    int first;
-                    int second;
 
-                    bool success = int.TryParse(new string(_data.MessageText
-                     .SkipWhile(x => !char.IsDigit(x))
-                     .TakeWhile(x => char.IsDigit(x))
-                     .ToArray()), out first);
+                    bool success = getValue(_data.MessageText,_diastolic);
 
-                    if (first != null && success)
+                    if (_diastolic != 0 && success)
                     {
-                        _data.MessageText.Replace(first.ToString(),"");
+                        var mess = _data.MessageText.Replace(_diastolic.ToString(),"");
 
-                        success = int.TryParse(new string(_data.MessageText
-                                     .SkipWhile(x => !char.IsDigit(x))
-                                     .TakeWhile(x => char.IsDigit(x))
-                                     .ToArray()), out second);
-                        if (second!= null && success)
+                        success = getValue(mess, _sistolic);
+
+                        if (_sistolic != 0 && success)
                         {
+                            _data.Done = true; 
+
                             _data.SentMessage = await botClient.SendTextMessageAsync(
                                                             chatId: _data.ChatId,
-                                                            text: $"Diastolica : {first}\nSistolica : {second}\nSono corretti?",
+                                                            text: $"Diastolica : {_diastolic}\nSistolica : {_sistolic}\nSono corretti?",
                                                             cancellationToken: cancellationToken);
                         }
                     }
@@ -139,12 +149,22 @@ namespace hypertension_bot
             {
                 ApiRequestException apiRequestException
                     => $"Telegram API Error:\n[{apiRequestException.ErrorCode}]\n{apiRequestException.Message}",
-                _   => exception.ToString()
+                _ => exception.ToString()
             };
 
             Console.WriteLine(ErrorMessage);
             LogHelper.Log($"{System.DateTime.Now} | {ErrorMessage}");
             return Task.CompletedTask;
+        }
+
+        public static bool getValue(string message, int value)
+        {
+            bool success = int.TryParse(new string(message
+                                                 .SkipWhile(x => !char.IsDigit(x))
+                                                 .TakeWhile(x => char.IsDigit(x))
+                                                 .ToArray()), out value);
+
+            return success;
         }
     }
 }
