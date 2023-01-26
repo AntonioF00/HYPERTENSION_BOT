@@ -80,7 +80,6 @@ namespace hypertension_bot
                 _data.LastName      = update.Message.From.LastName;
                 _data.Id            = update.Message.From.Id;
 
-
                 //if message is Hello .. bot answer Hello + name of user.
                 if (_helloMessage.Messages.Contains(_data.MessageText))
                 {
@@ -98,7 +97,7 @@ namespace hypertension_bot
                 {
                     _data.SentMessage = await botClient.SendTextMessageAsync(
                                                                                chatId: _data.ChatId,
-                                                                               text: $"{_errorMessage.Messages[_rnd.Next(5)]}",
+                                                                               text: $"{_errorMessage.Messages[_rnd.Next(6)]}",
                                                                                cancellationToken: cancellationToken);
                 }
             }
