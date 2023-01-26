@@ -1,3 +1,5 @@
-26/01/2023 11:30:35 | Telegram API Error:
-[400]
-Bad Request: chat not found
+26/01/2023 11:59:12 | System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Contains[TSource](IEnumerable`1 source, TSource value, IEqualityComparer`1 comparer)
+   at System.Linq.Enumerable.Contains[TSource](IEnumerable`1 source, TSource value)
+   at hypertension_bot.program.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken) in C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\Program.cs:line 81

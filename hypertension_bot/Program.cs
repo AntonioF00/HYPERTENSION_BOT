@@ -1,4 +1,5 @@
-﻿using hypertension_bot.Loggers;
+﻿using hypertension_bot.Intents;
+using hypertension_bot.Loggers;
 using hypertension_bot.Models;
 using hypertension_bot.Settings;
 using Telegram.Bot;
@@ -19,6 +20,7 @@ namespace hypertension_bot
         static TelegramBotClient _telegramBot = new TelegramBotClient(Setting.Istance.Configuration.BotToken);
 
         static readonly Datas _data = new();
+        
 
         static async Task Main(string[] args)
         {
@@ -55,31 +57,48 @@ namespace hypertension_bot
 
         public static async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
-            // Only process Message updates: https://core.telegram.org/bots/api#message
-            if (update.Type != UpdateType.Message)
-                return;
-            // Only process text messages
-            if (update.Message!.Type != MessageType.Text)
-                return;
-
-            //set variables
-            _data.ChatId        = update.Message.Chat.Id;
-            _data.MessageText   = update.Message.Text;
-            _data.MessageId     = update.Message.MessageId;
-            _data.FirstName     = update.Message.From.FirstName;
-            _data.LastName      = update.Message.From.LastName;
-            _data.Id            = update.Message.From.Id;
-
-
-            //if message is Hello .. bot answer Hello + name of user.
-            if (_data.MessageText == "hello")
+            try
             {
-                // Echo received message text
-                _data.SentMessage = await botClient.SendTextMessageAsync(
-                chatId: _data.ChatId,
-                text: "Hello " + _data.FirstName + " " + _data.LastName + "",
+                HelloMessage _helloMessage = new HelloMessage();
 
-                cancellationToken: cancellationToken);
+                // Only process Message updates: https://core.telegram.org/bots/api#message
+                if (update.Type != UpdateType.Message)
+                    return;
+                // Only process text messages
+                if (update.Message!.Type != MessageType.Text)
+                    return;
+
+                //set variables
+                _data.ChatId        = update.Message.Chat.Id;
+                _data.MessageText   = update.Message.Text;
+                _data.MessageId     = update.Message.MessageId;
+                _data.FirstName     = update.Message.From.FirstName;
+                _data.LastName      = update.Message.From.LastName;
+                _data.Id            = update.Message.From.Id;
+
+
+                //if message is Hello .. bot answer Hello + name of user.
+                if (_helloMessage.Messages.Contains(_data.MessageText))
+                {
+                    // Echo received message text
+                    _data.SentMessage = await botClient.SendTextMessageAsync(
+                    chatId: _data.ChatId,
+                    text: "Hello " + _data.FirstName + " " + _data.LastName + "",
+
+                    cancellationToken: cancellationToken);
+                }
+                else
+                {
+                    _data.SentMessage = await botClient.SendTextMessageAsync(
+                   chatId: _data.ChatId,
+                   text: "scusami " + _data.FirstName + " " + _data.LastName + " non ti ho capito!",
+
+                   cancellationToken: cancellationToken);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Log($"{System.DateTime.Now} | {ex.ToString()}");
             }
         }
 
