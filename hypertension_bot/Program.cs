@@ -61,7 +61,6 @@ namespace hypertension_bot
         {
             try
             {
-
                 // Only process Message updates: https://core.telegram.org/bots/api#message
                 if (update.Type != UpdateType.Message)
                     return;
