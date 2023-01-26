@@ -62,7 +62,7 @@ namespace hypertension_bot
                 return;
 
             //set variables
-            _data.ChatId = update.Message.Chat.Id;
+            _data.ChatId = long.Parse(update.Id.ToString());
             _data.MessageText = update.Message.Text;
             _data.MessageId = update.Message.MessageId;
             _data.FirstName = update.Message.From.FirstName;
