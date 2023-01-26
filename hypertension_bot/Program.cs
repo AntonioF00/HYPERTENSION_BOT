@@ -15,15 +15,15 @@ namespace hypertension_bot
         /// https://github.com/ZETALVX/Telegram.Bot/blob/main/Program.cs
         /// </summary>
 
-        static TelegramBotClient _telegramBot = new TelegramBotClient(Setting.Istance.Configuration.BotToken);
+        private static TelegramBotClient _telegramBot = new TelegramBotClient(Setting.Istance.Configuration.BotToken);
 
-        static readonly Datas _data = new();
+        private static readonly Datas _data = new();
 
-        static readonly HelloMessage _helloMessage = new();
+        private static readonly HelloMessage _helloMessage = new();
 
-        static readonly ErrorMessage _errorMessage = new();
+        private static readonly ErrorMessage _errorMessage = new();
 
-        static Random _rnd = new();
+        private static Random _rnd = new();
 
 
         static async Task Main(string[] args)
@@ -55,6 +55,7 @@ namespace hypertension_bot
             catch(Exception ex)
             {
                 LogHelper.Log($"{System.DateTime.Now} | {ex.ToString()}");
+                Console.WriteLine($"\nBot : offline..error");
             }
 
             Console.ReadLine();
@@ -104,6 +105,7 @@ namespace hypertension_bot
             catch (Exception ex)
             {
                 LogHelper.Log($"{System.DateTime.Now} | {ex.ToString()}");
+
             }
         }
 
