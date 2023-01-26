@@ -1,9 +1,7 @@
 ﻿using Dapper;
-using System;
 using hypertension_bot.Settings;
 using System.Data.Common;
 using hypertension_bot.Loggers;
-using hypertension_bot.Models;
 
 namespace hypertension_bot.Data
 {
