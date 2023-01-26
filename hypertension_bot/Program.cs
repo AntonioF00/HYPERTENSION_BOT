@@ -51,6 +51,7 @@ namespace hypertension_bot
             {
                 LogHelper.Log($"{System.DateTime.Now} | {ex.ToString()}");
                 Console.WriteLine($"\nBot : offline..error");
+                _cancellationTokenSource.Cancel();
             }
 
             Console.ReadLine();
