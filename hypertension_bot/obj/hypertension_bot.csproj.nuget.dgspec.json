@@ -63,7 +63,11 @@
             },
             "Telegram.Bot": {
               "target": "Package",
-              "version": "[15.7.1, )"
+              "version": "[18.0.0, )"
+            },
+            "WindowsAzure.ServiceBus": {
+              "target": "Package",
+              "version": "[6.2.2, )"
             }
           },
           "imports": [

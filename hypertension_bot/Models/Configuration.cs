@@ -6,8 +6,8 @@ namespace hypertension_bot.Models
     {
         private string _connectionString;
         private ConnectionTypes _connectionType;
-        private string _botToken;
-        private string _witToken;
+        private string? _botToken;
+        private string? _witToken;
 
         public string ConnectionString { get => _connectionString; set => _connectionString = value; }
         public ConnectionTypes ConnectionType { get => _connectionType; set => _connectionType = value; }
