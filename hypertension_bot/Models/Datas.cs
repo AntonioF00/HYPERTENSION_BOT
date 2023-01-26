@@ -37,13 +37,13 @@ namespace hypertension_bot.Models
         public int Hour { get => _hour; set => _hour = int.Parse(DateTime.UtcNow.Hour.ToString()); }
         public int Minute { get => _minute; set => _minute = int.Parse(DateTime.UtcNow.Minute.ToString()); }
         public int Second { get => _second; set => _second = int.Parse(DateTime.UtcNow.Second.ToString()); }
-        public long ChatId { get => _chatId; set => _chatId = 0; }
+        public long ChatId { get => _chatId; set => _chatId = value; }
         public string MessageText { get => _messageText; set => _messageText = value; }
         public int MessageId { get => _messageId; set => _messageId = value; }
         public string FirstName { get => _firstName; set => _firstName = value; }
         public string LastName { get => _lastName; set => _lastName = value; }
         public long Id { get => _id; set => _id = value; }
         public Message SentMessage { get => _sentMessage; set => _sentMessage = value; }
-        public int PollId { get => _pollId; set => _pollId = 0; }
+        public int PollId { get => _pollId; set => _pollId = value; }
     }
 }

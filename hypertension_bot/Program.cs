@@ -20,7 +20,7 @@ namespace hypertension_bot
 
         static TelegramBotClient _telegramBot = new TelegramBotClient(Setting.Istance.Configuration.BotToken);
 
-        static readonly Datas _data;
+        static readonly Datas _data = new();
 
         static async Task Main(string[] args)
         {
@@ -40,6 +40,8 @@ namespace hypertension_bot
 
                 var me = await _telegramBot.GetMeAsync();
 
+                Console.WriteLine($"\nHello! I'm {me.Username} and i'm your Bot!");
+
                 Console.ReadKey();
                 _cancellationTokenSource.Cancel();
 
@@ -47,7 +49,6 @@ namespace hypertension_bot
             catch(Exception ex)
             {
                 LogHelper.Log($"{System.DateTime.Now} | {ex.ToString()}");
-                _cancellationTokenSource.Cancel();
             }
 
             Console.ReadLine();
@@ -73,40 +74,13 @@ namespace hypertension_bot
 
 
             //if message is Hello .. bot answer Hello + name of user.
-            if (_data.MessageText.Equals("hello"))
+            if (_data.MessageText == "hello")
             {
                 // Echo received message text
                 _data.SentMessage = await botClient.SendTextMessageAsync(
                 chatId: _data.ChatId,
                 text: "Hello " + _data.FirstName + " " + _data.LastName + "",
 
-                cancellationToken: cancellationToken);
-            }
-
-            //if message is "poll" .. create a poll.
-            if (_data.MessageText.Equals("poll"))
-            {
-                //save the poll id message
-                _data.PollId = _data.MessageId + 1;
-
-                Console.WriteLine($"\nPoll number: {_data.PollId}!");
-                Message pollMessage = await botClient.SendPollAsync(
-                chatId: _data.ChatId,
-                question: "How are you?",
-                options: new[]
-                {
-                    "Good!",
-                    "I could be better.."
-                },
-                cancellationToken: cancellationToken);
-            }
-            //if message is "close poll" .. close the pool.
-            if (_data.MessageText == "close poll")
-            {
-                Console.WriteLine($"\nPoll number {_data.PollId} is close!");
-                Poll poll = await botClient.StopPollAsync(
-                chatId: _data.ChatId,
-                messageId: _data.PollId,
                 cancellationToken: cancellationToken);
             }
         }
@@ -124,22 +98,6 @@ namespace hypertension_bot
             LogHelper.Log($"{System.DateTime.Now} | {ErrorMessage}");
             return Task.CompletedTask;
         }
-
-
-        //public static void Bot_OnMessage(object sender, Telegram.Bot.Args.MessageEventArgs e)
-        //{
-        //    if(e.Message.Type == MessageType.Text)
-        //    {
-        //        if(MessageType.Text.Equals("Ciao"))
-        //        {
-        //            _telegramBot.SendTextMessageAsync(e.Message.Chat.Id, $"Hello {e.Message.Chat.Username}");
-        //        }
-        //        else
-        //        {
-        //            _telegramBot.SendTextMessageAsync(e.Message.Chat.Id, $"Sorry i don't understand u...");
-        //        }
-        //    }
-        //}
     }
 }
 
