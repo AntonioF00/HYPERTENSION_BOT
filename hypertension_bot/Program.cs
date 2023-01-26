@@ -1,4 +1,7 @@
-﻿using hypertension_bot.Loggers;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using hypertension_bot.Loggers;
 using hypertension_bot.Models;
 using hypertension_bot.Settings;
 using Telegram.Bot;
