@@ -21,9 +21,7 @@ namespace hypertension_bot
 
         static readonly Datas _data = new();
 
-        static readonly HelloMessage _helloMessage = new ();
-
-
+        static HelloMessage _helloMessage = new();
         static async Task Main(string[] args)
         {
             using var _cancellationTokenSource = new CancellationTokenSource();

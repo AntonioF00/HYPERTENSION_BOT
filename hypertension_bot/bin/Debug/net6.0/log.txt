@@ -1,6 +1,2 @@
-26/01/2023 12:06:20 | System.TypeInitializationException: The type initializer for 'hypertension_bot.program' threw an exception.
- ---> System.NullReferenceException: Object reference not set to an instance of an object.
-   at hypertension_bot.Intents.HelloMessage..ctor() in C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\Intents\HelloMessage.cs:line 11
-   at hypertension_bot.program..cctor() in C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\Program.cs:line 24
-   --- End of inner exception stack trace ---
-   at hypertension_bot.program.Main(String[] args) in C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\Program.cs:line 38
+26/01/2023 12:21:53 | System.NullReferenceException: Object reference not set to an instance of an object.
+   at hypertension_bot.program.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
