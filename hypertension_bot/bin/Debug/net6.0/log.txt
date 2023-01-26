@@ -1,6 +1,6 @@
-26/01/2023 09:00:41 | System.TypeInitializationException: The type initializer for 'hypertension_bot.program' threw an exception.
- ---> System.ArgumentException: Invalid format. A valid token looks like "1234567:4TT8bAc8GHUspu3ERYn-KGcvsvGB9u_n4ddy". (Parameter 'token')
-   at Telegram.Bot.TelegramBotClient..ctor(String token, HttpClient httpClient)
-   at hypertension_bot.program..cctor() in C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\Program.cs:line 11
-   --- End of inner exception stack trace ---
-   at hypertension_bot.program.Main(String[] args) in C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\Program.cs:line 17
+26/01/2023 10:07:40 | System.NullReferenceException: Object reference not set to an instance of an object.
+   at hypertension_bot.program.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken) in C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\Program.cs:line 65
+   at Telegram.Bot.Polling.DefaultUpdateHandler.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+   at Telegram.Bot.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.ReceiveAsync(ITelegramBotClient botClient, IUpdateHandler updateHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.<>c__DisplayClass106_0.<<StartReceiving>b__0>d.MoveNext()

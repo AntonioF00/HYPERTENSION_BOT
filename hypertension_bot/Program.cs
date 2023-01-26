@@ -13,9 +13,14 @@ namespace hypertension_bot
 {
     class program
     {
+        /// <summary>
+        /// https://github.com/ZETALVX/Telegram.Bot/blob/main/Program.cs
+        /// </summary>
+
+
         static TelegramBotClient _telegramBot = new TelegramBotClient(Setting.Istance.Configuration.BotToken);
 
-        static Datas _data;
+        static readonly Datas _data;
 
         static async Task Main(string[] args)
         {
@@ -62,32 +67,27 @@ namespace hypertension_bot
                 return;
 
             //set variables
-            _data.ChatId = long.Parse(update.Id.ToString());
-            _data.MessageText = update.Message.Text;
-            _data.MessageId = update.Message.MessageId;
-            _data.FirstName = update.Message.From.FirstName;
-            _data.LastName = update.Message.From.LastName;
-            _data.Id = update.Message.From.Id;
-            _data.Year = update.Message.Date.Year;
-            _data.Month = update.Message.Date.Month;
-            _data.Day = update.Message.Date.Day;
-            _data.Hour = update.Message.Date.Hour;
-            _data.Minute = update.Message.Date.Minute;
-            _data.Second = update.Message.Date.Second;
+            _data.ChatId        = update.Message.Chat.Id;
+            _data.MessageText   = update.Message.Text;
+            _data.MessageId     = update.Message.MessageId;
+            _data.FirstName     = update.Message.From.FirstName;
+            _data.LastName      = update.Message.From.LastName;
+            _data.Id            = update.Message.From.Id;
+
 
             //if message is Hello .. bot answer Hello + name of user.
-            if (_data.MessageText == "hello")
+            if (_data.MessageText.Equals("hello"))
             {
                 // Echo received message text
                 _data.SentMessage = await botClient.SendTextMessageAsync(
                 chatId: _data.ChatId,
                 text: "Hello " + _data.FirstName + " " + _data.LastName + "",
-                //replyMarkup: replyKeyboardMarkup,
+
                 cancellationToken: cancellationToken);
             }
 
             //if message is "poll" .. create a poll.
-            if (_data.MessageText == "poll")
+            if (_data.MessageText.Equals("poll"))
             {
                 //save the poll id message
                 _data.PollId = _data.MessageId + 1;
@@ -98,8 +98,8 @@ namespace hypertension_bot
                 question: "How are you?",
                 options: new[]
                 {
-                "Good!",
-                "I could be better.."
+                    "Good!",
+                    "I could be better.."
                 },
                 cancellationToken: cancellationToken);
             }
@@ -112,8 +112,6 @@ namespace hypertension_bot
                 messageId: _data.PollId,
                 cancellationToken: cancellationToken);
             }
-
-
         }
 
         public static Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
