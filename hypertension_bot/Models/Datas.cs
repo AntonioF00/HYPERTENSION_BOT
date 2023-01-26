@@ -7,8 +7,6 @@ namespace hypertension_bot.Models
         //Block
         private int  _blockLevel;
         private bool  _messDeleted;
-        private string[]? _badWords;
-        private string[]? _veryBadWords;
 
         //time
         private int  _year;
@@ -33,8 +31,6 @@ namespace hypertension_bot.Models
 
         public int BlockLevel { get => _blockLevel; set => _blockLevel = 0; }
         public bool MessDeleted { get => _messDeleted; set => _messDeleted = false; }
-        public string[] BadWords { get => _badWords; set =>  _badWords = new string[]{ "badword", "bad word"}; }
-        public string[] VeryBadWords { get => _veryBadWords; set => _veryBadWords = new string[] { "verybadword", "very bad word" }; }
         public int Year { get => _year; set => _year = int.Parse(DateTime.UtcNow.Year.ToString()); }
         public int Month { get => _month; set => _month = int.Parse(DateTime.UtcNow.Month.ToString()); }
         public int Day { get => _day; set => _day = int.Parse(DateTime.UtcNow.Day.ToString()); }
