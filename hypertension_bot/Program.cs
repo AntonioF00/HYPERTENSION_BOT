@@ -11,10 +11,6 @@ namespace hypertension_bot
 {
     class program
     {
-        /// <summary>
-        /// https://github.com/ZETALVX/Telegram.Bot/blob/main/Program.cs
-        /// </summary>
-
         private static TelegramBotClient _telegramBot = new TelegramBotClient(Setting.Istance.Configuration.BotToken);
 
         private static readonly Datas _data = new();
@@ -24,7 +20,6 @@ namespace hypertension_bot
         private static readonly ErrorMessage _errorMessage = new();
 
         private static Random _rnd = new();
-
 
         static async Task Main(string[] args)
         {
@@ -60,7 +55,6 @@ namespace hypertension_bot
 
             Console.ReadLine();
         }
-
 
         public static async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
@@ -104,7 +98,6 @@ namespace hypertension_bot
             catch (Exception ex)
             {
                 LogHelper.Log($"{System.DateTime.Now} | {ex.ToString()}");
-
             }
         }
 
