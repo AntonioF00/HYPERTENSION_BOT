@@ -16,12 +16,13 @@ namespace hypertension_bot
         /// https://github.com/ZETALVX/Telegram.Bot/blob/main/Program.cs
         /// </summary>
 
-
         static TelegramBotClient _telegramBot = new TelegramBotClient(Setting.Istance.Configuration.BotToken);
 
         static readonly Datas _data = new();
 
         static HelloMessage _helloMessage = new();
+
+
         static async Task Main(string[] args)
         {
             using var _cancellationTokenSource = new CancellationTokenSource();

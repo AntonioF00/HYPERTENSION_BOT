@@ -1,26 +1,23 @@
-﻿namespace hypertension_bot.Intents
+﻿using System.Collections.Generic;
+
+namespace hypertension_bot.Intents
 {
     public class HelloMessage
     {
-        public List<string> Messages
+        public List<string> Messages { get; }
+
+        public HelloMessage()
         {
-            set
-            {
-                Messages = new List<string>
-                {
-                    "Ciao",
-                    "ciao",
-                    "CIAO",
-                    "buongiorno",
-                    "Buongiorno",
-                    "BUONGIORNO",
-                    "buonasera",
-                    "Buonasera",
-                    "BUONASERA"
-                };
-            }
-            get
-            { return Messages; }
+            Messages = new List<string>();
+            Messages.Add("Ciao");
+            Messages.Add("ciao");
+            Messages.Add("CIAO");
+            Messages.Add("buongiorno");
+            Messages.Add("Buongiorno");
+            Messages.Add("BUONGIORNO");
+            Messages.Add("buonasera");
+            Messages.Add("Buonasera");
+            Messages.Add("BUONASERA");
         }
     }
 }
