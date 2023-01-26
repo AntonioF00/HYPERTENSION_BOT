@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace hypertension_bot.Intents
+namespace hypertension_bot.Models
 {
     public class HelloMessage
     {

@@ -1,5 +1,4 @@
-﻿using hypertension_bot.Intents;
-using hypertension_bot.Loggers;
+﻿using hypertension_bot.Loggers;
 using hypertension_bot.Models;
 using hypertension_bot.Settings;
 using Telegram.Bot;
@@ -41,6 +40,8 @@ namespace hypertension_bot
 
                 var me = await _telegramBot.GetMeAsync();
 
+                Console.WriteLine($"\n{me.Username} token : {Setting.Istance.Configuration.BotToken}");
+                Console.WriteLine($"\n{me.Username} : online");
                 Console.WriteLine($"\nHello! I'm {me.Username} and i'm your Bot!");
 
                 Console.ReadKey();
