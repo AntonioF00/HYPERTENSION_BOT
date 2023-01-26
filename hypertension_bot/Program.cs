@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using hypertension_bot.Loggers;
 using hypertension_bot.Models;
 using hypertension_bot.Settings;
@@ -90,6 +92,32 @@ namespace hypertension_bot
                                                                                 chatId: _data.ChatId,
                                                                                 text: $"{_data.FirstName}, ti va di dirmi i tuoi valori di oggi? \n(scrivimeli in questo modo...\nad esempio '120 30'...\nGRAZIE!)",
                                                                                 cancellationToken: cancellationToken);
+                }else if (!string.IsNullOrEmpty(_data.MessageText))
+                {
+                    int first;
+                    int second;
+
+                    bool success = int.TryParse(new string(_data.MessageText
+                     .SkipWhile(x => !char.IsDigit(x))
+                     .TakeWhile(x => char.IsDigit(x))
+                     .ToArray()), out first);
+
+                    if (first != null && success)
+                    {
+                        _data.MessageText.Replace(first.ToString(),"");
+
+                        success = int.TryParse(new string(_data.MessageText
+                                     .SkipWhile(x => !char.IsDigit(x))
+                                     .TakeWhile(x => char.IsDigit(x))
+                                     .ToArray()), out second);
+                        if (second!= null && success)
+                        {
+                            _data.SentMessage = await botClient.SendTextMessageAsync(
+                                                            chatId: _data.ChatId,
+                                                            text: $"Diastolica : {first}\nSistolica : {second}\nSono corretti?",
+                                                            cancellationToken: cancellationToken);
+                        }
+                    }
                 }
                 else
                 {
