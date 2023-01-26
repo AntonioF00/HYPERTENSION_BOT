@@ -4,8 +4,6 @@
     {
         public List<string> Messages
         {
-            get
-            { return Messages; }
             set
             {
                 Messages = new List<string>
@@ -21,6 +19,8 @@
                     "BUONASERA"
                 };
             }
+            get
+            { return Messages; }
         }
     }
 }
