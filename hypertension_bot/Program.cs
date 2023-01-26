@@ -43,9 +43,6 @@ namespace hypertension_bot
                 Console.ReadKey();
                 _cancellationTokenSource.Cancel();
 
-                //_telegramBot.StartReceiving();
-                //_telegramBot.OnMessage += Bot_OnMessage;
-
             }
             catch(Exception ex)
             {
