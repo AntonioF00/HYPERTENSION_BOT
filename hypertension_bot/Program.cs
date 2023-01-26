@@ -8,7 +8,7 @@ namespace hypertension_bot
 {
     class program
     {
-        static TelegramBotClient _telegramBot = new TelegramBotClient(Setting.Istance.Configuration.BotToken);
+       static object _telegramBot = new TelegramBotClient(Setting.Istance.Configuration.BotToken);
 
         static void Main(string[] args)
         {

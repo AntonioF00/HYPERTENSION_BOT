@@ -1,4 +1,4 @@
-26/01/2023 08:53:38 | System.TypeInitializationException: The type initializer for 'hypertension_bot.program' threw an exception.
+26/01/2023 09:00:41 | System.TypeInitializationException: The type initializer for 'hypertension_bot.program' threw an exception.
  ---> System.ArgumentException: Invalid format. A valid token looks like "1234567:4TT8bAc8GHUspu3ERYn-KGcvsvGB9u_n4ddy". (Parameter 'token')
    at Telegram.Bot.TelegramBotClient..ctor(String token, HttpClient httpClient)
    at hypertension_bot.program..cctor() in C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\Program.cs:line 11
