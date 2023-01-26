@@ -110,13 +110,19 @@ namespace hypertension_bot
                 else if (!string.IsNullOrEmpty(_data.MessageText))
                 {
 
-                    bool success = getValue(_data.MessageText,_diastolic);
+                    bool success = int.TryParse(new string(_data.MessageText
+                     .SkipWhile(x => !char.IsDigit(x))
+                     .TakeWhile(x => char.IsDigit(x))
+                     .ToArray()), out _diastolic);
 
                     if (_diastolic != 0 && success)
                     {
                         var mess = _data.MessageText.Replace(_diastolic.ToString(),"");
 
-                        success = getValue(mess, _sistolic);
+                        success = int.TryParse(new string(mess
+                                     .SkipWhile(x => !char.IsDigit(x))
+                                     .TakeWhile(x => char.IsDigit(x))
+                                     .ToArray()), out _sistolic);
 
                         if (_sistolic != 0 && success)
                         {
@@ -155,16 +161,6 @@ namespace hypertension_bot
             Console.WriteLine(ErrorMessage);
             LogHelper.Log($"{System.DateTime.Now} | {ErrorMessage}");
             return Task.CompletedTask;
-        }
-
-        public static bool getValue(string message, int value)
-        {
-            bool success = int.TryParse(new string(message
-                                                 .SkipWhile(x => !char.IsDigit(x))
-                                                 .TakeWhile(x => char.IsDigit(x))
-                                                 .ToArray()), out value);
-
-            return success;
         }
     }
 }
