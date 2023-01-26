@@ -20,7 +20,9 @@ namespace hypertension_bot
         static TelegramBotClient _telegramBot = new TelegramBotClient(Setting.Istance.Configuration.BotToken);
 
         static readonly Datas _data = new();
-        
+
+        static readonly HelloMessage _helloMessage = new ();
+
 
         static async Task Main(string[] args)
         {
@@ -59,7 +61,6 @@ namespace hypertension_bot
         {
             try
             {
-                HelloMessage _helloMessage = new HelloMessage();
 
                 // Only process Message updates: https://core.telegram.org/bots/api#message
                 if (update.Type != UpdateType.Message)
