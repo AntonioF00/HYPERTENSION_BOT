@@ -84,7 +84,6 @@ namespace hypertension_bot
                 //if message is Hello .. bot answer Hello + name of user.
                 if (_helloMessage.Messages.Contains(_data.MessageText))
                 {
-                    // Echo received message text
                     _data.SentMessage = await botClient.SendTextMessageAsync(
                                                                                 chatId: _data.ChatId,
                                                                                 text: $"{_helloMessage.ReplyMessages[_rnd.Next(4)]} {_data.FirstName}! ",

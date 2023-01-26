@@ -33,7 +33,7 @@ namespace hypertension_bot.Settings
             Configuration i;
             using (Stream reader = new FileStream(filename, FileMode.Open))
             {
-                i = (Configuration)serializer.Deserialize(reader);
+                i = serializer.Deserialize(reader) as Configuration;
             }
             Configuration = i;
         }
