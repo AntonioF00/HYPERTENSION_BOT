@@ -30,6 +30,8 @@ namespace hypertension_bot
 
         private static readonly NegativeMessage _negativeMessage = new();
 
+        private static readonly PressureMessage _pressureMessage = new();
+
         private static int _diastolic;
 
         private static int _sistolic;
@@ -117,7 +119,7 @@ namespace hypertension_bot
                                                                              cancellationToken: cancellationToken);
                 }
 
-                if (_helloMessage.Messages.Contains(_data.MessageText))
+                if (_helloMessage.Messages.Contains(_data.MessageText) || _pressureMessage.Messages.Contains(_data.MessageText))
                 {
                     _unknown = true;
                     _data.SentMessage = await botClient.SendTextMessageAsync(
