@@ -20,6 +20,10 @@ namespace hypertension_bot.Models
             Messages.Add("errato");   
             Messages.Add("Errato");   
             Messages.Add("ERRATO");  
+            Messages.Add("non sono corretti");  
+            Messages.Add("Non sono corretti");  
+            Messages.Add("Non corretti");  
+            Messages.Add("non corretti");  
         }
     }
 }
