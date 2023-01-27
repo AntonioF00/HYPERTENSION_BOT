@@ -154,24 +154,24 @@ namespace hypertension_bot
                     bool success = int.TryParse(new string(_data.MessageText.Replace("/","-").Replace(",","-")
                                                 .SkipWhile(x => !char.IsDigit(x))
                                                 .TakeWhile(x => char.IsDigit(x))
-                                                .ToArray()), out _diastolic);
+                                                .ToArray()), out _sistolic);
 
-                    if (_diastolic != 0 && success)
+                    if (_sistolic != 0 && success)
                     {
                         var mess = _data.MessageText.Replace(_diastolic.ToString(),"");
 
                         success = int.TryParse(new string(mess
                                                .SkipWhile(x => !char.IsDigit(x))
                                                .TakeWhile(x => char.IsDigit(x))
-                                               .ToArray()), out _sistolic);
+                                               .ToArray()), out _diastolic);
 
-                        if (_sistolic != 0 && success)
+                        if (_diastolic != 0 && success)
                         {
                             _done = true;
                             _unknown = true;
                             _data.SentMessage = await botClient.SendTextMessageAsync(
                                                                                      chatId: _data.ChatId,
-                                                                                     text: $"Diastolica : {_diastolic} mmHg\nSistolica : {_sistolic} mmHg\nSono corretti?",
+                                                                                     text: $"Sistolica : {_sistolic} mmHg\nDiastolica : {_diastolic} mmHg\nSono corretti?",
                                                                                      cancellationToken: cancellationToken);
                         }
                     }
