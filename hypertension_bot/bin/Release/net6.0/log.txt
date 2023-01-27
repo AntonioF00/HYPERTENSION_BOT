@@ -1,2 +1,1 @@
-27/01/2023 15:12:56 | System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
-   at hypertension_bot.program.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken) in D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\Program.cs:line 0
+CommandText property has not been initialized

@@ -31,6 +31,12 @@ namespace hypertension_bot.Models
             Messages.Add("YES");
             Messages.Add("yes");
             Messages.Add("Yes");
+            Messages.Add("esatto");
+            Messages.Add("ESATTO");
+            Messages.Add("Esatto");
+            Messages.Add("esattamente");
+            Messages.Add("ESATTAMENTE");
+            Messages.Add("Esattamente");
         }
     }
 }
