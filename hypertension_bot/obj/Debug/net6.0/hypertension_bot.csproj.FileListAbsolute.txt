@@ -120,3 +120,5 @@ C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\obj\Debug\net6.0\refint\hype
 C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\obj\Debug\net6.0\hypertension_bot.pdb
 C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\obj\Debug\net6.0\hypertension_bot.genruntimeconfig.cache
 C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\obj\Debug\net6.0\ref\hypertension_bot.dll
+D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Debug\net6.0\Wit.NET.dll
+D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Debug\net6.0\RestSharp.dll
