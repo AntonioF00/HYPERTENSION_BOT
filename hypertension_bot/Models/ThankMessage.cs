@@ -29,11 +29,11 @@ namespace hypertension_bot.Models
             Messages.Add("Perfetto");
 
             ReplyMessages = new List<string>();
-            Messages.Add("Non c'è bisogno che mi ringrazi!");
-            Messages.Add("Di nulla!");
-            Messages.Add("E' il mio dovere!");
-            Messages.Add("E' un lavoro duro ma qualcuno dovrà pur farlo!");
-            Messages.Add("Ci mancherebbe!");
+            ReplyMessages.Add("Non c'è bisogno che mi ringrazi!");
+            ReplyMessages.Add("Di nulla!");
+            ReplyMessages.Add("E' il mio dovere!");
+            ReplyMessages.Add("E' un lavoro duro ma qualcuno dovrà pur farlo!");
+            ReplyMessages.Add("Ci mancherebbe!");
         }
     }
 }
