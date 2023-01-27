@@ -12,6 +12,8 @@ namespace hypertension_bot.Models
             Messages.Add("Si");
             Messages.Add("si");
             Messages.Add("SI");
+            Messages.Add("S");
+            Messages.Add("s");
             Messages.Add("Perfetto");
             Messages.Add("perfetto");
             Messages.Add("PERFETTO");
@@ -23,6 +25,9 @@ namespace hypertension_bot.Models
             Messages.Add("ok");
             Messages.Add("Ok");
             Messages.Add("OK");
+            Messages.Add("OKY");
+            Messages.Add("Oky");
+            Messages.Add("oky");
             Messages.Add("YES");
             Messages.Add("yes");
             Messages.Add("Yes");

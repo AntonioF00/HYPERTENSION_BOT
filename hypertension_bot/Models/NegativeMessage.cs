@@ -11,6 +11,8 @@ namespace hypertension_bot.Models
             Messages = new List<string>();
             Messages.Add("no");   
             Messages.Add("No");   
+            Messages.Add("N");   
+            Messages.Add("n");   
             Messages.Add("NO");   
             Messages.Add("sbagliato");   
             Messages.Add("Sbagliato");   
