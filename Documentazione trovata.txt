@@ -1,1 +1,2 @@
-https://github.com/ZETALVX/Telegram.Bot/blob/main/Program.cs
+https://github.com/ZETALVX/Telegram.Bot/blob/main/Program.cs  pacchetto telegram.bot
+https://github.com/froesmatheus/wit.net	pacchetto wit.ai

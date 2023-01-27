@@ -48,6 +48,10 @@
               "target": "Package",
               "version": "[2.0.123, )"
             },
+            "MatheusFroes.Wit.NET": {
+              "target": "Package",
+              "version": "[1.0.3, )"
+            },
             "Microsoft.Data.SqlClient": {
               "target": "Package",
               "version": "[5.1.0, )"

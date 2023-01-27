@@ -108,7 +108,7 @@ namespace hypertension_bot
                     _unknown = true;
                     _data.SentMessage = await botClient.SendTextMessageAsync(
                                                                              chatId: _data.ChatId,
-                                                                             text: $"{_thankMessage.ReplyMessages[_rnd.Next(4)]}",
+                                                                             text: $"{_thankMessage.ReplyMessages[_rnd.Next(5)]}",
                                                                              cancellationToken: cancellationToken);
                 }
 

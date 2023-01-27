@@ -34,6 +34,7 @@ namespace hypertension_bot.Models
             ReplyMessages.Add("E' il mio dovere!");
             ReplyMessages.Add("E' un lavoro duro ma qualcuno dovrà pur farlo!");
             ReplyMessages.Add("Ci mancherebbe!");
+
         }
     }
 }

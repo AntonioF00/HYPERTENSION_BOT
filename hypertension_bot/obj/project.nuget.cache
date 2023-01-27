@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "tHOglfVz2H65to+yqaCHGydbv871t2StroVDkJicnHE/Uggtbszz9qN9xb9Cdq/LiGroh73a2NgvxHxoQxw0Dw==",
+  "dgSpecHash": "OjzLovSDopAtBxiiTDP3uivTs1Lp1pWgkO8hT9OdZ6QukttR8edRnpWyI6clR+dkHXtDrFO1Zb6phBWn1xZ8cw==",
   "success": true,
   "projectFilePath": "D:\\BACKUP\\Documenti\\PROGETTI_ANTONIO\\C#\\hypertension_bot\\hypertension_bot\\hypertension_bot.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\AFlor\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\AFlor\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
     "C:\\Users\\AFlor\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
+    "C:\\Users\\AFlor\\.nuget\\packages\\matheusfroes.wit.net\\1.0.3\\matheusfroes.wit.net.1.0.3.nupkg.sha512",
     "C:\\Users\\AFlor\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\AFlor\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\AFlor\\.nuget\\packages\\microsoft.data.sqlclient\\5.1.0\\microsoft.data.sqlclient.5.1.0.nupkg.sha512",
@@ -26,6 +27,7 @@
     "C:\\Users\\AFlor\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\AFlor\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
     "C:\\Users\\AFlor\\.nuget\\packages\\npgsql\\7.0.1\\npgsql.7.0.1.nupkg.sha512",
+    "C:\\Users\\AFlor\\.nuget\\packages\\restsharp\\105.2.3\\restsharp.105.2.3.nupkg.sha512",
     "C:\\Users\\AFlor\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\AFlor\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\AFlor\\.nuget\\packages\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
@@ -96,5 +98,26 @@
     "C:\\Users\\AFlor\\.nuget\\packages\\telegram.bot\\18.0.0\\telegram.bot.18.0.0.nupkg.sha512",
     "C:\\Users\\AFlor\\.nuget\\packages\\telegram.bot.extensions\\1.0.0\\telegram.bot.extensions.1.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Il pacchetto 'MatheusFroes.Wit.NET 1.0.3' è stato ripristinato mediante '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' e non mediante il framework di destinazione del progetto 'net6.0'. Questo pacchetto potrebbe non essere completamente compatibile con il progetto.",
+      "libraryId": "MatheusFroes.Wit.NET",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Il pacchetto 'RestSharp 105.2.3' è stato ripristinato mediante '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' e non mediante il framework di destinazione del progetto 'net6.0'. Questo pacchetto potrebbe non essere completamente compatibile con il progetto.",
+      "libraryId": "RestSharp",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }
