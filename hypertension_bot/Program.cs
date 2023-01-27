@@ -24,11 +24,13 @@ namespace hypertension_bot
 
         private static readonly ErrorMessage _errorMessage = new();
 
-        private static readonly ErrorMessage _insertMessage = new();
+        private static readonly InsertMessage _insertMessage = new();
 
         private static int _diastolic;
 
         private static int _sistolic;
+
+        private static bool _done;
 
         private static Random _rnd = new();
 
@@ -70,6 +72,8 @@ namespace hypertension_bot
 
         public static async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
+            var _unknown = false;
+
             try
             {
                 // Only process Message updates: https://core.telegram.org/bots/api#message
@@ -87,17 +91,20 @@ namespace hypertension_bot
                 _data.LastName      = update.Message.From.LastName;
                 _data.Id            = update.Message.From.Id;
 
-                if (_data.MessageText.Equals("Si") && _data.Done)
+                if (_data.MessageText.Equals("Si") && _done)
                 {
                     _data.Done = false;
-
+                    _unknown = true;
                     _data.SentMessage = await botClient.SendTextMessageAsync(
                                                                              chatId: _data.ChatId,
                                                                              text: $"{_insertMessage.Messages[_rnd.Next(4)]}\nA presto {_data.FirstName}!",
                                                                              cancellationToken: cancellationToken);
+
                 }
-                else if (_helloMessage.Messages.Contains(_data.MessageText))
+
+                if (_helloMessage.Messages.Contains(_data.MessageText))
                 {
+                    _unknown = true;
                     _data.SentMessage = await botClient.SendTextMessageAsync(
                                                                              chatId: _data.ChatId,
                                                                              text: $"{_helloMessage.ReplyMessages[_rnd.Next(4)]} {_data.FirstName}! ",
@@ -108,9 +115,9 @@ namespace hypertension_bot
                                                                              text: $"{_data.FirstName}, ti va di dirmi i tuoi valori di oggi? \n(scrivimeli in questo modo...\nad esempio '120 30'...\nGRAZIE!)",
                                                                              cancellationToken: cancellationToken);
                 }
-                else if (!string.IsNullOrEmpty(_data.MessageText))
-                {
 
+                if (!string.IsNullOrEmpty(_data.MessageText))
+                {
                     bool success = int.TryParse(new string(_data.MessageText
                                                 .SkipWhile(x => !char.IsDigit(x))
                                                 .TakeWhile(x => char.IsDigit(x))
@@ -127,8 +134,8 @@ namespace hypertension_bot
 
                         if (_sistolic != 0 && success)
                         {
-                            _data.Done = true; 
-
+                            _done = true;
+                            _unknown = true;
                             _data.SentMessage = await botClient.SendTextMessageAsync(
                                                                                     chatId: _data.ChatId,
                                                                                     text: $"Diastolica : {_diastolic}\nSistolica : {_sistolic}\nSono corretti?",
@@ -136,7 +143,8 @@ namespace hypertension_bot
                         }
                     }
                 }
-                else
+                
+                if(!_unknown)
                 {
                     _data.SentMessage = await botClient.SendTextMessageAsync(
                                                                              chatId: _data.ChatId,
