@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using hypertension_bot.Data;
 using hypertension_bot.Loggers;
 using hypertension_bot.Models;
 using hypertension_bot.Settings;
@@ -33,6 +34,8 @@ namespace hypertension_bot
         private static readonly PressureMessage _pressureMessage = new();
 
         private static readonly ThankMessage _thankMessage = new();
+
+        private static readonly DbController _dbController = new();
 
         private static int _diastolic;
 
@@ -120,7 +123,8 @@ namespace hypertension_bot
                                                                              chatId: _data.ChatId,
                                                                              text: $"{_insertMessage.Messages[_rnd.Next(4)]}\nA presto {_data.FirstName}!\nData : {System.DateOnly.FromDateTime(System.DateTime.Now)}",
                                                                              cancellationToken: cancellationToken);
-                    ///QUERY INSERT NEL DB
+                    //inserisco i dati nel database
+                    _dbController.InsertMeasures(_diastolic.ToString(),_sistolic.ToString());
 
                 }
 
