@@ -123,6 +123,14 @@ namespace hypertension_bot
                     //inserisco i dati nel database
                     _dbController.InsertMeasures(_diastolic.ToString(),_sistolic.ToString());
 
+                    //la prima voce è la sistolica mentre la seconda la diastolica
+                    //Pressione ottimale <120 < 80
+                    //Pressione normale <130 < 85
+                    //Pressione normale alta  130 - 139 85 - 89
+                    //Ipertensione lieve  140 - 159 90 - 99
+                    //Ipertensione moderata   160 - 179 100 - 109
+                    //Ipertensione grave  > 180 > 110
+                    //Ipertensione sistolica isolata > 140 < 90
                 }
 
                 if (_negativeMessage.Messages.Contains(_data.MessageText) && _done)
