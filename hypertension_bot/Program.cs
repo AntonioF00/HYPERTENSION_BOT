@@ -26,6 +26,10 @@ namespace hypertension_bot
 
         private static readonly InsertMessage _insertMessage = new();
 
+        private static readonly OkMessage _oKMessage = new();
+
+        private static readonly NegativeMessage _negativeMessage = new();
+
         private static int _diastolic;
 
         private static int _sistolic;
@@ -91,7 +95,7 @@ namespace hypertension_bot
                 _data.LastName      = update.Message.From.LastName;
                 _data.Id            = update.Message.From.Id;
 
-                if (_data.MessageText.Equals("Si") && _done)
+                if (_oKMessage.Messages.Contains(_data.MessageText) && _done)
                 {
                     _data.Done = false;
                     _unknown = true;
@@ -99,7 +103,18 @@ namespace hypertension_bot
                                                                              chatId: _data.ChatId,
                                                                              text: $"{_insertMessage.Messages[_rnd.Next(4)]}\nA presto {_data.FirstName}!",
                                                                              cancellationToken: cancellationToken);
+                    ///QUERY INSERT NEL DB
 
+                }
+
+                if (_negativeMessage.Messages.Contains(_data.MessageText) && _done)
+                {
+                    _data.Done = false;
+                    _unknown = true;
+                    _data.SentMessage = await botClient.SendTextMessageAsync(
+                                                                             chatId: _data.ChatId,
+                                                                             text: $"{_errorMessage.Messages[_rnd.Next(4)]}\n{_data.FirstName} prova a reinserire i dati!",
+                                                                             cancellationToken: cancellationToken);
                 }
 
                 if (_helloMessage.Messages.Contains(_data.MessageText))
