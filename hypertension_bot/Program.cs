@@ -77,7 +77,7 @@ namespace hypertension_bot
         public static async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
             var _unknown = false;
-
+            
             try
             {
                 // Only process Message updates: https://core.telegram.org/bots/api#message
