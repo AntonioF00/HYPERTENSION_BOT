@@ -20,7 +20,6 @@ namespace hypertension_bot.Models
 
         private bool _done;
 
-
         public int BlockLevel { get => _blockLevel; set => _blockLevel = 0; }
         public bool MessDeleted { get => _messDeleted; set => _messDeleted = false; }
         public long ChatId { get => _chatId; set => _chatId = value; }
