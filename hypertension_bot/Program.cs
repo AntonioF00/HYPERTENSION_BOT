@@ -103,10 +103,6 @@ namespace hypertension_bot
                 _data.LastName      = update.Message.From.LastName;
                 _data.Id            = update.Message.From.Id;
 
-                ///controllo della misurazione periodica,
-                ///se l'ultima misurazione è stata effettuata due o piu' 
-                ///giorni fa, il bot invia un messaggio di promemoria all'utente.
-
                 if (_thankMessage.Messages.Contains(_data.MessageText))
                 {
                     _unknown = true;
