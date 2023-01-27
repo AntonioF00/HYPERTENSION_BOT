@@ -151,10 +151,10 @@ namespace hypertension_bot
 
                 if (!string.IsNullOrEmpty(_data.MessageText))
                 {
-                    bool success = int.TryParse(new string(_data.MessageText
+                    bool success = int.TryParse(new string(_data.MessageText.Replace("/","-")
                                                 .SkipWhile(x => !char.IsDigit(x))
                                                 .TakeWhile(x => char.IsDigit(x))
-                                                .ToArray()), out _diastolic);
+                                                .ToArray()), out _diastolic); ;
 
                     if (_diastolic != 0 && success)
                     {
