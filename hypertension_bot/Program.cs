@@ -154,9 +154,9 @@ namespace hypertension_bot
                             _done = true;
                             _unknown = true;
                             _data.SentMessage = await botClient.SendTextMessageAsync(
-                                                                                    chatId: _data.ChatId,
-                                                                                    text: $"Diastolica : {_diastolic}\nSistolica : {_sistolic}\nSono corretti?",
-                                                                                    cancellationToken: cancellationToken);
+                                                                                     chatId: _data.ChatId,
+                                                                                     text: $"Diastolica : {_diastolic}\nSistolica : {_sistolic}\nSono corretti?",
+                                                                                     cancellationToken: cancellationToken);
                         }
                     }
                 }
