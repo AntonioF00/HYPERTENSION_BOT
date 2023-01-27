@@ -37,13 +37,14 @@ namespace hypertension_bot
 
         private static readonly DbController _dbController = new();
 
+        private static Random _rnd = new();
+
         private static int _diastolic;
 
         private static int _sistolic;
 
         private static bool _done;
 
-        private static Random _rnd = new();
 
         static async Task Main(string[] args)
         {
@@ -200,7 +201,7 @@ namespace hypertension_bot
             {
                 ApiRequestException apiRequestException
                     => $"Telegram API Error:\n[{apiRequestException.ErrorCode}]\n{apiRequestException.Message}",
-                _ => exception.ToString()
+                  _ => exception.ToString()
             };
 
             Console.WriteLine(ErrorMessage);
