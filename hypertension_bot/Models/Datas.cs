@@ -9,14 +9,6 @@ namespace hypertension_bot.Models
         private int  _blockLevel;
         private bool  _messDeleted;
 
-        //time
-        private DateTime _year;
-        private DateTime _month;
-        private DateTime _day;
-        private DateTime _hour;
-        private DateTime _minute;
-        private DateTime _second;
-
         //Messages and User info
         private long  _chatId;
         private string?  _messageText;
@@ -31,12 +23,6 @@ namespace hypertension_bot.Models
 
         public int BlockLevel { get => _blockLevel; set => _blockLevel = 0; }
         public bool MessDeleted { get => _messDeleted; set => _messDeleted = false; }
-        public DateTime Year { get => _year; set => System.DateTime.UtcNow.Year.ToString(); }
-        public DateTime Month { get => _month; set => System.DateTime.UtcNow.Month.ToString(); }
-        public DateTime Day { get => _day; set => System.DateTime.UtcNow.Day.ToString(); }
-        public DateTime Hour { get => _hour; set => System.DateTime.UtcNow.Hour.ToString(); }
-        public DateTime Minute { get => _minute; set => System.DateTime.UtcNow.Minute.ToString(); }
-        public DateTime Second { get => _second; set => System.DateTime.UtcNow.Second.ToString(); }
         public long ChatId { get => _chatId; set => _chatId = value; }
         public string MessageText { get => _messageText; set => _messageText = value; }
         public int MessageId { get => _messageId; set => _messageId = value; }

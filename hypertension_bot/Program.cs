@@ -32,6 +32,8 @@ namespace hypertension_bot
 
         private static readonly PressureMessage _pressureMessage = new();
 
+        private static readonly ThankMessage _thankMessage = new();
+
         private static int _diastolic;
 
         private static int _sistolic;
@@ -96,6 +98,19 @@ namespace hypertension_bot
                 _data.FirstName     = update.Message.From.FirstName;
                 _data.LastName      = update.Message.From.LastName;
                 _data.Id            = update.Message.From.Id;
+
+                ///controllo della misurazione periodica,
+                ///se l'ultima misurazione è stata effettuata due o piu' 
+                ///giorni fa, il bot invia un messaggio di promemoria all'utente.
+
+                if (_thankMessage.Messages.Contains(_data.MessageText))
+                {
+                    _unknown = true;
+                    _data.SentMessage = await botClient.SendTextMessageAsync(
+                                                                             chatId: _data.ChatId,
+                                                                             text: $"{_thankMessage.ReplyMessages[_rnd.Next(4)]}",
+                                                                             cancellationToken: cancellationToken);
+                }
 
                 if (_oKMessage.Messages.Contains(_data.MessageText) && _done)
                 {
