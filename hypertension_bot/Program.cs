@@ -151,10 +151,10 @@ namespace hypertension_bot
 
                 if (!string.IsNullOrEmpty(_data.MessageText))
                 {
-                    bool success = int.TryParse(new string(_data.MessageText.Replace("/","-")
+                    bool success = int.TryParse(new string(_data.MessageText.Replace("/","-").Replace(",","-")
                                                 .SkipWhile(x => !char.IsDigit(x))
                                                 .TakeWhile(x => char.IsDigit(x))
-                                                .ToArray()), out _diastolic); ;
+                                                .ToArray()), out _diastolic);
 
                     if (_diastolic != 0 && success)
                     {
@@ -171,7 +171,7 @@ namespace hypertension_bot
                             _unknown = true;
                             _data.SentMessage = await botClient.SendTextMessageAsync(
                                                                                      chatId: _data.ChatId,
-                                                                                     text: $"Diastolica : {_diastolic}\nSistolica : {_sistolic}\nSono corretti?",
+                                                                                     text: $"Diastolica : {_diastolic} mmHg\nSistolica : {_sistolic} mmHg\nSono corretti?",
                                                                                      cancellationToken: cancellationToken);
                         }
                     }

@@ -64,6 +64,7 @@ D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Re
 D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Azure.Core.dll
 D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Azure.Identity.dll
 D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Dapper.dll
+D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Wit.NET.dll
 D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
 D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Microsoft.Data.SqlClient.dll
 D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
@@ -79,6 +80,7 @@ D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Re
 D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Microsoft.Win32.SystemEvents.dll
 D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Newtonsoft.Json.dll
 D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Npgsql.dll
+D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\RestSharp.dll
 D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\System.Configuration.ConfigurationManager.dll
 D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\System.Drawing.Common.dll
 D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\System.IdentityModel.Tokens.Jwt.dll
@@ -112,5 +114,3 @@ D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\obj\Re
 D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\obj\Release\net6.0\hypertension_bot.pdb
 D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\obj\Release\net6.0\hypertension_bot.genruntimeconfig.cache
 D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\obj\Release\net6.0\ref\hypertension_bot.dll
-D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Wit.NET.dll
-D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\RestSharp.dll
