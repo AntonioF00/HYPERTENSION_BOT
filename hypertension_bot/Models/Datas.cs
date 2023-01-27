@@ -1,4 +1,5 @@
-﻿using Telegram.Bot.Types;
+﻿using System;
+using Telegram.Bot.Types;
 
 namespace hypertension_bot.Models
 {
@@ -9,12 +10,12 @@ namespace hypertension_bot.Models
         private bool  _messDeleted;
 
         //time
-        private int  _year;
-        private int  _month;
-        private int  _day;
-        private int  _hour;
-        private int  _minute;
-        private int  _second;
+        private DateTime _year;
+        private DateTime _month;
+        private DateTime _day;
+        private DateTime _hour;
+        private DateTime _minute;
+        private DateTime _second;
 
         //Messages and User info
         private long  _chatId;
@@ -30,12 +31,12 @@ namespace hypertension_bot.Models
 
         public int BlockLevel { get => _blockLevel; set => _blockLevel = 0; }
         public bool MessDeleted { get => _messDeleted; set => _messDeleted = false; }
-        public int Year { get => _year; set => int.Parse(System.DateTime.UtcNow.Year.ToString()); }
-        public int Month { get => _month; set => int.Parse(System.DateTime.UtcNow.Month.ToString()); }
-        public int Day { get => _day; set => int.Parse(System.DateTime.UtcNow.Day.ToString()); }
-        public int Hour { get => _hour; set => int.Parse(System.DateTime.UtcNow.Hour.ToString()); }
-        public int Minute { get => _minute; set => int.Parse(System.DateTime.UtcNow.Minute.ToString()); }
-        public int Second { get => _second; set => int.Parse(System.DateTime.UtcNow.Second.ToString()); }
+        public DateTime Year { get => _year; set => System.DateTime.UtcNow.Year.ToString(); }
+        public DateTime Month { get => _month; set => System.DateTime.UtcNow.Month.ToString(); }
+        public DateTime Day { get => _day; set => System.DateTime.UtcNow.Day.ToString(); }
+        public DateTime Hour { get => _hour; set => System.DateTime.UtcNow.Hour.ToString(); }
+        public DateTime Minute { get => _minute; set => System.DateTime.UtcNow.Minute.ToString(); }
+        public DateTime Second { get => _second; set => System.DateTime.UtcNow.Second.ToString(); }
         public long ChatId { get => _chatId; set => _chatId = value; }
         public string MessageText { get => _messageText; set => _messageText = value; }
         public int MessageId { get => _messageId; set => _messageId = value; }

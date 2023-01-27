@@ -103,7 +103,7 @@ namespace hypertension_bot
                     _unknown = true;
                     _data.SentMessage = await botClient.SendTextMessageAsync(
                                                                              chatId: _data.ChatId,
-                                                                             text: $"{_insertMessage.Messages[_rnd.Next(4)]}\nA presto {_data.FirstName}!\nData : {_data.Day}/{_data.Month}/{_data.Year}",
+                                                                             text: $"{_insertMessage.Messages[_rnd.Next(4)]}\nA presto {_data.FirstName}!\nData : {System.DateOnly.FromDateTime(System.DateTime.Now)}",
                                                                              cancellationToken: cancellationToken);
                     ///QUERY INSERT NEL DB
 
