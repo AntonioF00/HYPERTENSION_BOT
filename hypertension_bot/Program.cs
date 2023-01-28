@@ -74,7 +74,7 @@ namespace hypertension_bot
             }
             catch(Exception ex)
             {
-                LogHelper.Log($"{System.DateTime.Now} | {ex.ToString()}");
+                LogHelper.Log($"{System.DateTime.Now} | {ex.Message} |{ex.StackTrace}");
                 Console.WriteLine($"\nBot : offline..error");
                 _cancellationTokenSource.Cancel();
             }
@@ -86,116 +86,101 @@ namespace hypertension_bot
         {
             var _unknown = false;
             
-            try
+            // Only process Message updates: https://core.telegram.org/bots/api#message
+            if (update.Type != UpdateType.Message)
+                return;
+            // Only process text messages
+            if (update.Message!.Type != MessageType.Text)
+                return;
+
+            //set variables
+            _data.ChatId        = update.Message.Chat.Id;
+            _data.MessageText   = update.Message.Text;
+            _data.MessageId     = update.Message.MessageId;
+            _data.FirstName     = update.Message.From.FirstName;
+            _data.LastName      = update.Message.From.LastName;
+            _data.Id            = update.Message.From.Id;
+
+            if (_thankMessage.Messages.Contains(_data.MessageText))
             {
-                // Only process Message updates: https://core.telegram.org/bots/api#message
-                if (update.Type != UpdateType.Message)
-                    return;
-                // Only process text messages
-                if (update.Message!.Type != MessageType.Text)
-                    return;
+                _unknown = true;
+                _data.SentMessage = await botClient.SendTextMessageAsync(
+                                                                            chatId: _data.ChatId,
+                                                                            text: $"{_thankMessage.ReplyMessages[_rnd.Next(5)]}",
+                                                                            cancellationToken: cancellationToken);
+            }
 
-                //set variables
-                _data.ChatId        = update.Message.Chat.Id;
-                _data.MessageText   = update.Message.Text;
-                _data.MessageId     = update.Message.MessageId;
-                _data.FirstName     = update.Message.From.FirstName;
-                _data.LastName      = update.Message.From.LastName;
-                _data.Id            = update.Message.From.Id;
+            if (_oKMessage.Messages.Contains(_data.MessageText) && _done)
+            {
+                _data.Done = false;
+                _unknown = true;
+                _data.SentMessage = await botClient.SendTextMessageAsync(
+                                                                            chatId: _data.ChatId,
+                                                                            text: $"{_insertMessage.Messages[_rnd.Next(4)]}\nA presto {_data.FirstName}!\nData : {System.DateOnly.FromDateTime(System.DateTime.Now)}",
+                                                                            cancellationToken: cancellationToken);
+                //inserisco i dati nel database
+                _dbController.InsertMeasures(_diastolic.ToString(),_sistolic.ToString());
 
-                if (_thankMessage.Messages.Contains(_data.MessageText))
+            }
+
+            if (_negativeMessage.Messages.Contains(_data.MessageText) && _done)
+            {
+                _data.Done = false;
+                _unknown = true;
+                _data.SentMessage = await botClient.SendTextMessageAsync(
+                                                                            chatId: _data.ChatId,
+                                                                            text: $"{_errorMessage.Messages[_rnd.Next(4)]}\n{_data.FirstName} prova a reinserire i dati!",
+                                                                            cancellationToken: cancellationToken);
+            }
+
+            if (_helloMessage.Messages.Contains(_data.MessageText) || _pressureMessage.Messages.Contains(_data.MessageText))
+            {
+                _unknown = true;
+                _data.SentMessage = await botClient.SendTextMessageAsync(
+                                                                            chatId: _data.ChatId,
+                                                                            text: $"{_helloMessage.ReplyMessages[_rnd.Next(4)]} {_data.FirstName}! ",
+                                                                            cancellationToken: cancellationToken);
+
+                _data.SentMessage = await botClient.SendTextMessageAsync(
+                                                                            chatId: _data.ChatId,
+                                                                            text: $"{_data.FirstName}, ti va di dirmi i tuoi valori di oggi? \n(scrivimeli in questo modo...\nad esempio '120 30'...\nGRAZIE!)",
+                                                                            cancellationToken: cancellationToken);
+            }
+
+            if (!string.IsNullOrEmpty(_data.MessageText))
+            {
+                bool success = int.TryParse(new string(_data.MessageText.Replace("/","-").Replace(",","-")
+                                            .SkipWhile(x => !char.IsDigit(x))
+                                            .TakeWhile(x => char.IsDigit(x))
+                                            .ToArray()), out _sistolic);
+
+                if (_sistolic != 0 && success)
                 {
-                    _unknown = true;
-                    _data.SentMessage = await botClient.SendTextMessageAsync(
-                                                                             chatId: _data.ChatId,
-                                                                             text: $"{_thankMessage.ReplyMessages[_rnd.Next(5)]}",
-                                                                             cancellationToken: cancellationToken);
-                }
+                    var mess = _data.MessageText.Replace(_diastolic.ToString(),"");
 
-                if (_oKMessage.Messages.Contains(_data.MessageText) && _done)
-                {
-                    _data.Done = false;
-                    _unknown = true;
-                    _data.SentMessage = await botClient.SendTextMessageAsync(
-                                                                             chatId: _data.ChatId,
-                                                                             text: $"{_insertMessage.Messages[_rnd.Next(4)]}\nA presto {_data.FirstName}!\nData : {System.DateOnly.FromDateTime(System.DateTime.Now)}",
-                                                                             cancellationToken: cancellationToken);
-                    //inserisco i dati nel database
-                    _dbController.InsertMeasures(_diastolic.ToString(),_sistolic.ToString());
+                    success = int.TryParse(new string(mess
+                                            .SkipWhile(x => !char.IsDigit(x))
+                                            .TakeWhile(x => char.IsDigit(x))
+                                            .ToArray()), out _diastolic);
 
-                    //la prima voce è la sistolica mentre la seconda la diastolica
-                    //Pressione ottimale <120 < 80
-                    //Pressione normale <130 < 85
-                    //Pressione normale alta  130 - 139 85 - 89
-                    //Ipertensione lieve  140 - 159 90 - 99
-                    //Ipertensione moderata   160 - 179 100 - 109
-                    //Ipertensione grave  > 180 > 110
-                    //Ipertensione sistolica isolata > 140 < 90
-                }
-
-                if (_negativeMessage.Messages.Contains(_data.MessageText) && _done)
-                {
-                    _data.Done = false;
-                    _unknown = true;
-                    _data.SentMessage = await botClient.SendTextMessageAsync(
-                                                                             chatId: _data.ChatId,
-                                                                             text: $"{_errorMessage.Messages[_rnd.Next(4)]}\n{_data.FirstName} prova a reinserire i dati!",
-                                                                             cancellationToken: cancellationToken);
-                }
-
-                if (_helloMessage.Messages.Contains(_data.MessageText) || _pressureMessage.Messages.Contains(_data.MessageText))
-                {
-                    _unknown = true;
-                    _data.SentMessage = await botClient.SendTextMessageAsync(
-                                                                             chatId: _data.ChatId,
-                                                                             text: $"{_helloMessage.ReplyMessages[_rnd.Next(4)]} {_data.FirstName}! ",
-                                                                             cancellationToken: cancellationToken);
-
-                    _data.SentMessage = await botClient.SendTextMessageAsync(
-                                                                             chatId: _data.ChatId,
-                                                                             text: $"{_data.FirstName}, ti va di dirmi i tuoi valori di oggi? \n(scrivimeli in questo modo...\nad esempio '120 30'...\nGRAZIE!)",
-                                                                             cancellationToken: cancellationToken);
-                }
-
-                if (!string.IsNullOrEmpty(_data.MessageText))
-                {
-                    bool success = int.TryParse(new string(_data.MessageText.Replace("/","-").Replace(",","-")
-                                                .SkipWhile(x => !char.IsDigit(x))
-                                                .TakeWhile(x => char.IsDigit(x))
-                                                .ToArray()), out _sistolic);
-
-                    if (_sistolic != 0 && success)
+                    if (_diastolic != 0 && success)
                     {
-                        var mess = _data.MessageText.Replace(_diastolic.ToString(),"");
-
-                        success = int.TryParse(new string(mess
-                                               .SkipWhile(x => !char.IsDigit(x))
-                                               .TakeWhile(x => char.IsDigit(x))
-                                               .ToArray()), out _diastolic);
-
-                        if (_diastolic != 0 && success)
-                        {
-                            _done = true;
-                            _unknown = true;
-                            _data.SentMessage = await botClient.SendTextMessageAsync(
-                                                                                     chatId: _data.ChatId,
-                                                                                     text: $"Sistolica : {_sistolic} mmHg\nDiastolica : {_diastolic} mmHg\nSono corretti?",
-                                                                                     cancellationToken: cancellationToken);
-                        }
+                        _done = true;
+                        _unknown = true;
+                        _data.SentMessage = await botClient.SendTextMessageAsync(
+                                                                                    chatId: _data.ChatId,
+                                                                                    text: $"Sistolica : {_sistolic} mmHg\nDiastolica : {_diastolic} mmHg\nSono corretti?",
+                                                                                    cancellationToken: cancellationToken);
                     }
                 }
-                
-                if(!_unknown)
-                {
-                    _data.SentMessage = await botClient.SendTextMessageAsync(
-                                                                             chatId: _data.ChatId,
-                                                                             text: $"{_errorMessage.Messages[_rnd.Next(6)]}",
-                                                                             cancellationToken: cancellationToken);
-                }
             }
-            catch (Exception ex)
+                
+            if(!_unknown)
             {
-                LogHelper.Log($"{System.DateTime.Now} | {ex.ToString()}");
+                _data.SentMessage = await botClient.SendTextMessageAsync(
+                                                                            chatId: _data.ChatId,
+                                                                            text: $"{_errorMessage.Messages[_rnd.Next(6)]}",
+                                                                            cancellationToken: cancellationToken);
             }
         }
 
