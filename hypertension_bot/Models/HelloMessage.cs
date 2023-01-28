@@ -10,15 +10,11 @@ namespace hypertension_bot.Models
         public HelloMessage()
         {
             Messages = new List<string>();
-            Messages.Add("Ciao");
+
             Messages.Add("ciao");
-            Messages.Add("CIAO");
             Messages.Add("buongiorno");
-            Messages.Add("Buongiorno");
-            Messages.Add("BUONGIORNO");
             Messages.Add("buonasera");
-            Messages.Add("Buonasera");
-            Messages.Add("BUONASERA");
+
 
             ReplyMessages = new List<string>();
             ReplyMessages.Add("Ciao");
