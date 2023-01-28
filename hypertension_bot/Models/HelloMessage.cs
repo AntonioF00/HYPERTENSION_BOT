@@ -17,7 +17,6 @@ namespace hypertension_bot.Models
             Messages.Add("buonasera");
             Messages.Add("buona sera");
 
-
             ReplyMessages = new List<string>();
             ReplyMessages.Add("Ciao");
             ReplyMessages.Add("Ciao!, sono felice di vederti");
