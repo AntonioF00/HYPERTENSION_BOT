@@ -179,7 +179,7 @@ namespace hypertension_bot
             {
                 _data.SentMessage = await botClient.SendTextMessageAsync(
                                                                             chatId: _data.ChatId,
-                                                                            text: $"{_errorMessage.Messages[_rnd.Next(6)]}",
+                                                                            text: $"{_errorMessage.Messages[_rnd.Next(6)] }",
                                                                             cancellationToken: cancellationToken);
             }
         }
