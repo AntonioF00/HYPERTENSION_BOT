@@ -5029,31 +5029,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\AFlor\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/Users/antonioflorio/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\BACKUP\\Documenti\\PROGETTI_ANTONIO\\C#\\hypertension_bot\\hypertension_bot\\hypertension_bot.csproj",
+      "projectUniqueName": "/Users/antonioflorio/Projects/hypertension_bot/hypertension_bot/hypertension_bot.csproj",
       "projectName": "hypertension_bot",
-      "projectPath": "D:\\BACKUP\\Documenti\\PROGETTI_ANTONIO\\C#\\hypertension_bot\\hypertension_bot\\hypertension_bot.csproj",
-      "packagesPath": "C:\\Users\\AFlor\\.nuget\\packages\\",
-      "outputPath": "D:\\BACKUP\\Documenti\\PROGETTI_ANTONIO\\C#\\hypertension_bot\\hypertension_bot\\obj\\",
+      "projectPath": "/Users/antonioflorio/Projects/hypertension_bot/hypertension_bot/hypertension_bot.csproj",
+      "packagesPath": "/Users/antonioflorio/.nuget/packages/",
+      "outputPath": "/Users/antonioflorio/Projects/hypertension_bot/hypertension_bot/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\AFlor\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/antonioflorio/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -5121,7 +5114,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
       }
     }
   },
@@ -5130,7 +5123,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Il pacchetto 'MatheusFroes.Wit.NET 1.0.3' è stato ripristinato mediante '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' e non mediante il framework di destinazione del progetto 'net6.0'. Questo pacchetto potrebbe non essere completamente compatibile con il progetto.",
+      "message": "Package 'MatheusFroes.Wit.NET 1.0.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
       "libraryId": "MatheusFroes.Wit.NET",
       "targetGraphs": [
         "net6.0"
@@ -5140,7 +5133,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Il pacchetto 'RestSharp 105.2.3' è stato ripristinato mediante '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' e non mediante il framework di destinazione del progetto 'net6.0'. Questo pacchetto potrebbe non essere completamente compatibile con il progetto.",
+      "message": "Package 'RestSharp 105.2.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
       "libraryId": "RestSharp",
       "targetGraphs": [
         "net6.0"
