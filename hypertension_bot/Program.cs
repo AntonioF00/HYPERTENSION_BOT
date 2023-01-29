@@ -19,7 +19,7 @@ namespace hypertension_bot
     {
         private static TelegramBotClient _telegramBot = new TelegramBotClient(Setting.Istance.Configuration.BotToken);
 
-        private static readonly Datas _data = new();
+        private static readonly Datas _data = new(); 
 
         private static readonly HelloMessage _helloMessage = new();
 
