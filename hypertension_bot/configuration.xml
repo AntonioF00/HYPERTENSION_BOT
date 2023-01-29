@@ -18,7 +18,7 @@
 	  INSERT INTO users."User"("idUser") 
 								VALUES (@id::text)
 	  ON CONFLICT ("idUser") DO UPDATE
-								SET "idUser" = @id::text;
+								SET "idUser" = @id::text; 
   </InsertUser>
 
 </Configuration>
