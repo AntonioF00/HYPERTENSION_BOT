@@ -14,7 +14,7 @@ namespace hypertension_bot.Data
             _connection = ConnectionFactory.GetConnection(Setting.Istance.Configuration.ConnectionType, Setting.Istance.Configuration.ConnectionString);
         }
 
-        public void InsertMeasures(string diastolic, string sistolic)
+        public void InsertMeasures(int diastolic, int sistolic, long id)
         {
             try
             {
@@ -25,7 +25,8 @@ namespace hypertension_bot.Data
                 new Dictionary<string, object>()
                 {
                     ["diastolic"] = diastolic,
-                    ["sistolic"] = sistolic
+                    ["sistolic"] = sistolic,
+                    ["id"] = id
                 });
 
                 _connection.Close();
@@ -43,7 +44,8 @@ namespace hypertension_bot.Data
         {
             try
             {
-                _connection.Open();
+                if (_connection.State != System.Data.ConnectionState.Open)
+                    _connection.Open();
 
                 _connection.Query(Setting.Istance.Configuration.InsertUser,
                 new Dictionary<string, object>()

@@ -11,14 +11,17 @@
 
   <!-- Querys-->
   <InsertMeasures>
-	  
+	  INSERT INTO users."Measurement"(
+	  systolic, diastolic, datetime,"heartRate", "User_idUser")
+	  VALUES (@sistolic, @diastolic, NOW(),(@sistolic*@diastolic)*0.002,@id::text);
   </InsertMeasures>
 
   <InsertUser>
-	  INSERT INTO users."User"("idUser")
-								VALUES (@id::text)
+	  INSERT INTO users."User"(
+	  "idUser")
+	  VALUES (@id::text)
 	  ON CONFLICT ("idUser") DO UPDATE
-								SET "idUser" = @id::text;
+	  SET "idUser" = @id::text;
   </InsertUser>
 
 </Configuration>

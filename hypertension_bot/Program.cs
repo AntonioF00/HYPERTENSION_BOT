@@ -123,7 +123,7 @@ namespace hypertension_bot
                 _dbController.InsertUser(_data.Id);
 
                 //inserisco i dati nel database
-                _dbController.InsertMeasures(_diastolic.ToString(),_sistolic.ToString());
+                _dbController.InsertMeasures(_diastolic,_sistolic,_data.Id);
 
             }
 
@@ -160,7 +160,7 @@ namespace hypertension_bot
 
                 if (_sistolic != 0 && success)
                 {
-                    var mess = _data.MessageText.Replace(_diastolic.ToString(),"");
+                    var mess = _data.MessageText.Replace(_sistolic.ToString(),"");
 
                     success = int.TryParse(new string(mess
                                             .SkipWhile(x => !char.IsDigit(x))
