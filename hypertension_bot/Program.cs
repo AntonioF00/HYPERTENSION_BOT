@@ -120,7 +120,7 @@ namespace hypertension_bot
                                                                             text: $"{_insertMessage.Messages[_rnd.Next(4)]}\nA presto {_data.FirstName}!\nData : {System.DateOnly.FromDateTime(System.DateTime.Now)}",
                                                                             cancellationToken: cancellationToken);
                 //inserisco l'utente nel database
-                _dbController.InsertUser(_data.Id.ToString());
+                _dbController.InsertUser(_data.Id);
 
                 //inserisco i dati nel database
                 _dbController.InsertMeasures(_diastolic.ToString(),_sistolic.ToString());

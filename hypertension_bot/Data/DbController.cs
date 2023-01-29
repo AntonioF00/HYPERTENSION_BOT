@@ -39,12 +39,11 @@ namespace hypertension_bot.Data
             }
         }
 
-        public void InsertUser(string id)
+        public void InsertUser(long id)
         {
             try
             {
-                if (_connection.State != System.Data.ConnectionState.Open)
-                    _connection.Open();
+                _connection.Open();
 
                 _connection.Query(Setting.Istance.Configuration.InsertUser,
                 new Dictionary<string, object>()

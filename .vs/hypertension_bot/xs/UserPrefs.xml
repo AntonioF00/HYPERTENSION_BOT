@@ -1,15 +1,16 @@
 ﻿<Properties StartupConfiguration="{E5FA4A25-5A16-40BC-B395-E521DF039C68}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="hypertension_bot/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="hypertension_bot/configuration.xml">
     <Files>
-      <File FileName="hypertension_bot/Program.cs" Line="86" Column="1" />
-      <File FileName="hypertension_bot/Models/HelloMessage.cs" Line="1" Column="1" />
-      <File FileName="hypertension_bot/Models/InsertMessage.cs" Line="1" Column="1" />
-      <File FileName="hypertension_bot/configuration.xml" Line="1" Column="1" />
-      <File FileName="hypertension_bot/Data/ConnectionFactory.cs" Line="1" Column="1" />
-      <File FileName="hypertension_bot/Data/DbController.cs" Line="1" Column="1" />
-      <File FileName="hypertension_bot/Loggers/FileLogger.cs" Line="1" Column="1" />
-      <File FileName="hypertension_bot/Database/create_db_improved_2.sql" Line="1" Column="1" />
-      <File FileName="hypertension_bot/Loggers/LogBase.cs" Line="1" Column="1" />
+      <File FileName="hypertension_bot/Program.cs" Line="123" Column="1" />
+      <File FileName="hypertension_bot/Models/HelloMessage.cs" />
+      <File FileName="hypertension_bot/Models/InsertMessage.cs" />
+      <File FileName="hypertension_bot/configuration.xml" Line="5" Column="109" />
+      <File FileName="hypertension_bot/Data/ConnectionFactory.cs" />
+      <File FileName="hypertension_bot/Data/DbController.cs" Line="54" Column="37" />
+      <File FileName="hypertension_bot/Loggers/FileLogger.cs" />
+      <File FileName="hypertension_bot/Database/create_db_improved_2.sql" Line="13" Column="1" />
+      <File FileName="hypertension_bot/Loggers/LogBase.cs" />
+      <File FileName="hypertension_bot/Models/Configuration.cs" Line="12" Column="28" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -21,20 +22,21 @@
               <Node name="Loggers" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Settings" expanded="True" />
+              <Node name="configuration.xml" selected="True" />
             </Node>
           </Node>
         </State>
       </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
-      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/antonioflorio/Projects/hypertension_bot/hypertension_bot/Program.cs" relfile="hypertension_bot/Program.cs" line="123" column="1" />
+      <Breakpoint file="/Users/antonioflorio/Projects/hypertension_bot/hypertension_bot/Data/DbController.cs" relfile="hypertension_bot/Data/DbController.cs" line="43" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.hypertension__bot PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.hypertension__bot PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
 </Properties>
