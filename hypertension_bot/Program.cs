@@ -100,6 +100,7 @@ namespace hypertension_bot
             _data.FirstName     = update.Message.From.FirstName;
             _data.LastName      = update.Message.From.LastName;
             _data.Id            = update.Message.From.Id;
+      
 
             if (_thankMessage.Messages.Contains(_data.MessageText))
             {
@@ -118,6 +119,9 @@ namespace hypertension_bot
                                                                             chatId: _data.ChatId,
                                                                             text: $"{_insertMessage.Messages[_rnd.Next(4)]}\nA presto {_data.FirstName}!\nData : {System.DateOnly.FromDateTime(System.DateTime.Now)}",
                                                                             cancellationToken: cancellationToken);
+                //inserisco l'utente nel database
+                _dbController.InsertUser(_data.Id.ToString());
+
                 //inserisco i dati nel database
                 _dbController.InsertMeasures(_diastolic.ToString(),_sistolic.ToString());
 

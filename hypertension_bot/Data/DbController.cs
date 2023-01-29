@@ -38,5 +38,29 @@ namespace hypertension_bot.Data
                 LogHelper.Log(ex.Message);
             }
         }
+
+        public void InsertUser(string id)
+        {
+            try
+            {
+                if (_connection.State != System.Data.ConnectionState.Open)
+                    _connection.Open();
+
+                _connection.Query(Setting.Istance.Configuration.InsertUser,
+                new Dictionary<string, object>()
+                {
+                    ["id"] = id,
+                });
+
+                _connection.Close();
+            }
+            catch (Exception ex)
+            {
+                if (_connection.State == System.Data.ConnectionState.Open)
+                    _connection.Close();
+
+                LogHelper.Log(ex.Message);
+            }
+        }
     }
 }
