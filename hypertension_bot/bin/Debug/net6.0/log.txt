@@ -1,2 +1,1 @@
-26/01/2023 12:21:53 | System.NullReferenceException: Object reference not set to an instance of an object.
-   at hypertension_bot.program.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+28P01: password authentication failed for user "postgres"
