@@ -30,7 +30,7 @@
 			END
 		FROM users."Measurement"
 		WHERE "User_idUser" = @id::text
-		ORDER BY datetime DESC 
+		ORDER BY datetime asc 
 		LIMIT 1
 	</LastInsert>
 
