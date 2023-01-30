@@ -1,1 +1,6 @@
-28P01: password authentication failed for user "postgres"
+30/01/2023 13:47:32 | System.NullReferenceException: Object reference not set to an instance of an object.
+   at hypertension_bot.program.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken) in C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\Program.cs:line 104
+   at Telegram.Bot.Polling.DefaultUpdateHandler.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+   at Telegram.Bot.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.ReceiveAsync(ITelegramBotClient botClient, IUpdateHandler updateHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.<>c__DisplayClass106_0.<<StartReceiving>b__0>d.MoveNext()

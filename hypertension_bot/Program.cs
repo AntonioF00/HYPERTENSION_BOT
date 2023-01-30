@@ -100,7 +100,7 @@ namespace hypertension_bot
             _data.FirstName     = update.Message.From.FirstName;
             _data.LastName      = update.Message.From.LastName;
             _data.Id            = update.Message.From.Id;
-      
+
 
             if (_thankMessage.Messages.Contains(_data.MessageText))
             {
