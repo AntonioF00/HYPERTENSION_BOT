@@ -108,8 +108,7 @@ namespace hypertension_bot
             if (_thankMessage.Messages.Contains(_data.MessageText))
             {
                 _unknown = true;
-                _data.SentMessage = await botClient.SendTextMessageAsync(
-                                                                         chatId: _data.ChatId,
+                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                          text: $"{_thankMessage.ReplyMessages[_rnd.Next(5)]}",
                                                                          cancellationToken: cancellationToken);
             }
@@ -118,8 +117,7 @@ namespace hypertension_bot
             {
                 _data.Done = false;
                 _unknown = true;
-                _data.SentMessage = await botClient.SendTextMessageAsync(
-                                                                         chatId: _data.ChatId,
+                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                          text: $"{_insertMessage.Messages[_rnd.Next(4)]}\nA presto {_data.FirstName}!\nData : {System.DateOnly.FromDateTime(System.DateTime.Now)}",
                                                                          cancellationToken: cancellationToken);
                 _dbController.InsertMeasures(_diastolic,_sistolic,_data.Id);
@@ -130,8 +128,7 @@ namespace hypertension_bot
             {
                 _data.Done = false;
                 _unknown = true;
-                _data.SentMessage = await botClient.SendTextMessageAsync(
-                                                                         chatId: _data.ChatId,
+                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                          text: $"{_errorMessage.Messages[_rnd.Next(4)]}\n{_data.FirstName} prova a reinserire i dati!",
                                                                          cancellationToken: cancellationToken);
             }
@@ -139,13 +136,11 @@ namespace hypertension_bot
             else if (_helloMessage.Messages.Contains(_data.MessageText) || _pressureMessage.Messages.Contains(_data.MessageText))
             {
                 _unknown = true;
-                _data.SentMessage = await botClient.SendTextMessageAsync(
-                                                                         chatId: _data.ChatId,
+                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                          text: $"{_helloMessage.ReplyMessages[_rnd.Next(4)]} {_data.FirstName}! ",
                                                                          cancellationToken: cancellationToken);
 
-                _data.SentMessage = await botClient.SendTextMessageAsync(
-                                                                         chatId: _data.ChatId,
+                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                          text: $"{_data.FirstName}, ti va di dirmi i tuoi valori di oggi? \n(scrivimeli in questo modo...\nad esempio '120 30'...\nGRAZIE!)",
                                                                          cancellationToken: cancellationToken);
             }
@@ -184,16 +179,14 @@ namespace hypertension_bot
 
                         if (_sistolic >= 180 && _sistolic >= 110)
                         {
-                            _data.SentMessage = await botClient.SendTextMessageAsync(
-                                                                                     chatId: _data.ChatId,
+                            _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                                      text: $"{_data.FirstName}!\n{_measuresAccepted.Message[_rnd.Next(3)]}",
                                                                                      cancellationToken: cancellationToken);
                         }
                         else
                         {
                             _done = true;
-                            _data.SentMessage = await botClient.SendTextMessageAsync(
-                                                                                     chatId: _data.ChatId,
+                            _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                                      text: $"Sistolica : {_sistolic} mmHg\nDiastolica : {_diastolic} mmHg\nSono corretti?",
                                                                                      cancellationToken: cancellationToken);
                         }
@@ -214,8 +207,7 @@ namespace hypertension_bot
 
                 if (n > 1)
                 {
-                    _data.SentMessage = await botClient.SendTextMessageAsync(
-                                                                             chatId: _data.ChatId,
+                    _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                              text: $"{_data.FirstName} è da un po' che non prendiamo i valori!\nIl medico aspetta i tuoi dati!",
                                                                              cancellationToken: cancellationToken);
 
@@ -224,8 +216,7 @@ namespace hypertension_bot
 
             if (!_unknown)
             {
-                _data.SentMessage = await botClient.SendTextMessageAsync(
-                                                                         chatId: _data.ChatId,
+                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                          text: $"{_errorMessage.Messages[_rnd.Next(6)] }",
                                                                          cancellationToken: cancellationToken);
             }
