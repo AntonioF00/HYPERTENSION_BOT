@@ -197,7 +197,6 @@ namespace hypertension_bot
                   _ => exception.ToString()
             };
 
-            Console.WriteLine(ErrorMessage);
             LogHelper.Log($"{System.DateTime.Now} | {ErrorMessage}");
             return Task.CompletedTask;
         }
