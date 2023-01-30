@@ -35,6 +35,8 @@ namespace hypertension_bot
 
         private static readonly ThankMessage _thankMessage = new();
 
+        private static readonly MeasuresAccepted _measuresAccepted = new();
+
         private static readonly DbController _dbController = new();
 
         private static Random _rnd = new();
@@ -173,7 +175,6 @@ namespace hypertension_bot
 
                     if (num2 != 0 && success)
                     {
-                        _done = true;
                         _unknown = true;
                         if (num1 > num2)
                         {
@@ -186,10 +187,21 @@ namespace hypertension_bot
                             _diastolic = num1;
                         }
 
-                        _data.SentMessage = await botClient.SendTextMessageAsync(
-                                                                                    chatId: _data.ChatId,
-                                                                                    text: $"Sistolica : {_sistolic} mmHg\nDiastolica : {_diastolic} mmHg\nSono corretti?",
-                                                                                    cancellationToken: cancellationToken);
+                        if (_sistolic >= 180 && _sistolic >= 110)
+                        {
+                            _data.SentMessage = await botClient.SendTextMessageAsync(
+                                                            chatId: _data.ChatId,
+                                                            text: $"{_data.FirstName}!\n{_measuresAccepted.Message[_rnd.Next(3)]}",
+                                                            cancellationToken: cancellationToken);
+                        }
+                        else
+                        {
+                            _done = true;
+                            _data.SentMessage = await botClient.SendTextMessageAsync(
+                                                                                        chatId: _data.ChatId,
+                                                                                        text: $"Sistolica : {_sistolic} mmHg\nDiastolica : {_diastolic} mmHg\nSono corretti?",
+                                                                                        cancellationToken: cancellationToken);
+                        }
                     }
                 }
             }
