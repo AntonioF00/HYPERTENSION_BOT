@@ -17,6 +17,7 @@ namespace hypertension_bot.Models
         private string?  _lastName;
         private long  _id;
         private Message?  _sentMessage;
+        private string _lastDataInsert;
 
         private bool _done;
 
@@ -30,5 +31,6 @@ namespace hypertension_bot.Models
         public long Id { get => _id; set => _id = value; }
         public Message SentMessage { get => _sentMessage; set => _sentMessage = value; }
         public bool Done { get => _done; set => _done = value; }
+        public string LastDataInsert { get => _lastDataInsert; set => _lastDataInsert = value; }
     }
 }

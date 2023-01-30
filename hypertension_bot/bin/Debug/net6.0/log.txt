@@ -1,6 +1,18 @@
-30/01/2023 13:47:32 | System.NullReferenceException: Object reference not set to an instance of an object.
-   at hypertension_bot.program.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken) in C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\Program.cs:line 104
+30/01/2023 17:20:20 | Npgsql.PostgresException (0x80004005): 42883: l'operatore non esiste: character = bigint
+
+POSITION: 111
+   at hypertension_bot.Data.DbController.LastInsert(Int64 id) in D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\Data\DbController.cs:line 89
+   at hypertension_bot.program.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken) in D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\Program.cs:line 103
    at Telegram.Bot.Polling.DefaultUpdateHandler.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
    at Telegram.Bot.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
    at Telegram.Bot.TelegramBotClientExtensions.ReceiveAsync(ITelegramBotClient botClient, IUpdateHandler updateHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
    at Telegram.Bot.TelegramBotClientExtensions.<>c__DisplayClass106_0.<<StartReceiving>b__0>d.MoveNext()
+  Exception data:
+    Severity: ERRORE
+    SqlState: 42883
+    MessageText: l'operatore non esiste: character = bigint
+    Hint: Nessun operatore trovato con nome e tipi di argomenti forniti. Potrebbe essere necessario convertire i tipi esplicitamente.
+    Position: 111
+    File: parse_oper.c
+    Line: 656
+    Routine: op_error

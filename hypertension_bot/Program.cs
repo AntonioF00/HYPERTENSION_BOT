@@ -94,12 +94,14 @@ namespace hypertension_bot
                 return;
 
             //set variables
-            _data.ChatId        = update.Message.Chat.Id;
-            _data.MessageText   = update.Message.Text.ToLower();
-            _data.MessageId     = update.Message.MessageId;
-            _data.FirstName     = update.Message.From.FirstName;
-            _data.LastName      = update.Message.From.LastName;
-            _data.Id            = update.Message.From.Id;
+            _data.ChatId         = update.Message.Chat.Id;
+            _data.MessageText    = update.Message.Text.ToLower();
+            _data.MessageId      = update.Message.MessageId;
+            _data.FirstName      = update.Message.From.FirstName;
+            _data.LastName       = update.Message.From.LastName;
+            _data.Id             = update.Message.From.Id;
+            _data.LastDataInsert = _dbController.LastInsert(_data.Id);
+            
 
 
             if (_thankMessage.Messages.Contains(_data.MessageText))
@@ -153,24 +155,37 @@ namespace hypertension_bot
 
             if (!string.IsNullOrEmpty(_data.MessageText))
             {
+                int num1, num2;
+
                 bool success = int.TryParse(new string(_data.MessageText.Replace("/","-").Replace(",","-")
                                             .SkipWhile(x => !char.IsDigit(x))
                                             .TakeWhile(x => char.IsDigit(x))
-                                            .ToArray()), out _sistolic);
+                                            .ToArray()), out num1);
 
-                if (_sistolic != 0 && success)
+                if (num1 != 0 && success)
                 {
-                    var mess = _data.MessageText.Replace(_sistolic.ToString(),"");
+                    var mess = _data.MessageText.Replace(num1.ToString(),"");
 
                     success = int.TryParse(new string(mess
                                             .SkipWhile(x => !char.IsDigit(x))
                                             .TakeWhile(x => char.IsDigit(x))
-                                            .ToArray()), out _diastolic);
+                                            .ToArray()), out num2);
 
-                    if (_diastolic != 0 && success)
+                    if (num2 != 0 && success)
                     {
                         _done = true;
                         _unknown = true;
+                        if (num1 > num2)
+                        {
+                            _sistolic = num1;
+                            _diastolic = num2;
+                        }
+                        else
+                        {
+                            _sistolic = num2;
+                            _diastolic = num1;
+                        }
+
                         _data.SentMessage = await botClient.SendTextMessageAsync(
                                                                                     chatId: _data.ChatId,
                                                                                     text: $"Sistolica : {_sistolic} mmHg\nDiastolica : {_diastolic} mmHg\nSono corretti?",
@@ -178,7 +193,23 @@ namespace hypertension_bot
                     }
                 }
             }
-                
+
+            if (_data.LastDataInsert != "0")
+            {
+                if (int.Parse(_data.LastDataInsert) > int.Parse(System.DateTime.Today.Day.ToString()))
+                {
+                    var n = int.Parse(_data.LastDataInsert) - int.Parse(System.DateTime.Today.Day.ToString());
+
+                    if (n > 1)
+                    {
+                        _data.SentMessage = await botClient.SendTextMessageAsync(
+                                                            chatId: _data.ChatId,
+                                                            text: $"{_data.FirstName} è da un po' che non prendiamo i valori!\nIl medico aspetta i tuoi dati!",
+                                                            cancellationToken: cancellationToken);
+                    }
+                }
+            }
+
             if(!_unknown)
             {
                 _data.SentMessage = await botClient.SendTextMessageAsync(

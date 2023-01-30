@@ -63,5 +63,32 @@ namespace hypertension_bot.Data
                 LogHelper.Log(ex.Message);
             }
         }
+
+        public string LastInsert(long id)
+        {
+            try
+            {
+                _connection.Open();
+
+                string res = _connection.QueryFirst<string>(
+                Setting.Istance.Configuration.LastInsert,
+                new Dictionary<string, object>()
+                {
+                    ["id"] = id
+                });
+
+                _connection.Close();
+
+                return res;
+
+            }
+            catch (Exception ex)
+            {
+                if (_connection.State == System.Data.ConnectionState.Open)
+                    _connection.Close();
+                throw ex;
+            }
+        }
+
     }
 }
