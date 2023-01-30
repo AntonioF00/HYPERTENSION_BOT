@@ -150,28 +150,7 @@ namespace hypertension_bot
                                                                          cancellationToken: cancellationToken);
             }
 
-            else if (_data.LastDataInsert != "0")
-            {
-                var n = 0;
-                _unknown = true;
-
-                if (int.Parse(_data.LastDataInsert) > int.Parse(System.DateTime.Today.Day.ToString()))
-                    n = int.Parse(_data.LastDataInsert) - int.Parse(System.DateTime.Today.Day.ToString());
-
-                else if (int.Parse(System.DateTime.Today.Day.ToString()) > int.Parse(_data.LastDataInsert))
-                    n = int.Parse(System.DateTime.Today.Day.ToString()) - int.Parse(_data.LastDataInsert);
-
-                if (n > 1)
-                {
-                    _data.SentMessage = await botClient.SendTextMessageAsync(
-                                                                             chatId: _data.ChatId,
-                                                                             text: $"{_data.FirstName} è da un po' che non prendiamo i valori!\nIl medico aspetta i tuoi dati!",
-                                                                             cancellationToken: cancellationToken);
-
-                }
-            }
-
-            if (!string.IsNullOrEmpty(_data.MessageText))
+            else if (int.Parse(string.Concat(_data.MessageText.Where(Char.IsDigit))) > 0)
             {
                 int num1, num2;
 
@@ -222,7 +201,28 @@ namespace hypertension_bot
                 }
             }
 
-            if(!_unknown)
+            else if (_data.LastDataInsert != "0")
+            {
+                var n = 0;
+                _unknown = true;
+
+                if (int.Parse(_data.LastDataInsert) > int.Parse(System.DateTime.Today.Day.ToString()))
+                    n = int.Parse(_data.LastDataInsert) - int.Parse(System.DateTime.Today.Day.ToString());
+
+                else if (int.Parse(System.DateTime.Today.Day.ToString()) > int.Parse(_data.LastDataInsert))
+                    n = int.Parse(System.DateTime.Today.Day.ToString()) - int.Parse(_data.LastDataInsert);
+
+                if (n > 1)
+                {
+                    _data.SentMessage = await botClient.SendTextMessageAsync(
+                                                                             chatId: _data.ChatId,
+                                                                             text: $"{_data.FirstName} è da un po' che non prendiamo i valori!\nIl medico aspetta i tuoi dati!",
+                                                                             cancellationToken: cancellationToken);
+
+                }
+            }
+
+            if (!_unknown)
             {
                 _data.SentMessage = await botClient.SendTextMessageAsync(
                                                                          chatId: _data.ChatId,
