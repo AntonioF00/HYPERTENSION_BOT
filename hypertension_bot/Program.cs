@@ -57,7 +57,6 @@ namespace hypertension_bot
             {
                 AllowedUpdates = { } // receive all update types
             };
-
             try
             {
                 _telegramBot.StartReceiving(HandleUpdateAsync,
@@ -84,7 +83,6 @@ namespace hypertension_bot
 
             Console.ReadLine();
         }
-
         public static async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
             var _unknown = false;
@@ -112,7 +110,6 @@ namespace hypertension_bot
                                                                          text: $"{_thankMessage.ReplyMessages[_rnd.Next(5)]}",
                                                                          cancellationToken: cancellationToken);
             }
-
             else if (_oKMessage.Messages.Contains(_data.MessageText) && _done)
             {
                 _data.Done = false;
@@ -123,7 +120,6 @@ namespace hypertension_bot
                 _dbController.InsertMeasures(_diastolic,_sistolic,_data.Id);
 
             }
-
             else if (_negativeMessage.Messages.Contains(_data.MessageText) && _done)
             {
                 _data.Done = false;
@@ -132,7 +128,6 @@ namespace hypertension_bot
                                                                          text: $"{_errorMessage.Messages[_rnd.Next(4)]}\n{_data.FirstName} prova a reinserire i dati!",
                                                                          cancellationToken: cancellationToken);
             }
-
             else if (_helloMessage.Messages.Contains(_data.MessageText) || _pressureMessage.Messages.Contains(_data.MessageText))
             {
                 _unknown = true;
@@ -144,7 +139,6 @@ namespace hypertension_bot
                                                                          text: $"{_data.FirstName}, ti va di dirmi i tuoi valori di oggi? \n(scrivimeli in questo modo...\nad esempio '120 30'...\nGRAZIE!)",
                                                                          cancellationToken: cancellationToken);
             }
-
             else if (int.Parse(string.Concat(_data.MessageText.Where(Char.IsDigit))) > 0)
             {
                 int num1, num2;
@@ -186,7 +180,6 @@ namespace hypertension_bot
                     }
                 }
             }
-
             else if (_data.MessageText.Contains("media"))
             {
                 _unknown = true;
@@ -218,7 +211,6 @@ namespace hypertension_bot
                                                                          cancellationToken: cancellationToken);
             }
         }
-
         public static Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
         {
             var ErrorMessage = exception switch
@@ -233,4 +225,3 @@ namespace hypertension_bot
         }
     }
 }
-
