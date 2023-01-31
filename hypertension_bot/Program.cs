@@ -24,8 +24,6 @@ namespace hypertension_bot
 
         private static readonly DbController _dbController = new();
 
-        private static Random _rnd = new();
-
         private static int _diastolic;
 
         private static int _sistolic;
@@ -82,7 +80,7 @@ namespace hypertension_bot
             {
                 _unknown = true;
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                         text: $"{_data.ThankMessage.ReplyMessages[_rnd.Next(5)]}",
+                                                                         text: $"{_data.ThankMessage.ReplyMessages[_data.Random.Next(5)]}",
                                                                          cancellationToken: cancellationToken);
             }
             else if (_data.OKMessage.Messages.Contains(_data.MessageText) && _data.Done)
@@ -90,7 +88,7 @@ namespace hypertension_bot
                 _data.Done = false;
                 _unknown = true;
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                         text: $"{_data.InsertMessage.Messages[_rnd.Next(4)]}\nA presto {_data.FirstName}!\nData : {System.DateOnly.FromDateTime(System.DateTime.Now)}",
+                                                                         text: $"{_data.InsertMessage.Messages[_data.Random.Next(4)]}\nA presto {_data.FirstName}!\nData : {System.DateOnly.FromDateTime(System.DateTime.Now)}",
                                                                          cancellationToken: cancellationToken);
                 _dbController.InsertMeasures(_diastolic,_sistolic,_data.Id);
                 _dbController.UpdateFirstAlert(_data.Id,false);
@@ -101,7 +99,7 @@ namespace hypertension_bot
                 _data.Done = false;
                 _unknown = true;
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                         text: $"{_data.ErrorMessage.Messages[_rnd.Next(4)]}\n{_data.FirstName} prova a reinserire i dati!",
+                                                                         text: $"{_data.ErrorMessage.Messages[_data.Random.Next(4)]}\n{_data.FirstName} prova a reinserire i dati!",
                                                                          cancellationToken: cancellationToken);
             }
             else if (_data.HelloMessage.Messages.Contains(_data.MessageText) || _data.PressureMessage.Messages.Contains(_data.MessageText))
@@ -109,7 +107,7 @@ namespace hypertension_bot
                 _unknown = true;
 
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                         text: $"{_data.HelloMessage.ReplyMessages[_rnd.Next(4)]} {_data.FirstName}!\n{_data.FirstName}, ti va di dirmi i tuoi valori di oggi? \nScrivimeli in questo modo\nAd esempio 120 30\nGrazie!)",
+                                                                         text: $"{_data.HelloMessage.ReplyMessages[_data.Random.Next(4)]} {_data.FirstName}!\n{_data.FirstName}, ti va di dirmi i tuoi valori di oggi? \nScrivimeli in questo modo\nAd esempio 120 30\nGrazie!)",
                                                                          cancellationToken: cancellationToken);
             }
             else if (_data.MessageText.Any(char.IsDigit))
@@ -140,7 +138,7 @@ namespace hypertension_bot
 
                         _ = (_sistolic >= Setting.Istance.Configuration.ValoreMaxSi && _diastolic >= Setting.Istance.Configuration.ValoreMaxDi)  
                                                                                                                                                 ? _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                                                                                                                                                           text: $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_rnd.Next(3)]}",
+                                                                                                                                                                                                           text: $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_data.Random.Next(3)]}",
                                                                                                                                                                                                            cancellationToken: cancellationToken)
                                                                                                                                                 : _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                                                                                                                                                            text: $"Sistolica : {_sistolic} mmHg\nDiastolica : {_diastolic} mmHg\nSono corretti?",
@@ -195,7 +193,7 @@ namespace hypertension_bot
             }
             if (!_unknown)
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                         text: $"{_data.ErrorMessage.Messages[_rnd.Next(6)]}",
+                                                                         text: $"{_data.ErrorMessage.Messages[_data.Random.Next(6)]}",
                                                                          cancellationToken: cancellationToken);
         }
         public static Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)

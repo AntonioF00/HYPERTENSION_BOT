@@ -24,6 +24,8 @@ namespace hypertension_bot.Models
 
         private  readonly AverageMessage _averageMessage;
 
+        private readonly Random _rnd;
+
         //Block
         private int  _blockLevel;
         private bool  _messDeleted;
@@ -60,5 +62,6 @@ namespace hypertension_bot.Models
         public ThankMessage ThankMessage => new();
         public MeasuresAccepted MeasuresAccepted => new();
         public AverageMessage AverageMessage => new();
+        public Random Random => new();
     }
 }
