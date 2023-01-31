@@ -186,6 +186,7 @@ namespace hypertension_bot
                     }
                 }
             }
+
             else if (_data.MessageText.Contains("media"))
             {
                 _unknown = true;
