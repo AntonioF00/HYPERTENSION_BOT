@@ -148,11 +148,18 @@ namespace hypertension_bot
                     }
                 }
             }
-            else if (_data.MessageText.Contains("media"))
+            else if (_data.MessageText.Contains("media") && (_data.MessageText.Contains("mese") || _data.MessageText.Contains("mensile")))
             {
                 _unknown = true;
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                         text: _data.AverageMessage.calculateAVG(_data.Id, _data.FirstName),
+                                                         text: _data.AverageMessage.calculateMonthAVG(_data.Id, _data.FirstName),
+                                                         cancellationToken: cancellationToken);
+            }
+            else if (_data.MessageText.Contains("media") && (_data.MessageText.Contains("settimanale") || _data.MessageText.Contains("settimana")))
+            {
+                _unknown = true;
+                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+                                                         text: _data.AverageMessage.calculateWeekAVG(_data.Id, _data.FirstName),
                                                          cancellationToken: cancellationToken);
             }
             if (_data.LastDataInsert != "0" && !_firstAlert)

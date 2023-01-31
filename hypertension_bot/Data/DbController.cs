@@ -90,14 +90,39 @@ namespace hypertension_bot.Data
             }
         }
 
-        public List<object> CalculateAVG(long id)
+        public List<object> CalculateMonthAVG(long id)
         {
             try
             {
                 _connection.Open();
 
                 List<object> res = _connection.QueryFirstOrDefault<List<object>>(
-                Setting.Istance.Configuration.CalculateAVG,
+                Setting.Istance.Configuration.CalculateMonthAVG,
+                new Dictionary<string, object>()
+                {
+                    ["id"] = id
+                });
+
+                _connection.Close();
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                if (_connection.State == System.Data.ConnectionState.Open)
+                    _connection.Close();
+                throw ex;
+            }
+        }
+
+        public List<object> CalculateWeekAVG(long id)
+        {
+            try
+            {
+                _connection.Open();
+
+                List<object> res = _connection.QueryFirstOrDefault<List<object>>(
+                Setting.Istance.Configuration.CalculateWeekAVG,
                 new Dictionary<string, object>()
                 {
                     ["id"] = id

@@ -11,7 +11,8 @@ namespace hypertension_bot.Models
         private string  _insertMeasures;
         private string _insertUser;
         private string _lastInsert;
-        private string _calculateAVG;
+        private string _calculateMonthAVG;
+        private string _calculateWeekAVG;
         private string _getFirstAlert;
         private string _updateFirstAlert;
         private int    _valoreMaxSi;
@@ -24,7 +25,8 @@ namespace hypertension_bot.Models
         public string InsertMeasures { get => _insertMeasures; set => _insertMeasures = value; }
         public string InsertUser { get => _insertUser; set => _insertUser = value; }
         public string LastInsert { get => _lastInsert; set => _lastInsert = value; }
-        public string CalculateAVG { get => _calculateAVG; set => _calculateAVG = value; }
+        public string CalculateMonthAVG { get => _calculateMonthAVG; set => _calculateMonthAVG = value; }
+        public string CalculateWeekAVG { get => _calculateWeekAVG; set => _calculateWeekAVG = value; }
         public int ValoreMaxSi { get => _valoreMaxSi; set => _valoreMaxSi = value; }
         public int ValoreMaxDi { get => _valoreMaxDi; set => _valoreMaxDi = value; }
         public string GetFirstAlert { get => _getFirstAlert; set => _getFirstAlert = value; }

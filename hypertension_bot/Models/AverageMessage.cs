@@ -7,10 +7,17 @@ namespace hypertension_bot.Models
     {
         private readonly DbController _dbController = new DbController();
 
-        public string calculateAVG(long id, string Name)
+        public string calculateMonthAVG(long id, string Name)
         {
-           var res = _dbController.CalculateAVG(id);
+           var res = _dbController.CalculateMonthAVG(id);
            return new string($"{Name} ho calcolato questi valori\nMedia mensile: Sistolica:{res[0]} Diastolica:{res[1]}\nA presto!");
         }
+
+        public string calculateWeekAVG(long id, string Name)
+        {
+            var res = _dbController.CalculateWeekAVG(id);
+            return new string($"{Name} ho calcolato questi valori\nMedia settimanale: Sistolica:{res[0]} Diastolica:{res[1]}\nA presto!");
+        }
+
     }
 }
