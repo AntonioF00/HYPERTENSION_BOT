@@ -146,30 +146,27 @@ namespace hypertension_bot
             }
             else if (_data.MessageText.Contains("media"))
             {
+                _unknown = true;
                 if (_data.MessageText.Contains("mese") || _data.MessageText.Contains("mensile"))
                 {
-                    _unknown = true;
                     _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                              text: _data.AverageMessage.calculateMonthAVG(_data.Id, _data.FirstName),
                                                                              cancellationToken: cancellationToken);
                 }
                 else if (_data.MessageText.Contains("settimanale") || _data.MessageText.Contains("settimana"))
                 {
-                    _unknown = true;
                     _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                              text: _data.AverageMessage.calculateWeekAVG(_data.Id, _data.FirstName),
                                                                              cancellationToken: cancellationToken);
                 }
                 else if (_data.MessageText.Contains("giorno") || _data.MessageText.Contains("giornaliera"))
                 {
-                    _unknown = true;
                     _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                              text: _data.AverageMessage.calculateDayAVG(_data.Id, _data.FirstName),
                                                                              cancellationToken: cancellationToken);
                 }
                 else
                 {
-                    _unknown = true;
                     _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                              text: $"{_data.FirstName} specifica il tipo di media che vuoi visualizzare!\nGiornaliera / Mensile / Settimanale!",
                                                                              cancellationToken: cancellationToken);
