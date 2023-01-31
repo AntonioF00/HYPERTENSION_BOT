@@ -135,10 +135,10 @@ namespace hypertension_bot
                         _data.Diastolic = (num1 > num2) ? num2 : num1;
 
                         _ = (_data.Sistolic >= Setting.Istance.Configuration.ValoreMaxSi && _data.Diastolic >= Setting.Istance.Configuration.ValoreMaxDi)  
-                                                                                                                                                ? _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+                                                                                                                                                         ? _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                                                                                                                                                            text: $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_data.Random.Next(3)]}",
                                                                                                                                                                                                            cancellationToken: cancellationToken)
-                                                                                                                                                : _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+                                                                                                                                                         : _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                                                                                                                                                            text: $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nSono corretti?",
                                                                                                                                                                                                            cancellationToken: cancellationToken);                     
                     }
@@ -150,29 +150,29 @@ namespace hypertension_bot
                 {
                     _unknown = true;
                     _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                             text: _data.AverageMessage.calculateMonthAVG(_data.Id, _data.FirstName),
-                                                             cancellationToken: cancellationToken);
+                                                                             text: _data.AverageMessage.calculateMonthAVG(_data.Id, _data.FirstName),
+                                                                             cancellationToken: cancellationToken);
                 }
                 else if (_data.MessageText.Contains("settimanale") || _data.MessageText.Contains("settimana"))
                 {
                     _unknown = true;
                     _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                             text: _data.AverageMessage.calculateWeekAVG(_data.Id, _data.FirstName),
-                                                             cancellationToken: cancellationToken);
+                                                                             text: _data.AverageMessage.calculateWeekAVG(_data.Id, _data.FirstName),
+                                                                             cancellationToken: cancellationToken);
                 }
                 else if (_data.MessageText.Contains("giorno") || _data.MessageText.Contains("giornaliera"))
                 {
                     _unknown = true;
                     _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                             text: _data.AverageMessage.calculateDayAVG(_data.Id, _data.FirstName),
-                                                             cancellationToken: cancellationToken);
+                                                                             text: _data.AverageMessage.calculateDayAVG(_data.Id, _data.FirstName),
+                                                                             cancellationToken: cancellationToken);
                 }
                 else
                 {
                     _unknown = true;
                     _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                             text: $"{_data.FirstName} specifica il tipo di media che vuoi visualizzare!\nGiornaliera / Mensile / Settimanale!",
-                                                             cancellationToken: cancellationToken);
+                                                                             text: $"{_data.FirstName} specifica il tipo di media che vuoi visualizzare!\nGiornaliera / Mensile / Settimanale!",
+                                                                             cancellationToken: cancellationToken);
                 }
             }
             if (_data.LastDataInsert != "0" && !_firstAlert)
