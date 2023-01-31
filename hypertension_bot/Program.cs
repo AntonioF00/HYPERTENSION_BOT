@@ -139,12 +139,12 @@ namespace hypertension_bot
                         _diastolic = (num1 > num2) ? num2 : num1;
 
                         _ = (_sistolic >= Setting.Istance.Configuration.ValoreMaxSi && _diastolic >= Setting.Istance.Configuration.ValoreMaxDi)  
-                                                                    ? _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                                                                               text: $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_rnd.Next(3)]}",
-                                                                                                                               cancellationToken: cancellationToken)
-                                                                    : _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                                                                               text: $"Sistolica : {_sistolic} mmHg\nDiastolica : {_diastolic} mmHg\nSono corretti?",
-                                                                                                                               cancellationToken: cancellationToken);                     
+                                                                                                                                                ? _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+                                                                                                                                                                                                           text: $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_rnd.Next(3)]}",
+                                                                                                                                                                                                           cancellationToken: cancellationToken)
+                                                                                                                                                : _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+                                                                                                                                                                                                           text: $"Sistolica : {_sistolic} mmHg\nDiastolica : {_diastolic} mmHg\nSono corretti?",
+                                                                                                                                                                                                           cancellationToken: cancellationToken);                     
                     }
                 }
             }
@@ -155,7 +155,6 @@ namespace hypertension_bot
                                                          text: _data.AverageMessage.calculateAVG(_data.Id, _data.FirstName),
                                                          cancellationToken: cancellationToken);
             }
-
             if (_data.LastDataInsert != "0" && !_firstAlert)
             {
                 var n = 0;
