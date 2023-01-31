@@ -177,11 +177,9 @@ namespace hypertension_bot
             //    }
             //}
             if (!_unknown)
-            {
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                          text: $"{_data.ErrorMessage.Messages[_rnd.Next(6)]}",
                                                                          cancellationToken: cancellationToken);
-            }
         }
         public static Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
         {
