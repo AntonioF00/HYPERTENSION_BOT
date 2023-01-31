@@ -114,5 +114,55 @@ namespace hypertension_bot.Data
                 throw ex;
             }
         }
+
+        public bool GetFirstAlert(long id)
+        {
+            try
+            {
+                _connection.Open();
+
+                var res = _connection.QueryFirst<bool>(
+                Setting.Istance.Configuration.GetFirstAlert,
+                new Dictionary<string, object>()
+                {
+                    ["id"] = id
+                });
+
+                _connection.Close();
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                if (_connection.State == System.Data.ConnectionState.Open)
+                    _connection.Close();
+                throw ex;
+            }
+        }
+
+        public void UpdateFirstAlert(long id, bool b)
+        {
+            try
+            {
+                if (_connection.State != System.Data.ConnectionState.Open)
+                    _connection.Open();
+
+                _connection.Query(Setting.Istance.Configuration.UpdateFirstAlert,
+                new Dictionary<string, object>()
+                {
+                    ["id"] = id,
+                    ["val"] = b
+                });
+
+                _connection.Close();
+            }
+            catch (Exception ex)
+            {
+                if (_connection.State == System.Data.ConnectionState.Open)
+                    _connection.Close();
+
+                LogHelper.Log(ex.Message);
+            }
+        }
     }
 }

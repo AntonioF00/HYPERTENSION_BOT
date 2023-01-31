@@ -20,6 +20,11 @@
 		VALUES (@id::text)
 		ON CONFLICT ("idUser") DO UPDATE
 		SET "idUser" = @id::text;
+
+		INSERT INTO users."Alert"(
+		"firstAlertGiven", "secondAlertGiven", "thirdAlertGiven", "User_idUser")
+		VALUES (false, false, false, @id::text)
+		ON CONFLICT DO NOTHING;
 	</InsertUser>
 
 	<LastInsert>
@@ -34,13 +39,23 @@
 		LIMIT 1
 	</LastInsert>
 
+	<GetFirstAlert>
+		SELECT "firstAlertGiven"
+		FROM users."Alert"
+		WHERE "User_idUser" = @id::text;
+	</GetFirstAlert>
+
+	<UpdateFirstAlert>
+		UPDATE users."Alert"
+		SET "firstAlertGiven" = @val::boolean
+		WHERE "User_idUser" = @id::text;
+	</UpdateFirstAlert>
+	
 	<CalculateAVG>
 		
 	</CalculateAVG>
 	
-	
 	<!-- Campi -->
-	
 	<!--Valore massimo consentito per la sistolica, sopra questo valore il bot invierà un messaggio di allerta all'utente -->
 	<ValoreMaxSi>180</ValoreMaxSi>
 	

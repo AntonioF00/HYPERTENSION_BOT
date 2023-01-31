@@ -74,8 +74,9 @@ namespace hypertension_bot
             _data.FirstName      = update.Message.From.FirstName;
             _data.Id             = update.Message.From.Id;
 
-            //_data.LastDataInsert = _dbController.LastInsert(_data.Id);
-            //_dbController.InsertUser(_data.Id);
+            _data.LastDataInsert = _dbController.LastInsert(_data.Id);
+            _dbController.InsertUser(_data.Id);
+            var _firstAlert = _dbController.GetFirstAlert(_data.Id);
 
             if (_data.ThankMessage.Messages.Contains(_data.MessageText))
             {
@@ -92,6 +93,7 @@ namespace hypertension_bot
                                                                          text: $"{_data.InsertMessage.Messages[_rnd.Next(4)]}\nA presto {_data.FirstName}!\nData : {System.DateOnly.FromDateTime(System.DateTime.Now)}",
                                                                          cancellationToken: cancellationToken);
                 _dbController.InsertMeasures(_diastolic,_sistolic,_data.Id);
+                _dbController.UpdateFirstAlert(_data.Id,false);
 
             }
             else if (_data.NegativeMessage.Messages.Contains(_data.MessageText) && _data.Done)
@@ -153,21 +155,21 @@ namespace hypertension_bot
                                                          text: _data.AverageMessage.calculateAVG(_data.Id, _data.FirstName),
                                                          cancellationToken: cancellationToken);
             }
-            //else if (_data.LastDataInsert != "0")
-            //{
-            //    var n = 0;
-            //    _unknown = true;
 
-            //    n = (int.Parse(_data.LastDataInsert) > int.Parse(System.DateTime.Today.Day.ToString())) ? int.Parse(_data.LastDataInsert) - int.Parse(System.DateTime.Today.Day.ToString()) : int.Parse(System.DateTime.Today.Day.ToString()) - int.Parse(_data.LastDataInsert);
+            if (_data.LastDataInsert != "0" && !_firstAlert)
+            {
+                var n = 0;
+                n = (int.Parse(_data.LastDataInsert) > int.Parse(System.DateTime.Today.Day.ToString())) ? int.Parse(_data.LastDataInsert) - int.Parse(System.DateTime.Today.Day.ToString()) : int.Parse(System.DateTime.Today.Day.ToString()) - int.Parse(_data.LastDataInsert);
 
-            //    if (n > 1)
-            //    {
-            //        _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-            //                                                                 text: $"{_data.FirstName} è da un po' che non prendiamo i valori!\nIl medico aspetta i tuoi dati!",
-            //                                                                 cancellationToken: cancellationToken);
-
-            //    }
-            //}
+                if (n > 2)
+                {
+                    _unknown = true;
+                    _dbController.UpdateFirstAlert(_data.Id,true);
+                    _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+                                                                             text: $"{_data.FirstName} è da un po' che non prendiamo i valori!\nOggi potrebbe essere un buon giorno per farlo!",
+                                                                             cancellationToken: cancellationToken);
+                }
+            }
             if (!_unknown)
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                          text: $"{_data.ErrorMessage.Messages[_rnd.Next(6)]}",

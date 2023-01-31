@@ -20,20 +20,38 @@
 		VALUES (@id::text)
 		ON CONFLICT ("idUser") DO UPDATE
 		SET "idUser" = @id::text;
+
+		INSERT INTO users."Alert"(
+		"firstAlertGiven", "secondAlertGiven", "thirdAlertGiven", "User_idUser")
+		VALUES (false, false, false, @id::text)
+		ON CONFLICT DO NOTHING;
 	</InsertUser>
 
 	<LastInsert>
 		SELECT
-			CASE 
+			CASE
 				WHEN extract(day from datetime::timestamp::date)::text IS NULL THEN 0::text
 				ELSE extract(day from datetime::timestamp::date)::text
 			END
 		FROM users."Measurement"
 		WHERE "User_idUser" = @id::text
-		ORDER BY datetime asc 
+		group by datetime
+		order by MAX("idMeasurement") desc
 		LIMIT 1
 	</LastInsert>
 
+	<GetFirstAlert>
+		SELECT "firstAlertGiven"
+		FROM users."Alert"
+		WHERE "User_idUser" = @id::text;
+	</GetFirstAlert>
+
+	<UpdateFirstAlert>
+		UPDATE users."Alert"
+		SET "firstAlertGiven" = @val::boolean
+		WHERE "User_idUser" = @id::text;
+	</UpdateFirstAlert>
+	
 	<CalculateAVG>
 		
 	</CalculateAVG>
