@@ -191,11 +191,7 @@ namespace hypertension_bot
                 var n = 0;
                 _unknown = true;
 
-                if (int.Parse(_data.LastDataInsert) > int.Parse(System.DateTime.Today.Day.ToString()))
-                    n = int.Parse(_data.LastDataInsert) - int.Parse(System.DateTime.Today.Day.ToString());
-
-                else if (int.Parse(System.DateTime.Today.Day.ToString()) > int.Parse(_data.LastDataInsert))
-                    n = int.Parse(System.DateTime.Today.Day.ToString()) - int.Parse(_data.LastDataInsert);
+                n = (int.Parse(_data.LastDataInsert) > int.Parse(System.DateTime.Today.Day.ToString())) ? int.Parse(_data.LastDataInsert) - int.Parse(System.DateTime.Today.Day.ToString()) : int.Parse(System.DateTime.Today.Day.ToString()) - int.Parse(_data.LastDataInsert);
 
                 if (n > 1)
                 {
