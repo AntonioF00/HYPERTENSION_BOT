@@ -9,9 +9,6 @@ namespace hypertension_bot.Models
         private readonly List<string> _messages = new List<string>()
         {
             "pressione",
-            "voglio inserire la pressione",
-            "inserire pressione",
-            "inserire la pressione"
         };
 
         public PressureMessage()

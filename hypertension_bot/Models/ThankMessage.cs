@@ -14,13 +14,7 @@ namespace hypertension_bot.Models
             "ok",
             "va bene",
             "vabene",
-            "perfetto",
-            "grazie talktalk",
-            "ti ringrazio talktalk",
-            "ok talktalk",
-            "va bene talktalk",
-            "vabene talktalk",
-            "perfetto talktalk"
+            "perfetto"
         };
 
         private readonly List<string> _replyMessages = new List<string>

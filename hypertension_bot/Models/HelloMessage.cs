@@ -14,11 +14,8 @@ namespace hypertension_bot.Models
             "buon giorno",
             "buonasera",
             "buona sera",
-            "ciao talktalk",
-            "buongiorno talktalk",
-            "buon giorno talktalk",
-            "buonasera talktalk",
-            "buona sera talktalk",
+            "bella",
+            "we"
         };
 
         private static readonly List<string> _replyMessages = new List<string>
