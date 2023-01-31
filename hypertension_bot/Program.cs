@@ -43,7 +43,6 @@ namespace hypertension_bot
 
                 Console.ReadKey();
                 _cancellationTokenSource.Cancel();
-
             }
             catch(Exception ex)
             {
