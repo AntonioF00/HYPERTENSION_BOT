@@ -166,7 +166,7 @@ namespace hypertension_bot
                     {
                         _unknown = true;
 
-                        _sistolic = (num1 > num2) ? num1 : num2;
+                        _sistolic  = (num1 > num2) ? num1 : num2;
                         _diastolic = (num1 > num2) ? num2 : num1;
 
                         if (_sistolic >= 180 && _sistolic >= 110)
