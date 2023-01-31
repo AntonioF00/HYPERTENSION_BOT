@@ -80,8 +80,8 @@ namespace hypertension_bot
             _data.FirstName      = update.Message.From.FirstName;
             _data.Id             = update.Message.From.Id;
 
-            _data.LastDataInsert = _dbController.LastInsert(_data.Id);
-            _dbController.InsertUser(_data.Id);
+            //_data.LastDataInsert = _dbController.LastInsert(_data.Id);
+            //_dbController.InsertUser(_data.Id);
 
             if (_data.ThankMessage.Messages.Contains(_data.MessageText))
             {
@@ -119,7 +119,7 @@ namespace hypertension_bot
                                                                          text: $"{_data.FirstName}, ti va di dirmi i tuoi valori di oggi? \n(scrivimeli in questo modo...\nad esempio '120 30'...\nGRAZIE!)",
                                                                          cancellationToken: cancellationToken);
             }
-            else if (int.Parse(string.Concat(_data.MessageText.Where(Char.IsDigit))) > 0)
+            else if (_data.MessageText.Any(char.IsDigit))
             {
                 int num1, num2;
 
@@ -140,23 +140,17 @@ namespace hypertension_bot
                     if (num2 != 0 && success)
                     {
                         _unknown = true;
+                        _data.Done = true;
 
-                        _sistolic = (num1 > num2) ? num1 : num2;
+                        _sistolic  = (num1 > num2) ? num1 : num2;
                         _diastolic = (num1 > num2) ? num2 : num1;
 
-                        if (_sistolic >= 180 && _sistolic >= 110)
-                        {
-                            _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                                     text: $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_rnd.Next(3)]}",
-                                                                                     cancellationToken: cancellationToken);
-                        }
-                        else
-                        {
-                            _data.Done = true;
-                            _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                                     text: $"Sistolica : {_sistolic} mmHg\nDiastolica : {_diastolic} mmHg\nSono corretti?",
-                                                                                     cancellationToken: cancellationToken);
-                        }
+                        _ = (_sistolic >= 180 && _sistolic >= 110)  ? _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+                                                                                                                              text: $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_rnd.Next(3)]}",
+                                                                                                                              cancellationToken: cancellationToken)
+                                                                    : _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+                                                                                                                               text: $"Sistolica : {_sistolic} mmHg\nDiastolica : {_diastolic} mmHg\nSono corretti?",
+                                                                                                                               cancellationToken: cancellationToken);                     
                     }
                 }
             }
@@ -167,21 +161,21 @@ namespace hypertension_bot
                                                          text: _data.AverageMessage.calculateAVG(_data.Id, _data.FirstName),
                                                          cancellationToken: cancellationToken);
             }
-            else if (_data.LastDataInsert != "0")
-            {
-                var n = 0;
-                _unknown = true;
+            //else if (_data.LastDataInsert != "0")
+            //{
+            //    var n = 0;
+            //    _unknown = true;
 
-                n = (int.Parse(_data.LastDataInsert) > int.Parse(System.DateTime.Today.Day.ToString())) ? int.Parse(_data.LastDataInsert) - int.Parse(System.DateTime.Today.Day.ToString()) : int.Parse(System.DateTime.Today.Day.ToString()) - int.Parse(_data.LastDataInsert);
+            //    n = (int.Parse(_data.LastDataInsert) > int.Parse(System.DateTime.Today.Day.ToString())) ? int.Parse(_data.LastDataInsert) - int.Parse(System.DateTime.Today.Day.ToString()) : int.Parse(System.DateTime.Today.Day.ToString()) - int.Parse(_data.LastDataInsert);
 
-                if (n > 1)
-                {
-                    _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                             text: $"{_data.FirstName} è da un po' che non prendiamo i valori!\nIl medico aspetta i tuoi dati!",
-                                                                             cancellationToken: cancellationToken);
+            //    if (n > 1)
+            //    {
+            //        _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+            //                                                                 text: $"{_data.FirstName} è da un po' che non prendiamo i valori!\nIl medico aspetta i tuoi dati!",
+            //                                                                 cancellationToken: cancellationToken);
 
-                }
-            }
+            //    }
+            //}
             if (!_unknown)
             {
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
