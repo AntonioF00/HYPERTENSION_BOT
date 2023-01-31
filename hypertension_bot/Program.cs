@@ -28,7 +28,6 @@ namespace hypertension_bot
         private static int _diastolic;
 
         private static int _sistolic;
-
         static async Task Main(string[] args)
         {
             using var _cancellationTokenSource = new CancellationTokenSource();
@@ -58,7 +57,6 @@ namespace hypertension_bot
                 Console.WriteLine($"\nBot : offline..error");
                 _cancellationTokenSource.Cancel();
             }
-
             Console.ReadLine();
         }
         public static async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
