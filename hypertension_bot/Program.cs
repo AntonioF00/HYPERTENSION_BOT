@@ -143,7 +143,7 @@ namespace hypertension_bot
                                                                                                                                                                                                            text: $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_rnd.Next(3)]}",
                                                                                                                                                                                                            cancellationToken: cancellationToken)
                                                                                                                                                 : _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                                                                                                                                                           text: $"Sistolica : {_sistolic} mmHg\nDiastolica : {_diastolic} mmHg\nSono corretti?",
+                                                                                                                                                                                                                  text: $"Sistolica : {_sistolic} mmHg\nDiastolica : {_diastolic} mmHg\nSono corretti?",
                                                                                                                                                                                                            cancellationToken: cancellationToken);                     
                     }
                 }
@@ -156,6 +156,13 @@ namespace hypertension_bot
                                                          cancellationToken: cancellationToken);
             }
             else if (_data.MessageText.Contains("media") && (_data.MessageText.Contains("settimanale") || _data.MessageText.Contains("settimana")))
+            {
+                _unknown = true;
+                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+                                                         text: _data.AverageMessage.calculateWeekAVG(_data.Id, _data.FirstName),
+                                                         cancellationToken: cancellationToken);
+            }
+            else if (_data.MessageText.Contains("media") && (_data.MessageText.Contains("giorno") || _data.MessageText.Contains("giornaliera")))
             {
                 _unknown = true;
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,

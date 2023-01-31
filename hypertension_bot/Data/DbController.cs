@@ -2,6 +2,7 @@
 using hypertension_bot.Settings;
 using System.Data.Common;
 using hypertension_bot.Loggers;
+using Newtonsoft.Json;
 
 namespace hypertension_bot.Data
 {
@@ -90,13 +91,13 @@ namespace hypertension_bot.Data
             }
         }
 
-        public List<object> CalculateMonthAVG(long id)
+        public Dictionary<string,object> CalculateMonthAVG(long id)
         {
             try
             {
                 _connection.Open();
 
-                List<object> res = _connection.QueryFirstOrDefault<List<object>>(
+                var res = _connection.QueryFirstOrDefault<dynamic>(
                 Setting.Istance.Configuration.CalculateMonthAVG,
                 new Dictionary<string, object>()
                 {
@@ -105,7 +106,9 @@ namespace hypertension_bot.Data
 
                 _connection.Close();
 
-                return res;
+                var json = JsonConvert.SerializeObject(res);
+                var dictionary = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+                return dictionary;
             }
             catch (Exception ex)
             {
@@ -115,13 +118,13 @@ namespace hypertension_bot.Data
             }
         }
 
-        public List<object> CalculateWeekAVG(long id)
+        public Dictionary<string, object> CalculateWeekAVG(long id)
         {
             try
             {
                 _connection.Open();
 
-                List<object> res = _connection.QueryFirstOrDefault<List<object>>(
+                var res = _connection.QueryFirstOrDefault<dynamic>(
                 Setting.Istance.Configuration.CalculateWeekAVG,
                 new Dictionary<string, object>()
                 {
@@ -130,7 +133,36 @@ namespace hypertension_bot.Data
 
                 _connection.Close();
 
-                return res;
+                var json = JsonConvert.SerializeObject(res);
+                var dictionary = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+                return dictionary;
+            }
+            catch (Exception ex)
+            {
+                if (_connection.State == System.Data.ConnectionState.Open)
+                    _connection.Close();
+                throw ex;
+            }
+        }
+
+        public Dictionary<string, object> CalculateDayAVG(long id)
+        {
+            try
+            {
+                _connection.Open();
+
+                var res = _connection.QueryFirstOrDefault<dynamic>(
+                Setting.Istance.Configuration.CalculateDayAVG,
+                new Dictionary<string, object>()
+                {
+                    ["id"] = id
+                });
+
+                _connection.Close();
+
+                var json = JsonConvert.SerializeObject(res);
+                var dictionary = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+                return dictionary;
             }
             catch (Exception ex)
             {
