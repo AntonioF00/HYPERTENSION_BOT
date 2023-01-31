@@ -206,7 +206,6 @@ namespace hypertension_bot
                     => $"Telegram API Error:\n[{apiRequestException.ErrorCode}]\n{apiRequestException.Message}",
                   _ => exception.ToString()
             };
-
             LogHelper.Log($"{System.DateTime.Now} | {ErrorMessage}");
             return Task.CompletedTask;
         }
