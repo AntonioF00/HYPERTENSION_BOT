@@ -37,7 +37,6 @@ namespace hypertension_bot.Models
         private string _lastDataInsert;
         private long  _id;
         private Message?  _sentMessage;
-
         private bool _done;
 
         public int BlockLevel { get => _blockLevel; set => _blockLevel = 0; }
@@ -53,21 +52,13 @@ namespace hypertension_bot.Models
         public string LastDataInsert { get => _lastDataInsert; set => _lastDataInsert = value; }
 
         public HelloMessage HelloMessage => new();
-
         public ErrorMessage ErrorMessage => new();
-
         public InsertMessage InsertMessage => new();
-
         public OkMessage OKMessage => new();
-
         public NegativeMessage NegativeMessage => new();
-
         public PressureMessage PressureMessage => new();
-
         public ThankMessage ThankMessage => new();
-
         public MeasuresAccepted MeasuresAccepted => new();
-
         public AverageMessage AverageMessage => new();
     }
 }
