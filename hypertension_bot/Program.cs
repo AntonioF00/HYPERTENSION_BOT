@@ -107,7 +107,7 @@ namespace hypertension_bot
                 _unknown = true;
 
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                         text: $"{_data.HelloMessage.ReplyMessages[_data.Random.Next(4)]} {_data.FirstName}!\n{_data.FirstName}, ti va di dirmi i tuoi valori di oggi? \nScrivimeli in questo modo\nAd esempio 120 30\nGrazie!)",
+                                                                         text: $"{_data.HelloMessage.ReplyMessages[_data.Random.Next(4)]} {_data.FirstName}!\n{_data.FirstName}, ti va di dirmi i tuoi valori di oggi? \nScrivimeli in questo modo\nAd esempio 120 30\nGrazie!",
                                                                          cancellationToken: cancellationToken);
             }
             else if (_data.MessageText.Any(char.IsDigit))
