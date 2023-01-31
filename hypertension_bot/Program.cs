@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection.Metadata.Ecma335;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -38,10 +39,7 @@ namespace hypertension_bot
             };
             try
             {
-                _telegramBot.StartReceiving(HandleUpdateAsync,
-                                            HandleErrorAsync,
-                                            receiverOptions,
-                                            cancellationToken: _cancellationTokenSource.Token);
+                _telegramBot.StartReceiving(HandleUpdateAsync, HandleErrorAsync, receiverOptions, cancellationToken: _cancellationTokenSource.Token);
 
                 var me = await _telegramBot.GetMeAsync();
 
@@ -62,9 +60,9 @@ namespace hypertension_bot
         public static async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
             var _unknown = false;
-            
+
             // Only process Message updates: https://core.telegram.org/bots/api#message
-            if (update.Type != UpdateType.Message)
+            if (update.Type != UpdateType.Message) 
                 return;
             // Only process text messages
             if (update.Message!.Type != MessageType.Text)
