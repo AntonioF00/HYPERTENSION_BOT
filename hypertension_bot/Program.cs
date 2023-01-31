@@ -25,9 +25,6 @@ namespace hypertension_bot
 
         private static readonly DbController _dbController = new();
 
-        private static int _diastolic;
-
-        private static int _sistolic;
         static async Task Main(string[] args)
         {
             using var _cancellationTokenSource = new CancellationTokenSource();
@@ -91,7 +88,7 @@ namespace hypertension_bot
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                          text: $"{_data.InsertMessage.Messages[_data.Random.Next(4)]}\nA presto {_data.FirstName}!\nData : {System.DateOnly.FromDateTime(System.DateTime.Now)}",
                                                                          cancellationToken: cancellationToken);
-                _dbController.InsertMeasures(_diastolic,_sistolic,_data.Id);
+                _dbController.InsertMeasures(_data.Diastolic,_data.Sistolic,_data.Id);
                 _dbController.UpdateFirstAlert(_data.Id,false);
 
             }
@@ -134,15 +131,15 @@ namespace hypertension_bot
                         _unknown = true;
                         _data.Done = true;
 
-                        _sistolic  = (num1 > num2) ? num1 : num2;
-                        _diastolic = (num1 > num2) ? num2 : num1;
+                        _data.Sistolic  = (num1 > num2) ? num1 : num2;
+                        _data.Diastolic = (num1 > num2) ? num2 : num1;
 
-                        _ = (_sistolic >= Setting.Istance.Configuration.ValoreMaxSi && _diastolic >= Setting.Istance.Configuration.ValoreMaxDi)  
+                        _ = (_data.Sistolic >= Setting.Istance.Configuration.ValoreMaxSi && _data.Diastolic >= Setting.Istance.Configuration.ValoreMaxDi)  
                                                                                                                                                 ? _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                                                                                                                                                            text: $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_data.Random.Next(3)]}",
                                                                                                                                                                                                            cancellationToken: cancellationToken)
                                                                                                                                                 : _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                                                                                                                                                           text: $"Sistolica : {_sistolic} mmHg\nDiastolica : {_diastolic} mmHg\nSono corretti?",
+                                                                                                                                                                                                           text: $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nSono corretti?",
                                                                                                                                                                                                            cancellationToken: cancellationToken);                     
                     }
                 }
