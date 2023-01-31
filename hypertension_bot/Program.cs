@@ -165,16 +165,9 @@ namespace hypertension_bot
                     if (num2 != 0 && success)
                     {
                         _unknown = true;
-                        if (num1 > num2)
-                        {
-                            _sistolic  = num1;
-                            _diastolic = num2;
-                        }
-                        else
-                        {
-                            _sistolic  = num2;
-                            _diastolic = num1;
-                        }
+
+                        _sistolic = (num1 > num2) ? num1 : num2;
+                        _diastolic = (num1 > num2) ? num2 : num1;
 
                         if (_sistolic >= 180 && _sistolic >= 110)
                         {
