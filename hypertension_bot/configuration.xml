@@ -53,7 +53,9 @@
 	</UpdateFirstAlert>
 	
 	<CalculateAVG>
-		
+		SELECT monthsystolic, monthdiastolic
+		FROM users.vw_avguser
+		WHERE "User_idUser" = @id::text;
 	</CalculateAVG>
 	
 	<!-- Campi -->
