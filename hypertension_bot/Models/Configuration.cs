@@ -12,7 +12,8 @@ namespace hypertension_bot.Models
         private string _insertUser;
         private string _lastInsert;
         private string _calculateAVG;
-
+        private int    _valoreMaxSi;
+        private int    _valoreMaxDi;
         public string ConnectionString { get => _connectionString; set => _connectionString = value; }
         public ConnectionTypes ConnectionType { get => _connectionType; set => _connectionType = value; }
         public string BotToken { get => _botToken; set => _botToken = value; }
@@ -21,5 +22,7 @@ namespace hypertension_bot.Models
         public string InsertUser { get => _insertUser; set => _insertUser = value; }
         public string LastInsert { get => _lastInsert; set => _lastInsert = value; }
         public string CalculateAVG { get => _calculateAVG; set => _calculateAVG = value; }
+        public int ValoreMaxSi { get => _valoreMaxSi; set => _valoreMaxSi = value; }
+        public int ValoreMaxDi { get => _valoreMaxDi; set => _valoreMaxDi = value; }
     }
 }

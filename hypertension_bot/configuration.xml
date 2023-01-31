@@ -37,5 +37,14 @@
 	<CalculateAVG>
 		
 	</CalculateAVG>
+	
+	
+	<!-- Campi -->
+	
+	<!--Valore massimo consentito per la sistolica, sopra questo valore il bot invierà un messaggio di allerta all'utente -->
+	<ValoreMaxSi>180</ValoreMaxSi>
+	
+	<!--Valore massimo consentito per la diastolica, sopra questo valore il bot invierà un messaggio di allerta all'utente -->
+	<ValoreMaxDi>110</ValoreMaxDi>
 
 </Configuration>

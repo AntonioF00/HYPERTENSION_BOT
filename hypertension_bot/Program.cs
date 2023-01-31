@@ -136,9 +136,10 @@ namespace hypertension_bot
                         _sistolic  = (num1 > num2) ? num1 : num2;
                         _diastolic = (num1 > num2) ? num2 : num1;
 
-                        _ = (_sistolic >= 180 && _sistolic >= 110)  ? _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                                                                              text: $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_rnd.Next(3)]}",
-                                                                                                                              cancellationToken: cancellationToken)
+                        _ = (_sistolic >= Setting.Istance.Configuration.ValoreMaxSi && _diastolic >= Setting.Istance.Configuration.ValoreMaxDi)  
+                                                                    ? _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+                                                                                                                               text: $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_rnd.Next(3)]}",
+                                                                                                                               cancellationToken: cancellationToken)
                                                                     : _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                                                                                text: $"Sistolica : {_sistolic} mmHg\nDiastolica : {_diastolic} mmHg\nSono corretti?",
                                                                                                                                cancellationToken: cancellationToken);                     
