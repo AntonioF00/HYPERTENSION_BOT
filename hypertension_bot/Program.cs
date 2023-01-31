@@ -21,24 +21,6 @@ namespace hypertension_bot
 
         private static readonly Datas _data = new(); 
 
-        private static readonly HelloMessage _helloMessage = new();
-
-        private static readonly ErrorMessage _errorMessage = new();
-
-        private static readonly InsertMessage _insertMessage = new();
-
-        private static readonly OkMessage _oKMessage = new();
-
-        private static readonly NegativeMessage _negativeMessage = new();
-
-        private static readonly PressureMessage _pressureMessage = new();
-
-        private static readonly ThankMessage _thankMessage = new();
-
-        private static readonly MeasuresAccepted _measuresAccepted = new();
-
-        private static readonly AverageMessage _averageMessage = new();
-
         private static readonly DbController _dbController = new();
 
         private static Random _rnd = new();
@@ -103,36 +85,36 @@ namespace hypertension_bot
             //_data.LastDataInsert = _dbController.LastInsert(_data.Id);
             _dbController.InsertUser(_data.Id);
 
-            if (_thankMessage.Messages.Contains(_data.MessageText))
+            if (_data.ThankMessage.Messages.Contains(_data.MessageText))
             {
                 _unknown = true;
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                         text: $"{_thankMessage.ReplyMessages[_rnd.Next(5)]}",
+                                                                         text: $"{_data.ThankMessage.ReplyMessages[_rnd.Next(5)]}",
                                                                          cancellationToken: cancellationToken);
             }
-            else if (_oKMessage.Messages.Contains(_data.MessageText) && _done)
+            else if (_data.OKMessage.Messages.Contains(_data.MessageText) && _done)
             {
                 _data.Done = false;
                 _unknown = true;
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                         text: $"{_insertMessage.Messages[_rnd.Next(4)]}\nA presto {_data.FirstName}!\nData : {System.DateOnly.FromDateTime(System.DateTime.Now)}",
+                                                                         text: $"{_data.InsertMessage.Messages[_rnd.Next(4)]}\nA presto {_data.FirstName}!\nData : {System.DateOnly.FromDateTime(System.DateTime.Now)}",
                                                                          cancellationToken: cancellationToken);
                 _dbController.InsertMeasures(_diastolic,_sistolic,_data.Id);
 
             }
-            else if (_negativeMessage.Messages.Contains(_data.MessageText) && _done)
+            else if (_data.NegativeMessage.Messages.Contains(_data.MessageText) && _done)
             {
                 _data.Done = false;
                 _unknown = true;
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                         text: $"{_errorMessage.Messages[_rnd.Next(4)]}\n{_data.FirstName} prova a reinserire i dati!",
+                                                                         text: $"{_data.ErrorMessage.Messages[_rnd.Next(4)]}\n{_data.FirstName} prova a reinserire i dati!",
                                                                          cancellationToken: cancellationToken);
             }
-            else if (_helloMessage.Messages.Contains(_data.MessageText) || _pressureMessage.Messages.Contains(_data.MessageText))
+            else if (_data.HelloMessage.Messages.Contains(_data.MessageText) || _data.PressureMessage.Messages.Contains(_data.MessageText))
             {
                 _unknown = true;
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                         text: $"{_helloMessage.ReplyMessages[_rnd.Next(4)]} {_data.FirstName}! ",
+                                                                         text: $"{_data.HelloMessage.ReplyMessages[_rnd.Next(4)]} {_data.FirstName}! ",
                                                                          cancellationToken: cancellationToken);
 
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
@@ -167,7 +149,7 @@ namespace hypertension_bot
                         if (_sistolic >= 180 && _sistolic >= 110)
                         {
                             _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                                     text: $"{_data.FirstName}!\n{_measuresAccepted.Message[_rnd.Next(3)]}",
+                                                                                     text: $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_rnd.Next(3)]}",
                                                                                      cancellationToken: cancellationToken);
                         }
                         else
@@ -184,7 +166,7 @@ namespace hypertension_bot
             {
                 _unknown = true;
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                         text: _averageMessage.calculateAVG(_data.Id, _data.FirstName),
+                                                         text: _data.AverageMessage.calculateAVG(_data.Id, _data.FirstName),
                                                          cancellationToken: cancellationToken);
             }
 
@@ -207,7 +189,7 @@ namespace hypertension_bot
             if (!_unknown)
             {
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                         text: $"{_errorMessage.Messages[_rnd.Next(6)]}",
+                                                                         text: $"{_data.ErrorMessage.Messages[_rnd.Next(6)]}",
                                                                          cancellationToken: cancellationToken);
             }
         }

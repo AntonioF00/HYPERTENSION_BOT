@@ -5,6 +5,26 @@ namespace hypertension_bot.Models
 {
     public class Datas
     {
+        //Message's model
+        private  readonly HelloMessage _helloMessage;
+
+        private  readonly ErrorMessage _errorMessage;
+
+        private  readonly InsertMessage _insertMessage;
+
+        private  readonly OkMessage _oKMessage;
+
+        private  readonly NegativeMessage _negativeMessage;
+
+        private  readonly PressureMessage _pressureMessage;
+
+        private  readonly ThankMessage _thankMessage;
+
+        private  readonly MeasuresAccepted _measuresAccepted;
+
+        private  readonly AverageMessage _averageMessage;
+
+
         //Block
         private int  _blockLevel;
         private bool  _messDeleted;
@@ -32,5 +52,23 @@ namespace hypertension_bot.Models
         public Message SentMessage { get => _sentMessage; set => _sentMessage = value; }
         public bool Done { get => _done; set => _done = value; }
         public string LastDataInsert { get => _lastDataInsert; set => _lastDataInsert = value; }
+
+        public HelloMessage HelloMessage => new();
+
+        public ErrorMessage ErrorMessage => new();
+
+        public InsertMessage InsertMessage => new();
+
+        public OkMessage OKMessage => new();
+
+        public NegativeMessage NegativeMessage => new();
+
+        public PressureMessage PressureMessage => new();
+
+        public ThankMessage ThankMessage => new();
+
+        public MeasuresAccepted MeasuresAccepted => new();
+
+        public AverageMessage AverageMessage => new();
     }
 }
