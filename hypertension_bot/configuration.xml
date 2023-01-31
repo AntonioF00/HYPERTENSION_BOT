@@ -34,4 +34,8 @@
 		LIMIT 1
 	</LastInsert>
 
+	<CalculateAVG>
+		
+	</CalculateAVG>
+
 </Configuration>

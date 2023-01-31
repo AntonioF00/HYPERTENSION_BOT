@@ -15,9 +15,9 @@ namespace hypertension_bot.Models
         private int  _messageId;
         private string?  _firstName;
         private string?  _lastName;
+        private string _lastDataInsert;
         private long  _id;
         private Message?  _sentMessage;
-        private string _lastDataInsert;
 
         private bool _done;
 

@@ -90,5 +90,29 @@ namespace hypertension_bot.Data
             }
         }
 
+        public Dictionary<string,object> CalculateAVG(long id)
+        {
+            try
+            {
+                _connection.Open();
+
+                var res = _connection.QueryFirst<Dictionary<string, object>>(
+                Setting.Istance.Configuration.CalculateAVG,
+                new Dictionary<string, object>()
+                {
+                    ["id"] = id
+                });
+
+                _connection.Close();
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                if (_connection.State == System.Data.ConnectionState.Open)
+                    _connection.Close();
+                throw ex;
+            }
+        }
     }
 }
