@@ -124,7 +124,6 @@ namespace hypertension_bot
                                             .SkipWhile(x => !char.IsDigit(x))
                                             .TakeWhile(x => char.IsDigit(x))
                                             .ToArray()), out num2);
-
                     if (num2 != 0 && success)
                     {
                         _unknown = true;
@@ -147,29 +146,21 @@ namespace hypertension_bot
             {
                 _unknown = true;
                 if (_data.MessageText.Contains("mese") || _data.MessageText.Contains("mensile"))
-                {
                     _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                              text: _data.AverageMessage.calculateMonthAVG(_data.Id, _data.FirstName),
                                                                              cancellationToken: cancellationToken);
-                }
                 else if (_data.MessageText.Contains("settimanale") || _data.MessageText.Contains("settimana"))
-                {
                     _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                              text: _data.AverageMessage.calculateWeekAVG(_data.Id, _data.FirstName),
                                                                              cancellationToken: cancellationToken);
-                }
                 else if (_data.MessageText.Contains("giorno") || _data.MessageText.Contains("giornaliera"))
-                {
                     _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                              text: _data.AverageMessage.calculateDayAVG(_data.Id, _data.FirstName),
                                                                              cancellationToken: cancellationToken);
-                }
                 else
-                {
                     _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                              text: $"{_data.FirstName} specifica il tipo di media che vuoi visualizzare!\nGiornaliera / Mensile / Settimanale!",
                                                                              cancellationToken: cancellationToken);
-                }
             }
             if (_data.LastDataInsert != "0" && !_firstAlert)
             {
