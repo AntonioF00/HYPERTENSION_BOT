@@ -40,7 +40,6 @@ namespace hypertension_bot
                 var me = await _telegramBot.GetMeAsync();
 
                 Console.WriteLine($"\n{me.Username} token: {Setting.Istance.Configuration.BotToken}\n{me.Username}: online\nHello! I'm {me.Username} and i'm your Bot!");
-
                 Console.ReadKey();
                 _cancellationTokenSource.Cancel();
             }
