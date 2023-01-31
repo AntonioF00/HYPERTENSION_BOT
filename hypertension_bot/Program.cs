@@ -143,7 +143,7 @@ namespace hypertension_bot
                                                                                                                                                                                                            text: $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_rnd.Next(3)]}",
                                                                                                                                                                                                            cancellationToken: cancellationToken)
                                                                                                                                                 : _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                                                                                                                                                                  text: $"Sistolica : {_sistolic} mmHg\nDiastolica : {_diastolic} mmHg\nSono corretti?",
+                                                                                                                                                                                                           text: $"Sistolica : {_sistolic} mmHg\nDiastolica : {_diastolic} mmHg\nSono corretti?",
                                                                                                                                                                                                            cancellationToken: cancellationToken);                     
                     }
                 }
