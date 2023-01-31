@@ -38,9 +38,7 @@
 		
 	</CalculateAVG>
 	
-	
 	<!-- Campi -->
-	
 	<!--Valore massimo consentito per la sistolica, sopra questo valore il bot invierà un messaggio di allerta all'utente -->
 	<ValoreMaxSi>180</ValoreMaxSi>
 	
