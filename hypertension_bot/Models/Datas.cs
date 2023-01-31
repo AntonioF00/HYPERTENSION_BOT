@@ -24,7 +24,6 @@ namespace hypertension_bot.Models
 
         private  readonly AverageMessage _averageMessage;
 
-
         //Block
         private int  _blockLevel;
         private bool  _messDeleted;
