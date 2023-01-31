@@ -102,7 +102,7 @@ namespace hypertension_bot
             _data.FirstName      = update.Message.From.FirstName;
             _data.Id             = update.Message.From.Id;
 
-            _data.LastDataInsert = _dbController.LastInsert(_data.Id);
+            //_data.LastDataInsert = _dbController.LastInsert(_data.Id);
             _dbController.InsertUser(_data.Id);
 
             if (_thankMessage.Messages.Contains(_data.MessageText))
@@ -149,14 +149,14 @@ namespace hypertension_bot
             {
                 int num1, num2;
 
-                bool success = int.TryParse(new string(_data.MessageText.Replace("/","-").Replace(",","-")
+                bool success = int.TryParse(new string(_data.MessageText.Replace("/", "-").Replace(",", "-")
                                             .SkipWhile(x => !char.IsDigit(x))
                                             .TakeWhile(x => char.IsDigit(x))
                                             .ToArray()), out num1);
 
                 if (num1 != 0 && success)
                 {
-                    var mess = _data.MessageText.Replace(num1.ToString(),"");
+                    var mess = _data.MessageText.Replace(num1.ToString(), "");
 
                     success = int.TryParse(new string(mess
                                             .SkipWhile(x => !char.IsDigit(x))
@@ -167,7 +167,7 @@ namespace hypertension_bot
                     {
                         _unknown = true;
 
-                        _sistolic  = (num1 > num2) ? num1 : num2;
+                        _sistolic = (num1 > num2) ? num1 : num2;
                         _diastolic = (num1 > num2) ? num2 : num1;
 
                         if (_sistolic >= 180 && _sistolic >= 110)
@@ -195,21 +195,21 @@ namespace hypertension_bot
                                                          cancellationToken: cancellationToken);
             }
 
-            else if (_data.LastDataInsert != "0")
-            {
-                var n = 0;
-                _unknown = true;
+            //else if (_data.LastDataInsert != "0")
+            //{
+            //    var n = 0;
+            //    _unknown = true;
 
-                n = (int.Parse(_data.LastDataInsert) > int.Parse(System.DateTime.Today.Day.ToString())) ? int.Parse(_data.LastDataInsert) - int.Parse(System.DateTime.Today.Day.ToString()) : int.Parse(System.DateTime.Today.Day.ToString()) - int.Parse(_data.LastDataInsert);
+            //    n = (int.Parse(_data.LastDataInsert) > int.Parse(System.DateTime.Today.Day.ToString())) ? int.Parse(_data.LastDataInsert) - int.Parse(System.DateTime.Today.Day.ToString()) : int.Parse(System.DateTime.Today.Day.ToString()) - int.Parse(_data.LastDataInsert);
 
-                if (n > 1)
-                {
-                    _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                             text: $"{_data.FirstName} è da un po' che non prendiamo i valori!\nIl medico aspetta i tuoi dati!",
-                                                                             cancellationToken: cancellationToken);
+            //    if (n > 1)
+            //    {
+            //        _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+            //                                                                 text: $"{_data.FirstName} è da un po' che non prendiamo i valori!\nIl medico aspetta i tuoi dati!",
+            //                                                                 cancellationToken: cancellationToken);
 
-                }
-            }
+            //    }
+            //}
 
             if (!_unknown)
             {
