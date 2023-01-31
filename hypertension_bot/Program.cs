@@ -37,6 +37,8 @@ namespace hypertension_bot
 
         private static readonly MeasuresAccepted _measuresAccepted = new();
 
+        private static readonly AverageMessage _averageMessage = new();
+
         private static readonly DbController _dbController = new();
 
         private static Random _rnd = new();
@@ -98,7 +100,6 @@ namespace hypertension_bot
             _data.ChatId         = update.Message.Chat.Id;
             _data.MessageText    = update.Message.Text.ToLower();
             _data.FirstName      = update.Message.From.FirstName;
-            _data.LastName       = update.Message.From.LastName;
             _data.Id             = update.Message.From.Id;
 
             _data.LastDataInsert = _dbController.LastInsert(_data.Id);
@@ -185,6 +186,13 @@ namespace hypertension_bot
                     }
                 }
             }
+            else if (_data.MessageText.Contains("media"))
+            {
+                _unknown = true;
+                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+                                                         text: _averageMessage.calculateAVG(_data.Id, _data.FirstName),
+                                                         cancellationToken: cancellationToken);
+            }
 
             else if (_data.LastDataInsert != "0")
             {
@@ -205,7 +213,7 @@ namespace hypertension_bot
             if (!_unknown)
             {
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                         text: $"{_errorMessage.Messages[_rnd.Next(6)] }",
+                                                                         text: $"{_errorMessage.Messages[_rnd.Next(6)]}",
                                                                          cancellationToken: cancellationToken);
             }
         }
