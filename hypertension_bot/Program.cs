@@ -159,14 +159,15 @@ namespace hypertension_bot
                                                                              cancellationToken: cancellationToken);
                 else
                     _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                             text: $"{_data.FirstName} specifica il tipo di media che vuoi visualizzare!\nGiornaliera / Mensile / Settimanale!",
+                                                                             text: $"{_data.FirstName} specifica il tipo di media che vuoi visualizzare!\nMedia giornaliera / Media mensile / Media settimanale!",
                                                                              cancellationToken: cancellationToken);
             }
             if (_data.LastDataInsert != "0" && !_firstAlert)
             {
                 var n = 0;
-                n = (int.Parse(_data.LastDataInsert) > int.Parse(System.DateTime.Today.Day.ToString())) ? int.Parse(_data.LastDataInsert) - int.Parse(System.DateTime.Today.Day.ToString()) : int.Parse(System.DateTime.Today.Day.ToString()) - int.Parse(_data.LastDataInsert);
-
+                n = (int.Parse(_data.LastDataInsert) > int.Parse(System.DateTime.Today.Day.ToString())) 
+                                                                                                       ? int.Parse(_data.LastDataInsert) - int.Parse(System.DateTime.Today.Day.ToString()) 
+                                                                                                       : int.Parse(System.DateTime.Today.Day.ToString()) - int.Parse(_data.LastDataInsert);
                 if (n > 2)
                 {
                     _unknown = true;
