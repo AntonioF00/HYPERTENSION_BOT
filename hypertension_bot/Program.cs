@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Dapper;
 using hypertension_bot.Data;
 using hypertension_bot.Loggers;
 using hypertension_bot.Models;
@@ -76,14 +77,14 @@ namespace hypertension_bot
             _dbController.InsertUser(_data.Id);
             var _firstAlert = _dbController.GetFirstAlert(_data.Id);
 
-            if (_data.ThankMessage.Messages.Contains(_data.MessageText))
+            if (_data.ThankMessage.Messages.Any(_data.MessageText.Contains))
             {
                 _unknown = true;
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                          text: $"{_data.ThankMessage.ReplyMessages[_data.Random.Next(5)]}",
                                                                          cancellationToken: cancellationToken);
             }
-            else if (_data.OKMessage.Messages.Contains(_data.MessageText) && _data.Done)
+            else if (_data.OKMessage.Messages.Any(_data.MessageText.Contains) && _data.Done)
             {
                 _data.Done = false;
                 _unknown = true;
@@ -94,7 +95,7 @@ namespace hypertension_bot
                 _dbController.UpdateFirstAlert(_data.Id,false);
 
             }
-            else if (_data.NegativeMessage.Messages.Contains(_data.MessageText) && _data.Done)
+            else if (_data.NegativeMessage.Messages.Any(_data.MessageText.Contains) && _data.Done)
             {
                 _data.Done = false;
                 _unknown = true;
@@ -102,7 +103,7 @@ namespace hypertension_bot
                                                                          text: $"{_data.ErrorMessage.Messages[_data.Random.Next(4)]}\n{_data.FirstName} prova a reinserire i dati!",
                                                                          cancellationToken: cancellationToken);
             }
-            else if (_data.HelloMessage.Messages.Contains(_data.MessageText) || _data.PressureMessage.Messages.Contains(_data.MessageText))
+            else if (_data.HelloMessage.Messages.Any(_data.MessageText.Contains) || _data.PressureMessage.Messages.Any(_data.MessageText.Contains))
             {
                 _unknown = true;
 
