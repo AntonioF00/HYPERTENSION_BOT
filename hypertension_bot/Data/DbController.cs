@@ -90,13 +90,13 @@ namespace hypertension_bot.Data
             }
         }
 
-        public Dictionary<string,object> CalculateAVG(long id)
+        public List<object> CalculateAVG(long id)
         {
             try
             {
                 _connection.Open();
 
-                var res = _connection.QueryFirst<Dictionary<string, object>>(
+                List<object> res = _connection.QueryFirstOrDefault<List<object>>(
                 Setting.Istance.Configuration.CalculateAVG,
                 new Dictionary<string, object>()
                 {
