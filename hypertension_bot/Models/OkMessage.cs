@@ -6,19 +6,22 @@ namespace hypertension_bot.Models
     {
         public List<string> Messages { get; }
 
+        private readonly List<string> _messages = new List<string>
+        {
+            "si",
+            "s",
+            "perfetto",
+            "vabene",
+            "ok",
+            "oky",
+            "yes",
+            "esatto",
+            "esattamente"
+        };
+
         public OkMessage()
         {
-            Messages = new List<string>();
-            Messages.Add("si");
-            Messages.Add("s");
-            Messages.Add("perfetto");
-            Messages.Add("vabene");
-            Messages.Add("va bene");
-            Messages.Add("ok");
-            Messages.Add("oky");
-            Messages.Add("yes");
-            Messages.Add("esatto");
-            Messages.Add("esattamente");
+            Messages = _messages;
         }
     }
 }

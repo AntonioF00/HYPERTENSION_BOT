@@ -6,13 +6,17 @@ namespace hypertension_bot.Models
     {
         public List<string> Messages { get; }
 
+        private readonly List<string> _messages = new List<string>()
+        {
+            "pressione",
+            "voglio inserire la pressione",
+            "inserire pressione",
+            "inserire la pressione"
+        };
+
         public PressureMessage()
         {
-            Messages = new List<string>();
-            Messages.Add("pressione");    
-            Messages.Add("voglio inserire la pressione");   
-            Messages.Add("inserire pressione");   
-            Messages.Add("inserire la pressione");   
+            Messages = _messages;
         }
     }
 }

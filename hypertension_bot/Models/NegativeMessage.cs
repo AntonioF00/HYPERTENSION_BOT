@@ -6,15 +6,19 @@ namespace hypertension_bot.Models
     {
         public List<string> Messages { get; }
 
+        private static readonly List<string> _messages = new List<string>
+        {
+            "no",
+            "n",
+            "sbagliato",
+            "errato",
+            "non sono corretti",
+            "non corretti"
+        };
+
         public NegativeMessage()
         {
-            Messages = new List<string>();
-            Messages.Add("no");   
-            Messages.Add("n");    
-            Messages.Add("sbagliato");   
-            Messages.Add("errato");   
-            Messages.Add("non sono corretti");  
-            Messages.Add("non corretti");  
+            Messages = _messages; 
         }
     }
 }

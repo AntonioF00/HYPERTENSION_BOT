@@ -7,23 +7,29 @@ namespace hypertension_bot.Models
         public List<string> Messages { get; }
         public List<string> ReplyMessages { get; }
 
+        private readonly List<string> _messages = new List<string>()
+        {
+            "grazie",
+            "ti ringrazio",
+            "ok",
+            "va bene",
+            "vabene",
+            "perfetto"
+        };
+
+        private readonly List<string> _replyMessages = new List<string>
+        {
+            "Non c'è bisogno che mi ringrazi!",
+            "Di nulla!",
+            "E' il mio dovere!",
+            "E' un lavoro duro ma qualcuno dovrà pur farlo!",
+            "Ci mancherebbe!"
+        };
+
         public ThankMessage()
         {
-            Messages = new List<string>();
-            Messages.Add("grazie");   
-            Messages.Add("ti ringrazio");   
-            Messages.Add("ok");   
-            Messages.Add("va bene");     
-            Messages.Add("vabene");   
-            Messages.Add("perfetto");   
-
-            ReplyMessages = new List<string>();
-            ReplyMessages.Add("Non c'è bisogno che mi ringrazi!");
-            ReplyMessages.Add("Di nulla!");
-            ReplyMessages.Add("E' il mio dovere!");
-            ReplyMessages.Add("E' un lavoro duro ma qualcuno dovrà pur farlo!");
-            ReplyMessages.Add("Ci mancherebbe!");
-
+            Messages = _messages;
+            ReplyMessages = _replyMessages;
         }
     }
 }
