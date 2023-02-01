@@ -24,6 +24,7 @@ namespace hypertension_bot.Models
 
         private  readonly AverageMessage _averageMessage;
 
+
         private readonly Random _rnd;
 
         //Block

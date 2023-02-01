@@ -72,7 +72,21 @@ namespace hypertension_bot
             _dbController.InsertUser(_data.Id);
             var _firstAlert = _dbController.GetFirstAlert(_data.Id);
 
-            if (_data.ThankMessage.Messages.Any(_data.MessageText.Contains))
+            if (_data.MessageText.Equals("/start"))
+            {
+                _unknown = true;
+                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+                                                                         text: $"{_data.HelloMessage.InitialMessages[_data.Random.Next(1)]}",
+                                                                         cancellationToken: cancellationToken);
+            }
+            else if (_data.PressureMessage.Messages.Any(_data.MessageText.Contains))
+            {
+                _unknown = true;
+                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+                                                                         text: $"{_data.PressureMessage.HowToMessages[_data.Random.Next(1)]}",
+                                                                         cancellationToken: cancellationToken);
+            }
+            else if (_data.ThankMessage.Messages.Any(_data.MessageText.Contains))
             {
                 _unknown = true;
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
@@ -98,7 +112,7 @@ namespace hypertension_bot
                                                                          text: $"{_data.ErrorMessage.Messages[_data.Random.Next(4)]}\n{_data.FirstName} prova a reinserire i dati!",
                                                                          cancellationToken: cancellationToken);
             }
-            else if (_data.HelloMessage.Messages.Any(_data.MessageText.Contains) || _data.PressureMessage.Messages.Any(_data.MessageText.Contains))
+            else if (_data.HelloMessage.Messages.Any(_data.MessageText.Contains))
             {
                 _unknown = true;
 
