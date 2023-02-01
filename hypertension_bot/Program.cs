@@ -122,7 +122,7 @@ namespace hypertension_bot
             }
             else if (_data.MessageText.Any(char.IsDigit))
             {
-                int num1, num2;
+                int num1, num2, num3 = 1;
 
                 bool success = int.TryParse(new string(_data.MessageText.Replace("/", "-").Replace(",", "-")
                                             .SkipWhile(x => !char.IsDigit(x))
@@ -145,13 +145,28 @@ namespace hypertension_bot
                         _data.Sistolic  = (num1 > num2) ? num1 : num2;
                         _data.Diastolic = (num1 > num2) ? num2 : num1;
 
-                        _ = (_data.Sistolic >= Setting.Istance.Configuration.ValoreMaxSi && _data.Diastolic >= Setting.Istance.Configuration.ValoreMaxDi)  
-                                                                                                                                                         ? _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                                                                                                                                                           text: $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_data.Random.Next(3)]}",
-                                                                                                                                                                                                           cancellationToken: cancellationToken)
-                                                                                                                                                         : _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                                                                                                                                                           text: $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nSono corretti?",
-                                                                                                                                                                                                           cancellationToken: cancellationToken);                     
+
+                        var mess2 = mess.Replace(num2.ToString(), "");
+
+                        success = int.TryParse(new string(mess2
+                                               .SkipWhile(x => !char.IsDigit(x))
+                                               .TakeWhile(x => char.IsDigit(x))
+                                               .ToArray()), out num3);
+                        
+                        _ = (success) ? (_data.Sistolic >= Setting.Istance.Configuration.ValoreMaxSi && _data.Diastolic >= Setting.Istance.Configuration.ValoreMaxDi)
+                                                                                                                                                                     ? _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+                                                                                                                                                                                                                                text: $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_data.Random.Next(3)]}",
+                                                                                                                                                                                                                                cancellationToken: cancellationToken)
+                                                                                                                                                                     : _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+                                                                                                                                                                                                                                text: $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nFrequenza cardiaca : {num3} bmp\nSono corretti?",
+                                                                                                                                                                                                                                cancellationToken: cancellationToken)
+                                      : (_data.Sistolic >= Setting.Istance.Configuration.ValoreMaxSi && _data.Diastolic >= Setting.Istance.Configuration.ValoreMaxDi)
+                                                                                                                                                                     ? _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+                                                                                                                                                                                                                                text: $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_data.Random.Next(3)]}",
+                                                                                                                                                                                                                                cancellationToken: cancellationToken)
+                                                                                                                                                                     : _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+                                                                                                                                                                                                                                text: $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nSono corretti?",
+                                                                                                                                                                                                                                cancellationToken: cancellationToken);
                     }
                 }
             }
