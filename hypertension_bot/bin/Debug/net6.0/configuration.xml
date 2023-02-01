@@ -12,7 +12,7 @@
 	<!-- Querys-->
 	<InsertMeasures>
 		INSERT INTO users."Measurement"(systolic, diastolic, datetime,"heartRate", "User_idUser")
-		VALUES (@sistolic, @diastolic, NOW(),(@sistolic*@diastolic)*0.002,@id::text);
+		VALUES (@sistolic, @diastolic, NOW(),@heartRate,@id::text);
 	</InsertMeasures>
 
 	<!-- Query per inserire un nuovo utente, qualora fosse già presente farà l'update-->
@@ -56,7 +56,7 @@
 	
 	<!-- Query per calcolare la media mensile -->
 	<CalculateMonthAVG>
-		SELECT AVG(systolic)::int as systolic, AVG(diastolic)::int as diastolic
+		SELECT AVG(systolic)::int as systolic, AVG(diastolic)::int as diastolic, AVG("heartRate")::int as heartRate
 		FROM users."Measurement"
 		WHERE datetime BETWEEN now() - '1 month'::interval and now() and "User_idUser" = @id::text
 		GROUP BY "User_idUser"
@@ -64,7 +64,7 @@
 	
 	<!-- Query per calcolare la media settimanale -->
 	<CalculateWeekAVG>
-		SELECT AVG(systolic)::int as systolic, AVG(diastolic)::int as diastolic
+		SELECT AVG(systolic)::int as systolic, AVG(diastolic)::int as diastolic, AVG("heartRate")::int as heartRate
 		FROM users."Measurement"
 		WHERE datetime BETWEEN now() - '1 week'::interval and now() and "User_idUser" = @id::text
 		GROUP BY "User_idUser"
@@ -72,7 +72,7 @@
 	
 	<!-- Query per calcolare la media giornaliera -->
 	<CalculateWeekAVG>
-		SELECT AVG(systolic)::int as systolic, AVG(diastolic)::int as diastolic
+		SELECT AVG(systolic)::int as systolic, AVG(diastolic)::int as diastolic, AVG("heartRate")::int as heartRate
 		FROM users."Measurement"
 		WHERE datetime BETWEEN now() - '1 day'::interval and now() and "User_idUser" = @id::text
 		GROUP BY "User_idUser"
