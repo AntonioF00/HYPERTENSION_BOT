@@ -93,7 +93,15 @@ namespace hypertension_bot
                                                                          text: $"{_data.ThankMessage.ReplyMessages[_data.Random.Next(5)]}",
                                                                          cancellationToken: cancellationToken);
             }
-            else if (_data.OKMessage.Messages.Any(_data.MessageText.Contains) && _data.Done)
+            else if ((_data.NegativeMessage.Messages.Any(_data.MessageText.Contains)) && (_data.Done))
+            {
+                _data.Done = false;
+                _unknown = true;
+                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+                                                                         text: $"{_data.ErrorMessage.Messages[_data.Random.Next(4)]}\n{_data.FirstName} prova a reinserire i dati!",
+                                                                         cancellationToken: cancellationToken);
+            }
+            else if ((_data.OKMessage.Messages.Any(_data.MessageText.Contains)) && (_data.Done))
             {
                 _data.Done = false;
                 _unknown = true;
@@ -103,14 +111,6 @@ namespace hypertension_bot
                 _dbController.InsertMeasures(_data.Diastolic,_data.Sistolic,_data.HeartRate,_data.Id);
                 _dbController.UpdateFirstAlert(_data.Id,false);
 
-            }
-            else if (_data.NegativeMessage.Messages.Any(_data.MessageText.Contains) && _data.Done)
-            {
-                _data.Done = false;
-                _unknown = true;
-                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                         text: $"{_data.ErrorMessage.Messages[_data.Random.Next(4)]}\n{_data.FirstName} prova a reinserire i dati!",
-                                                                         cancellationToken: cancellationToken);
             }
             else if (_data.HelloMessage.Messages.Any(_data.MessageText.Contains))
             {
@@ -128,7 +128,6 @@ namespace hypertension_bot
                                             .SkipWhile(x => !char.IsDigit(x))
                                             .TakeWhile(x => char.IsDigit(x))
                                             .ToArray()), out num1);
-
                 if (num1 != 0 && success)
                 {
                     var mess = _data.MessageText.Replace(num1.ToString(), "");
@@ -145,14 +144,10 @@ namespace hypertension_bot
                         _data.Sistolic  = (num1 > num2) ? num1 : num2;
                         _data.Diastolic = (num1 > num2) ? num2 : num1;
 
-
-                        mess = "x" + mess.Substring(3);
-
-                        success = int.TryParse(new string(mess
+                        success = int.TryParse(new string($"{mess = "x" + mess.Substring(3)}"
                                                .SkipWhile(x => !char.IsDigit(x))
                                                .TakeWhile(x => char.IsDigit(x))
                                                .ToArray()), out num3);
-
                         _data.HeartRate = num3;
                         
                         _ = (success) ? (_data.Sistolic >= Setting.Istance.Configuration.ValoreMaxSi && _data.Diastolic >= Setting.Istance.Configuration.ValoreMaxDi)
@@ -160,7 +155,7 @@ namespace hypertension_bot
                                                                                                                                                                                                                                 text: $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_data.Random.Next(3)]}",
                                                                                                                                                                                                                                 cancellationToken: cancellationToken)
                                                                                                                                                                      : _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                                                                                                                                                                                text: $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nFrequenza cardiaca : {num3} bmp\nSono corretti?",
+                                                                                                                                                                                                                                text: $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nFrequenza cardiaca : {num3} bpm\nSono corretti?",
                                                                                                                                                                                                                                 cancellationToken: cancellationToken)
                                       : (_data.Sistolic >= Setting.Istance.Configuration.ValoreMaxSi && _data.Diastolic >= Setting.Istance.Configuration.ValoreMaxDi)
                                                                                                                                                                      ? _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,

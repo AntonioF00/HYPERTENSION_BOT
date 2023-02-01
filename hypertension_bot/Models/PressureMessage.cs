@@ -20,7 +20,8 @@ namespace hypertension_bot.Models
             "\n4. Misurare la pressione dopo 5 minuti di riposo in posizione seduta e mantenendo 1 minuto di distanza tra le misurazioni" +
             "\n5. Meglio misurare la presione prima dell'assunzione di farmaci, se in trattamento" +
             "\n6. Evitare autoregolazione del dosaggio dei farmaci in base alle automisurazioni." +
-            "\nINSERISCI LA TUA MISURAZIONE NELLA SEGUENTE MANIERA '120 80' ",
+            "\nINSERISCI LA TUA MISURAZIONE NELLA SEGUENTE MANIERA '120 80'\n" +
+            "QUALORA VOLESSI INSERIRE ANCHE LA FREQUENZA CARDIACA INSERISCILA COME ULTIMO VALORE AD ESEMPIO '120 80 60'",
         };
 
         public PressureMessage()

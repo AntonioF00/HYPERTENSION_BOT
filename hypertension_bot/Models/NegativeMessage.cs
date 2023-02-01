@@ -12,7 +12,8 @@ namespace hypertension_bot.Models
             "n",
             "sbagliato",
             "errato",
-            "corretti"
+            "errati",
+            "sbagliati"
         };
 
         public NegativeMessage()

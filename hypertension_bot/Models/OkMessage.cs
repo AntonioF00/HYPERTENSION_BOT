@@ -16,7 +16,9 @@ namespace hypertension_bot.Models
             "oky",
             "yes",
             "esatto",
-            "esattamente"
+            "esattamente",
+            "esatti",
+            "bene"
         };
 
         public OkMessage()
