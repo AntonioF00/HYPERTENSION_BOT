@@ -100,7 +100,7 @@ namespace hypertension_bot
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                          text: $"{_data.InsertMessage.Messages[_data.Random.Next(4)]}\nA presto {_data.FirstName}!\nData : {System.DateOnly.FromDateTime(System.DateTime.Now)}",
                                                                          cancellationToken: cancellationToken);
-                _dbController.InsertMeasures(_data.Diastolic,_data.Sistolic,_data.Id);
+                _dbController.InsertMeasures(_data.Diastolic,_data.Sistolic,_data.HeartRate,_data.Id);
                 _dbController.UpdateFirstAlert(_data.Id,false);
 
             }
@@ -122,7 +122,7 @@ namespace hypertension_bot
             }
             else if (_data.MessageText.Any(char.IsDigit))
             {
-                int num1, num2, num3 = 1;
+                int num1, num2, num3;
 
                 bool success = int.TryParse(new string(_data.MessageText.Replace("/", "-").Replace(",", "-")
                                             .SkipWhile(x => !char.IsDigit(x))
@@ -146,12 +146,14 @@ namespace hypertension_bot
                         _data.Diastolic = (num1 > num2) ? num2 : num1;
 
 
-                        var mess2 = mess.Replace(num2.ToString(), "");
+                        mess = "x" + mess.Substring(3);
 
-                        success = int.TryParse(new string(mess2
+                        success = int.TryParse(new string(mess
                                                .SkipWhile(x => !char.IsDigit(x))
                                                .TakeWhile(x => char.IsDigit(x))
                                                .ToArray()), out num3);
+
+                        _data.HeartRate = num3;
                         
                         _ = (success) ? (_data.Sistolic >= Setting.Istance.Configuration.ValoreMaxSi && _data.Diastolic >= Setting.Istance.Configuration.ValoreMaxDi)
                                                                                                                                                                      ? _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,

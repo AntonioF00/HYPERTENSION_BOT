@@ -42,6 +42,7 @@ namespace hypertension_bot.Models
         private bool _done;
         private int _diastolic;
         private int _sistolic;
+        private int _heartRate;
 
         public int BlockLevel { get => _blockLevel; set => _blockLevel = 0; }
         public bool MessDeleted { get => _messDeleted; set => _messDeleted = false; }
@@ -56,6 +57,7 @@ namespace hypertension_bot.Models
         public string LastDataInsert { get => _lastDataInsert; set => _lastDataInsert = value; }
         public int Diastolic { get => _diastolic; set => _diastolic = value; }
         public int Sistolic { get => _sistolic; set => _sistolic = value; }
+        public int HeartRate { get => _heartRate; set => _heartRate = value; }
 
         public HelloMessage HelloMessage => new();
         public ErrorMessage ErrorMessage => new();

@@ -12,7 +12,7 @@
 	<!-- Querys-->
 	<InsertMeasures>
 		INSERT INTO users."Measurement"(systolic, diastolic, datetime,"heartRate", "User_idUser")
-		VALUES (@sistolic, @diastolic, NOW(),(@sistolic*@diastolic)*0.002,@id::text);
+		VALUES (@sistolic, @diastolic, NOW(),@heartRate,@id::text);
 	</InsertMeasures>
 
 	<!-- Query per inserire un nuovo utente, qualora fosse già presente farà l'update-->
