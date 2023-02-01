@@ -1,14 +1,7 @@
-2/1/2023 4:40:04 PM | Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "postgres"
-   at hypertension_bot.Data.DbController.LastInsert(Int64 id) in /Users/antonioflorio/Projects/hypertension_bot/hypertension_bot/Data/DbController.cs:line 90
-   at hypertension_bot.program.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken) in /Users/antonioflorio/Projects/hypertension_bot/hypertension_bot/Program.cs:line 71
+2/1/2023 5:16:07 PM | System.ArgumentNullException: Value cannot be null. (Parameter 's')
+   at System.Int32.Parse(String s)
+   at hypertension_bot.program.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken) in /Users/antonioflorio/Projects/hypertension_bot/hypertension_bot/Program.cs:line 181
    at Telegram.Bot.Polling.DefaultUpdateHandler.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
    at Telegram.Bot.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
    at Telegram.Bot.TelegramBotClientExtensions.ReceiveAsync(ITelegramBotClient botClient, IUpdateHandler updateHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
    at Telegram.Bot.TelegramBotClientExtensions.<>c__DisplayClass106_0.<<StartReceiving>b__0>d.MoveNext()
-  Exception data:
-    Severity: FATAL
-    SqlState: 28P01
-    MessageText: password authentication failed for user "postgres"
-    File: auth.c
-    Line: 334
-    Routine: auth_failed
