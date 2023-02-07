@@ -179,7 +179,7 @@ namespace hypertension_bot.Data
             {
                 _connection.Open();
 
-                var res = _connection.QueryFirst<bool>(
+                var res = _connection.QueryFirstOrDefault<bool>(
                 Setting.Istance.Configuration.GetFirstAlert,
                 new Dictionary<string, object>()
                 {

@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Configuration>
+
+	<!--DB connection-->
+	<ConnectionString>Server=localhost;Database=hypertension_db;Port=5432;User Id=postgres;Password=password;</ConnectionString>
+	<ConnectionType>POSTGRESQL</ConnectionType>
+
+	<!--Bot settings-->
+	<BotToken>5505039837:AAGceHkTc7OVOn4AmwZ5x_Ol_srrDNkf3rs</BotToken>
+	<WitToken>TOL255PV5YN7NCIULDK7JQWV5MG72WP4</WitToken>
+
+	<!-- Querys-->
+	<InsertMeasures>
+		INSERT INTO users."Measurement"(systolic, diastolic, datetime,"heartRate", "User_idUser")
+		VALUES (@sistolic, @diastolic, NOW(),@heartRate,@id::text);
+	</InsertMeasures>
+
+	<!-- Query per inserire un nuovo utente, qualora fosse già presente farà l'update-->
+	<InsertUser>
+		INSERT INTO users."User"("idUser")
+		VALUES (@id::text)
+		ON CONFLICT ("idUser") DO UPDATE
+		SET "idUser" = @id::text;
+
+		INSERT INTO users."Alert"(
+		"firstAlertGiven", "secondAlertGiven", "thirdAlertGiven", "User_idUser")
+		VALUES (false, false, false, @id::text)
+		ON CONFLICT DO NOTHING;
+	</InsertUser>
+
+	<!-- Query per controllare l'ultima data d'inserimento dell'utente -->
+	<LastInsert>
+		SELECT
+			CASE
+				WHEN extract(day from datetime::timestamp::date)::text IS NULL THEN 0::text
+				ELSE extract(day from datetime::timestamp::date)::text
+			END
+		FROM users."Measurement"
+		WHERE "User_idUser" = @id::text
+		group by datetime
+		order by MAX("idMeasurement") desc
+		LIMIT 1
+	</LastInsert>
+
+	<GetFirstAlert>
+		SELECT "firstAlertGiven"
+		FROM users."Alert"
+		WHERE "User_idUser" = @id::text;
+	</GetFirstAlert>
+
+	<UpdateFirstAlert>
+		UPDATE users."Alert"
+		SET "firstAlertGiven" = @val::boolean
+		WHERE "User_idUser" = @id::text;
+	</UpdateFirstAlert>
+	
+	<!-- Query per calcolare la media mensile -->
+	<CalculateMonthAVG>
+		SELECT AVG(systolic)::int as systolic, AVG(diastolic)::int as diastolic, AVG("heartRate")::int as heartRate
+		FROM users."Measurement"
+		WHERE datetime BETWEEN now() - '1 month'::interval and now() and "User_idUser" = @id::text
+		GROUP BY "User_idUser"
+	</CalculateMonthAVG>
+	
+	<!-- Query per calcolare la media settimanale -->
+	<CalculateWeekAVG>
+		SELECT AVG(systolic)::int as systolic, AVG(diastolic)::int as diastolic, AVG("heartRate")::int as heartRate
+		FROM users."Measurement"
+		WHERE datetime BETWEEN now() - '1 week'::interval and now() and "User_idUser" = @id::text
+		GROUP BY "User_idUser"
+	</CalculateWeekAVG>
+	
+	<!-- Query per calcolare la media giornaliera -->
+	<CalculateWeekAVG>
+		SELECT AVG(systolic)::int as systolic, AVG(diastolic)::int as diastolic, AVG("heartRate")::int as heartRate
+		FROM users."Measurement"
+		WHERE datetime BETWEEN now() - '1 day'::interval and now() and "User_idUser" = @id::text
+		GROUP BY "User_idUser"
+	</CalculateWeekAVG>
+	
+	<!-- Campi -->
+	<!--Valore massimo consentito per la sistolica, sopra questo valore il bot invierà un messaggio di allerta all'utente -->
+	<ValoreMaxSi>180</ValoreMaxSi>
+	
+	<!--Valore massimo consentito per la diastolica, sopra questo valore il bot invierà un messaggio di allerta all'utente -->
+	<ValoreMaxDi>110</ValoreMaxDi>
+
+</Configuration>
