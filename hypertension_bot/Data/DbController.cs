@@ -107,9 +107,16 @@ namespace hypertension_bot.Data
 
                 _connection.Close();
 
-                var json = JsonConvert.SerializeObject(res);
-                var dictionary = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
-                return dictionary;
+                if (!string.IsNullOrEmpty(res))
+                {
+                    var json = JsonConvert.SerializeObject(res);
+                    var dictionary = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+                    return dictionary;
+                }
+                else
+                {
+                    return new Dictionary<string, object>();
+                }
             }
             catch (Exception ex)
             {
@@ -134,9 +141,16 @@ namespace hypertension_bot.Data
 
                 _connection.Close();
 
-                var json = JsonConvert.SerializeObject(res);
-                var dictionary = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
-                return dictionary;
+                if (!string.IsNullOrEmpty(res))
+                {
+                    var json = JsonConvert.SerializeObject(res);
+                    var dictionary = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+                    return dictionary;
+                }
+                else
+                {
+                    return new Dictionary<string, object>();
+                }
             }
             catch (Exception ex)
             {
@@ -160,10 +174,16 @@ namespace hypertension_bot.Data
                 });
 
                 _connection.Close();
-
-                var json = JsonConvert.SerializeObject(res);
-                var dictionary = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
-                return dictionary;
+                if (!string.IsNullOrEmpty(res))
+                {
+                    var json = JsonConvert.SerializeObject(res);
+                    var dictionary = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+                    return dictionary;
+                }
+                else
+                {
+                    return new Dictionary<string, object>();
+                }
             }
             catch (Exception ex)
             {

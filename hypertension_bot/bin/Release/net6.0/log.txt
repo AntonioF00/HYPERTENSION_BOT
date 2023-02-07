@@ -1,6 +1,7 @@
-07/02/2023 17:39:32 | System.InvalidOperationException: Sequence contains no elements
-   at hypertension_bot.Data.DbController.LastInsert(Int64 id)
-   at hypertension_bot.program.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+07/02/2023 22:43:41 | Microsoft.CSharp.RuntimeBinder.RuntimeBinderException: The best overloaded method match for 'string.IsNullOrEmpty(string)' has some invalid arguments
+   at hypertension_bot.Data.DbController.CalculateMonthAVG(Int64 id) in D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\Data\DbController.cs:line 123
+   at hypertension_bot.Models.AverageMessage.calculateMonthAVG(Int64 id, String Name) in D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\Models\AverageMessage.cs:line 15
+   at hypertension_bot.program.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken) in D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\Program.cs:line 174
    at Telegram.Bot.Polling.DefaultUpdateHandler.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
    at Telegram.Bot.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
    at Telegram.Bot.TelegramBotClientExtensions.ReceiveAsync(ITelegramBotClient botClient, IUpdateHandler updateHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
