@@ -72,7 +72,7 @@ namespace hypertension_bot.Data
             {
                 _connection.Open();
 
-                string res = _connection.QueryFirst<string>(
+                string res = _connection.QueryFirstOrDefault<string>(
                 Setting.Istance.Configuration.LastInsert,
                 new Dictionary<string, object>()
                 {
@@ -81,7 +81,7 @@ namespace hypertension_bot.Data
 
                 _connection.Close();
 
-                return res;
+                return (string.IsNullOrEmpty(res))?new string("0"):res;
 
             }
             catch (Exception ex)

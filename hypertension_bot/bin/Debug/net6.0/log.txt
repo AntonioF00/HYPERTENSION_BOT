@@ -1,7 +1,6 @@
-01/02/2023 22:18:03 | System.Collections.Generic.KeyNotFoundException: The given key 'heartRate' was not present in the dictionary.
-   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
-   at hypertension_bot.Models.AverageMessage.calculateMonthAVG(Int64 id, String Name) in D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\Models\AverageMessage.cs:line 15
-   at hypertension_bot.program.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken) in D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\Program.cs:line 179
+07/02/2023 22:00:31 | System.ArgumentNullException: Value cannot be null. (Parameter 's')
+   at System.Int32.Parse(String s)
+   at hypertension_bot.program.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken) in D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\Program.cs:line 193
    at Telegram.Bot.Polling.DefaultUpdateHandler.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
    at Telegram.Bot.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
    at Telegram.Bot.TelegramBotClientExtensions.ReceiveAsync(ITelegramBotClient botClient, IUpdateHandler updateHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
