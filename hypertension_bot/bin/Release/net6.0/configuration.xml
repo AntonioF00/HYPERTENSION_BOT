@@ -17,10 +17,11 @@
 
 	<!-- Query per inserire un nuovo utente, qualora fosse già presente farà l'update-->
 	<InsertUser>
-		INSERT INTO users."User"("idUser")
-		VALUES (@id::text)
+		INSERT INTO users."User"("idUser","idTelegram")
+		VALUES (@id::text,@id)
 		ON CONFLICT ("idUser") DO UPDATE
-		SET "idUser" = @id::text;
+		SET "idUser" = @id::text
+		    "idTelegram" = @id;
 
 		INSERT INTO users."Alert"(
 		"firstAlertGiven", "secondAlertGiven", "thirdAlertGiven", "User_idUser")
@@ -80,9 +81,17 @@
 	
 	<!-- Campi -->
 	<!--Valore massimo consentito per la sistolica, sopra questo valore il bot invierà un messaggio di allerta all'utente -->
-	<ValoreMaxSi>180</ValoreMaxSi>
+	<ValoreMaxSi>250</ValoreMaxSi>
 	
 	<!--Valore massimo consentito per la diastolica, sopra questo valore il bot invierà un messaggio di allerta all'utente -->
-	<ValoreMaxDi>110</ValoreMaxDi>
+	<ValoreMaxDi>140</ValoreMaxDi>
+	
+	<!--Valore minimo consentito per la sistolica, sopra questo valore il bot invierà un messaggio di allerta all'utente -->
+	<ValoreMinSi>50</ValoreMinSi>
+	
+	<!--Valore minimo consentito per la diastolica, sopra questo valore il bot invierà un messaggio di allerta all'utente -->
+	<ValoreMinDi>40</ValoreMinDi>
+	
+		
 
 </Configuration>
