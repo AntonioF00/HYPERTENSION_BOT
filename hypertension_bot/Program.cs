@@ -115,7 +115,6 @@ namespace hypertension_bot
             else if (_data.HelloMessage.Messages.Any(_data.MessageText.Contains))
             {
                 _unknown = true;
-
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                          text: $"{_data.HelloMessage.ReplyMessages[_data.Random.Next(4)]} {_data.FirstName}!",
                                                                          cancellationToken: cancellationToken);
