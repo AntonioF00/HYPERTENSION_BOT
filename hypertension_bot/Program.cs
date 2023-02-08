@@ -149,43 +149,34 @@ namespace hypertension_bot
                                                .TakeWhile(x => char.IsDigit(x))
                                                .ToArray()), out num3);
                         _data.HeartRate = num3;
-                        
-                        _ = (success) ? ((_data.Sistolic >= Setting.Istance.Configuration.ValoreMaxSi || _data.Sistolic < Setting.Istance.Configuration.ValoreMinSi) && (_data.Diastolic >= Setting.Istance.Configuration.ValoreMaxDi || _data.Diastolic < Setting.Istance.Configuration.ValoreMinDi))
-                                                                                                                                                                                                                                                                                                     ? _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                                                                                                                                                                                                                                                                                                                text: $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_data.Random.Next(3)]}",
-                                                                                                                                                                                                                                                                                                                                                                cancellationToken: cancellationToken)
-                                                                                                                                                                                                                                                                                                     : _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                                                                                                                                                                                                                                                                                                                text: $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nFrequenza cardiaca : {num3} bpm\nSono corretti?",
-                                                                                                                                                                                                                                cancellationToken: cancellationToken)
-                                      : ((_data.Sistolic >= Setting.Istance.Configuration.ValoreMaxSi || _data.Sistolic < Setting.Istance.Configuration.ValoreMinSi) && (_data.Diastolic >= Setting.Istance.Configuration.ValoreMaxDi || _data.Diastolic < Setting.Istance.Configuration.ValoreMinDi))
-                                                                                                                                                                                                                                                                                                     ? _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                                                                                                                                                                                                                                                                                                                text: $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_data.Random.Next(3)]}",
-                                                                                                                                                                                                                                                                                                                                                                cancellationToken: cancellationToken)
-                                                                                                                                                                                                                                                                                                     : _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                                                                                                                                                                                                                                                                                                                text: $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nSono corretti?",
-                                                                                                                                                                                                                                                                                                                                                                cancellationToken: cancellationToken);
+
+                        var message = success
+                                            ? ((_data.Sistolic >= Setting.Istance.Configuration.ValoreMaxSi || _data.Sistolic < Setting.Istance.Configuration.ValoreMinSi) && (_data.Diastolic >= Setting.Istance.Configuration.ValoreMaxDi || _data.Diastolic < Setting.Istance.Configuration.ValoreMinDi))
+                                                                                                                                                                                                                                                                                                            ? $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_data.Random.Next(3)]}"
+                                                                                                                                                                                                                                                                                                            : $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nFrequenza cardiaca : {num3} bpm\nSono corretti?"
+                                            : ((_data.Sistolic >= Setting.Istance.Configuration.ValoreMaxSi || _data.Sistolic < Setting.Istance.Configuration.ValoreMinSi) && (_data.Diastolic >= Setting.Istance.Configuration.ValoreMaxDi || _data.Diastolic < Setting.Istance.Configuration.ValoreMinDi))
+                                                                                                                                                                                                                                                                                                            ? $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_data.Random.Next(3)]}"
+                                                                                                                                                                                                                                                                                                            : $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nSono corretti?";
+                        _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId, text: message, cancellationToken: cancellationToken);
                     }
                 }
             }
             else if (_data.MessageText.Contains("media"))
             {
                 _unknown = true;
+                string responseText;
                 if (_data.MessageText.Contains("mese") || _data.MessageText.Contains("mensile"))
-                    _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                             text: _data.AverageMessage.calculateMonthAVG(_data.Id, _data.FirstName),
-                                                                             cancellationToken: cancellationToken);
+                    responseText = _data.AverageMessage.calculateMonthAVG(_data.Id, _data.FirstName);
                 else if (_data.MessageText.Contains("settimanale") || _data.MessageText.Contains("settimana"))
-                    _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                             text: _data.AverageMessage.calculateWeekAVG(_data.Id, _data.FirstName),
-                                                                             cancellationToken: cancellationToken);
+                    responseText = _data.AverageMessage.calculateWeekAVG(_data.Id, _data.FirstName);
                 else if (_data.MessageText.Contains("giorno") || _data.MessageText.Contains("giornaliera"))
-                    _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                             text: _data.AverageMessage.calculateDayAVG(_data.Id, _data.FirstName),
-                                                                             cancellationToken: cancellationToken);
+                    responseText = _data.AverageMessage.calculateDayAVG(_data.Id, _data.FirstName);
                 else
-                    _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                             text: $"{_data.FirstName} specifica il tipo di media che vuoi visualizzare!\nMedia giornaliera / Media mensile / Media settimanale!",
-                                                                             cancellationToken: cancellationToken);
+                    responseText = $"{_data.FirstName} specifica il tipo di media che vuoi visualizzare!\nMedia giornaliera / Media mensile / Media settimanale!";
+
+                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+                                                                          text: responseText,
+                                                                          cancellationToken: cancellationToken);
             }
             if (_data.LastDataInsert != "0" && !_firstAlert)
             {
