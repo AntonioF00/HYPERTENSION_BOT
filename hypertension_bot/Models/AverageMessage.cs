@@ -21,8 +21,8 @@ namespace hypertension_bot.Models
            if (!isEmpty)
            {
                var sistolic = int.Parse(string.Format("{0}", res["systolic"]));
-               s = (sistolic >= Setting.Istance.Configuration.ValoreMaxSi)
-                                                                                 ? $"{Name} ho trovato questi valori!\nMedia mensile:\nSistolica: {res["systolic"]} mmHg\nDiastolica: {res["diastolic"]} mmHg\nFrequenza cardiaca : {res["heartrate"]} bpm\nLa tua media è molto elevata!\nDovresti chiamare il medico!"
+               s = (sistolic >= Setting.Istance.Configuration.ValoreMaxSi || sistolic < Setting.Istance.Configuration.ValoreMinSi)
+                                                                                 ? $"{Name} ho trovato questi valori!\nMedia mensile:\nSistolica: {res["systolic"]} mmHg\nDiastolica: {res["diastolic"]} mmHg\nFrequenza cardiaca : {res["heartrate"]} bpm\nLa tua media non mi piace!\nDovresti chiamare il medico!"
                                                                                  : $"{Name} ho trovato questi valori!\nMedia mensile:\nSistolica: {res["systolic"]} mmHg\nDiastolica: {res["diastolic"]} mmHg\nA presto!";
            }
            else
@@ -44,7 +44,7 @@ namespace hypertension_bot.Models
             if (!isEmpty)
             {
                 var sistolic = int.Parse(string.Format("{0}", res["systolic"]));
-                s = (sistolic >= Setting.Istance.Configuration.ValoreMaxSi)
+                s = (sistolic >= Setting.Istance.Configuration.ValoreMaxSi || sistolic < Setting.Istance.Configuration.ValoreMinSi)
                                                                                   ? $"{Name} ho trovato questi valori!\nMedia settimanale:\nSistolica: {res["systolic"]} mmHg\nDiastolica: {res["diastolic"]} mmHg\nFrequenza cardiaca : {res["heartrate"]} bpm\nLa tua media è molto elevata!\nDovresti chiamare il medico!"
                                                                                   : $"{Name} ho trovato questi valori!\nMedia settimanale:\nSistolica: {res["systolic"]} mmHg\nDiastolica: {res["diastolic"]} mmHg\nA presto!";
 
@@ -69,7 +69,7 @@ namespace hypertension_bot.Models
             {
 
                 var sistolic = int.Parse(string.Format("{0}", res["systolic"]));
-                s = (sistolic >= Setting.Istance.Configuration.ValoreMaxSi)
+                s = (sistolic >= Setting.Istance.Configuration.ValoreMaxSi || sistolic < Setting.Istance.Configuration.ValoreMinSi)
                                                                               ? $"{Name} ho trovato questi valori!\nMedia giornaliera:\nSistolica: {res["systolic"]} mmHg\nDiastolica: {res["diastolic"]} mmHg\nFrequenza cardiaca : {res["heartrate"]} bpm\nLa tua media è molto elevata!\nDovresti chiamare il medico!"
                                                                               : $"{Name} ho trovato questi valori!\nMedia giornaliera:\nSistolica: {res["systolic"]} mmHg\nDiastolica: {res["diastolic"]} mmHg\nA presto!";
             }
