@@ -12,8 +12,8 @@ namespace hypertension_bot.Models
         public string calculateMonthAVG(long id, string Name)
         {
            string s;
-           var res = _dbController.CalculateMonthAVG(id);
            bool isEmpty;
+           var res = _dbController.CalculateMonthAVG(id);
            using (var dictionaryEnum = res.GetEnumerator())
            {
              isEmpty = !dictionaryEnum.MoveNext();
@@ -33,8 +33,8 @@ namespace hypertension_bot.Models
         public string calculateWeekAVG(long id, string Name)
         {
             string s;
-            var res = _dbController.CalculateWeekAVG(id);
             bool isEmpty;
+            var res = _dbController.CalculateWeekAVG(id);
             using (var dictionaryEnum = res.GetEnumerator())
             {
                 isEmpty = !dictionaryEnum.MoveNext();
@@ -55,8 +55,8 @@ namespace hypertension_bot.Models
         public string calculateDayAVG(long id, string Name)
         {
             string s;
-            var res = _dbController.CalculateWeekAVG(id);
             bool isEmpty;
+            var res = _dbController.CalculateWeekAVG(id);
             using (var dictionaryEnum = res.GetEnumerator())
             {
                 isEmpty = !dictionaryEnum.MoveNext();
