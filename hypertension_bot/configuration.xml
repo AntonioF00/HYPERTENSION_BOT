@@ -17,10 +17,11 @@
 
 	<!-- Query per inserire un nuovo utente, qualora fosse già presente farà l'update-->
 	<InsertUser>
-		INSERT INTO users."User"("idUser")
-		VALUES (@id::text)
+		INSERT INTO users."User"("idUser","idTelegram")
+		VALUES (@id::text,@id)
 		ON CONFLICT ("idUser") DO UPDATE
-		SET "idUser" = @id::text;
+		SET "idUser" = @id::text
+		    "idTelegram" = @id;
 
 		INSERT INTO users."Alert"(
 		"firstAlertGiven", "secondAlertGiven", "thirdAlertGiven", "User_idUser")
