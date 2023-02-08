@@ -26,9 +26,7 @@ namespace hypertension_bot.Models
                                                                                  : $"{Name} ho trovato questi valori!\nMedia mensile:\nSistolica: {res["systolic"]} mmHg\nDiastolica: {res["diastolic"]} mmHg\nA presto!";
            }
            else
-           {
                 s = new string("non ho trovato alcun valore! mi dispiace...");
-           }
            return s; 
         }
 
@@ -50,9 +48,7 @@ namespace hypertension_bot.Models
 
             }
             else
-            {
                 s = new string("non ho trovato alcun valore! mi dispiace...");
-            }
             return s;
         }
 
@@ -74,9 +70,7 @@ namespace hypertension_bot.Models
                                                                               : $"{Name} ho trovato questi valori!\nMedia giornaliera:\nSistolica: {res["systolic"]} mmHg\nDiastolica: {res["diastolic"]} mmHg\nA presto!";
             }
             else
-            {
                 s = new string("non ho trovato alcun valore! mi dispiace...");
-            }
             return s;
         }
     }
