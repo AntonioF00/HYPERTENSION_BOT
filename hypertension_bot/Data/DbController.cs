@@ -107,6 +107,11 @@ namespace hypertension_bot.Data
 
                 _connection.Close();
 
+                if (res == null)
+                {
+                    res = new Dictionary<string, object>();
+                }
+
                 if (res.Count!=0)
                 {
                     var json = JsonConvert.SerializeObject(res);
@@ -141,6 +146,11 @@ namespace hypertension_bot.Data
 
                 _connection.Close();
 
+                if(res == null)
+                {
+                    res = new Dictionary<string, object>();
+                }    
+
                 if (res.Count != 0)
                 {
                     var json = JsonConvert.SerializeObject(res);
@@ -174,6 +184,12 @@ namespace hypertension_bot.Data
                 });
 
                 _connection.Close();
+
+                if (res == null)
+                {
+                    res = new Dictionary<string, object>();
+                }
+
                 if (res.Count != 0)
                 {
                     var json = JsonConvert.SerializeObject(res);

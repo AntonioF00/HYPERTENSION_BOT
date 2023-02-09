@@ -56,7 +56,7 @@ namespace hypertension_bot.Models
         {
             string s;
             bool isEmpty;
-            var res = _dbController.CalculateWeekAVG(id);
+            var res = _dbController.CalculateDayAVG(id);
             using (var dictionaryEnum = res.GetEnumerator())
             {
                 isEmpty = !dictionaryEnum.MoveNext();

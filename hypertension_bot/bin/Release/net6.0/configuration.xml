@@ -72,12 +72,12 @@
 	</CalculateWeekAVG>
 	
 	<!-- Query per calcolare la media giornaliera -->
-	<CalculateWeekAVG>
+	<CalculateDayAVG>
 		SELECT AVG(systolic)::int as systolic, AVG(diastolic)::int as diastolic, AVG("heartRate")::int as heartRate
 		FROM users."Measurement"
 		WHERE datetime BETWEEN now() - '1 day'::interval and now() and "User_idUser" = @id::text
 		GROUP BY "User_idUser"
-	</CalculateWeekAVG>
+	</CalculateDayAVG>
 	
 	<!-- Campi -->
 	<!--Valore massimo consentito per la sistolica, sopra questo valore il bot invierà un messaggio di allerta all'utente -->
