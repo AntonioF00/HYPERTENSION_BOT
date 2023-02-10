@@ -6,9 +6,20 @@ This project is aimed at helping [Dr. Martino Pengo](https://www.auxologico.it/e
 The main aim of the project is to develop a [ChatBot](https://www.oracle.com/it/chatbots/what-is-a-chatbot/) that helps patients suffering from this disease in the daily entry of data relating to their blood pressure. In recent years, ChatBots have become more and more popular and have proved to be a trump card in the medical field.
 
 ## Installation
+### Windows 8/10/11
+#### Install the SDK
+The .NET SDK allows you to develop apps with .NET. If you install the .NET SDK, you don't need to install the corresponding runtimes. To install the .NET SDK, run the following command:
 
 ```bash
-pip install foobar
+winget install Microsoft.DotNet.SDK.7
+```
+#### Install the runtime .NET Desktop Runtime
+For Windows, there are three .NET runtimes you can install. You should install both the .NET Desktop Runtime and the ASP.NET Core Runtime to ensure that you're compatible with all types of .NET apps.
+
+This runtime includes the base .NET runtime, and supports Windows Presentation Foundation (WPF) and Windows Forms apps that are built with .NET. This isn't the same as .NET Framework, which comes with Windows.
+
+```bash
+winget install Microsoft.DotNet.DesktopRuntime.7
 ```
 
 ## Contributing
