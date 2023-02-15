@@ -143,7 +143,9 @@ namespace hypertension_bot
                         _data.Sistolic  = (num1 > num2) ? num1 : num2;
                         _data.Diastolic = (num1 > num2) ? num2 : num1;
 
-                        success = int.TryParse(new string($"{mess = "x" + mess.Substring(3)}"
+                        mess = (_data.Diastolic >= 100) ? mess = mess.Remove(0, 4) : mess = "x" + mess.Substring(3);
+
+                        success = int.TryParse(new string($"{mess}"
                                                .SkipWhile(x => !char.IsDigit(x))
                                                .TakeWhile(x => char.IsDigit(x))
                                                .ToArray()), out num3);
@@ -160,7 +162,7 @@ namespace hypertension_bot
                     }
                 }
             }
-            else if (_data.MessageText.Contains("media"))
+            else if (_data.MessageText.Contains("media") )
             {
                 _unknown = true;
                 string responseText;

@@ -2,7 +2,7 @@
 <Configuration>
 
 	<!--DB connection-->
-	<ConnectionString>Server=localhost;Database=hypertension_db;Port=5432;User Id=postgres;Password=password;</ConnectionString>
+	<ConnectionString>Server=localhost;Database=hypertension_db;Port=5432;User Id=postgres;password=password;</ConnectionString>
 	<ConnectionType>POSTGRESQL</ConnectionType>
 
 	<!--Bot settings-->
@@ -59,7 +59,9 @@
 	<CalculateMonthAVG>
 		SELECT AVG(systolic)::int as systolic, AVG(diastolic)::int as diastolic, AVG("heartRate")::int as heartRate
 		FROM users."Measurement"
-		WHERE datetime BETWEEN now() - '1 month'::interval and now() and "User_idUser" = @id::text
+		WHERE datetime::timestamp(0) BETWEEN (now()::timestamp(0) - '30 days'::interval)::timestamp(0)
+			  and now()::timestamp(0)
+			  and "User_idUser" = @id::text
 		GROUP BY "User_idUser"
 	</CalculateMonthAVG>
 	
@@ -67,7 +69,9 @@
 	<CalculateWeekAVG>
 		SELECT AVG(systolic)::int as systolic, AVG(diastolic)::int as diastolic, AVG("heartRate")::int as heartRate
 		FROM users."Measurement"
-		WHERE datetime BETWEEN now() - '1 week'::interval and now() and "User_idUser" = @id::text
+		WHERE datetime::timestamp(0) BETWEEN (now()::timestamp(0) - '7 days'::interval)::timestamp(0)
+			  and now()::timestamp(0)
+			  and "User_idUser" = @id::text
 		GROUP BY "User_idUser"
 	</CalculateWeekAVG>
 	
@@ -75,7 +79,9 @@
 	<CalculateDayAVG>
 		SELECT AVG(systolic)::int as systolic, AVG(diastolic)::int as diastolic, AVG("heartRate")::int as heartRate
 		FROM users."Measurement"
-		WHERE datetime BETWEEN now() - '1 day'::interval and now() and "User_idUser" = @id::text
+		WHERE datetime::timestamp(0) BETWEEN (now()::timestamp(0) - '1 days'::interval)::timestamp(0)
+			  and now()::timestamp(0)
+			  and "User_idUser" = @id::text
 		GROUP BY "User_idUser"
 	</CalculateDayAVG>
 	

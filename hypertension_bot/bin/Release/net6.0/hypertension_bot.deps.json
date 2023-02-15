@@ -9,9 +9,8 @@
       "hypertension_bot/1.0.0": {
         "dependencies": {
           "Dapper": "2.0.123",
-          "MatheusFroes.Wit.NET": "1.0.3",
           "Microsoft.Data.SqlClient": "5.1.0",
-          "Npgsql": "7.0.1",
+          "Npgsql": "7.0.2",
           "System.Data.Common": "4.3.0",
           "System.Net.Http": "4.3.4",
           "Telegram.Bot": "18.0.0",
@@ -60,18 +59,6 @@
           "lib/net5.0/Dapper.dll": {
             "assemblyVersion": "2.0.0.0",
             "fileVersion": "2.0.123.33578"
-          }
-        }
-      },
-      "MatheusFroes.Wit.NET/1.0.3": {
-        "dependencies": {
-          "Newtonsoft.Json": "12.0.2",
-          "RestSharp": "105.2.3"
-        },
-        "runtime": {
-          "lib/net452/Wit.NET.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -279,23 +266,15 @@
           }
         }
       },
-      "Npgsql/7.0.1": {
+      "Npgsql/7.0.2": {
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
         },
         "runtime": {
           "lib/net6.0/Npgsql.dll": {
-            "assemblyVersion": "7.0.1.0",
-            "fileVersion": "7.0.1.0"
-          }
-        }
-      },
-      "RestSharp/105.2.3": {
-        "runtime": {
-          "lib/net46/RestSharp.dll": {
-            "assemblyVersion": "105.2.3.0",
-            "fileVersion": "105.2.3.0"
+            "assemblyVersion": "7.0.2.0",
+            "fileVersion": "7.0.2.0"
           }
         }
       },
@@ -885,13 +864,6 @@
       "path": "dapper/2.0.123",
       "hashPath": "dapper.2.0.123.nupkg.sha512"
     },
-    "MatheusFroes.Wit.NET/1.0.3": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-0/ZsUGihu9lDjbejWM0F9lVOllG5clahqpiId6Aam/x5zPjy1Ehh87TVvYVOXJDbndSdVVMQod4n79K23heaLw==",
-      "path": "matheusfroes.wit.net/1.0.3",
-      "hashPath": "matheusfroes.wit.net.1.0.3.nupkg.sha512"
-    },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
       "type": "package",
       "serviceable": true,
@@ -1018,19 +990,12 @@
       "path": "newtonsoft.json/12.0.2",
       "hashPath": "newtonsoft.json.12.0.2.nupkg.sha512"
     },
-    "Npgsql/7.0.1": {
+    "Npgsql/7.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-+s2gUPA37wDy9B3mE7ZN8xhfnSrf56OCR8ELMZkEbNxk9MyWS54o7ttrngmu7s7/C2ldjAWMdggkpMMPCZsKSg==",
-      "path": "npgsql/7.0.1",
-      "hashPath": "npgsql.7.0.1.nupkg.sha512"
-    },
-    "RestSharp/105.2.3": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-aR2Td2s7DUHSk+H3EdcJ7pAju3JLYUZMwWmkVNtiEl4pAQuQCnU218YMMAdPbTdw0PJnGqLwrJxWr1RdL4ADeQ==",
-      "path": "restsharp/105.2.3",
-      "hashPath": "restsharp.105.2.3.nupkg.sha512"
+      "sha512": "sha512-/k12hfmg4PI0IU2UTLN6n0s/FKUfox8+RdWtzgADYZoyks7GH82WLyXm27eeqatsi/nmiK9lO3HyULlTD87szg==",
+      "path": "npgsql/7.0.2",
+      "hashPath": "npgsql.7.0.2.nupkg.sha512"
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {
       "type": "package",
