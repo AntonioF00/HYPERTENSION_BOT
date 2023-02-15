@@ -1,37 +1,38 @@
 ﻿<Properties StartupConfiguration="{E5FA4A25-5A16-40BC-B395-E521DF039C68}|Default">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.hypertension__bot PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/antonioflorio/Projects/hypertension_bot/hypertension_bot/Data/DbController.cs" relfile="hypertension_bot/Data/DbController.cs" line="69" column="1" />
+      <Breakpoint file="/Users/antonioflorio/Projects/hypertension_bot/hypertension_bot/Program.cs" relfile="hypertension_bot/Program.cs" line="123" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.hypertension__bot PreferredExecutionTarget="MonoDevelop.Default" />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="hypertension_bot/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="hypertension_bot/Data/DbController.cs">
     <Files>
-      <File FileName="hypertension_bot/Program.cs" Line="173" Column="1" />
-      <File FileName="hypertension_bot/configuration.xml" />
-      <File FileName="hypertension_bot/Data/DbController.cs" />
-      <File FileName="hypertension_bot/Settings/Setting.cs" />
-      <File FileName="hypertension_bot/Models/Datas.cs" />
-      <File FileName="hypertension_bot/Models/AverageMessage.cs" />
-      <File FileName="hypertension_bot/Models/PressureMessage.cs" />
+      <File FileName="hypertension_bot/Program.cs" Line="167" Column="1" />
+      <File FileName="hypertension_bot/Data/DbController.cs" Line="88" Column="1" />
+      <File FileName="hypertension_bot/configuration.xml" Line="5" Column="107" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="hypertension_bot" expanded="True">
             <Node name="hypertension_bot" expanded="True">
+              <Node name="Dependencies" expanded="True">
+                <Node name="PackageDependencies" expanded="True" />
+              </Node>
               <Node name="Data" expanded="True" />
               <Node name="Database" expanded="True" />
               <Node name="Loggers" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Settings" expanded="True" />
+              <Node name="configuration.xml" selected="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

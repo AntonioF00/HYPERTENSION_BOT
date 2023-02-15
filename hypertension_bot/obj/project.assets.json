@@ -59,19 +59,6 @@
           }
         }
       },
-      "MatheusFroes.Wit.NET/1.0.3": {
-        "type": "package",
-        "dependencies": {
-          "Newtonsoft.Json": "9.0.1",
-          "RestSharp": "105.2.3"
-        },
-        "compile": {
-          "lib/net452/Wit.NET.dll": {}
-        },
-        "runtime": {
-          "lib/net452/Wit.NET.dll": {}
-        }
-      },
       "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
         "type": "package",
         "compile": {
@@ -365,7 +352,7 @@
           }
         }
       },
-      "Npgsql/7.0.1": {
+      "Npgsql/7.0.2": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
@@ -378,19 +365,6 @@
         },
         "runtime": {
           "lib/net6.0/Npgsql.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "RestSharp/105.2.3": {
-        "type": "package",
-        "compile": {
-          "lib/net46/RestSharp.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net46/RestSharp.dll": {
             "related": ".xml"
           }
         }
@@ -1630,18 +1604,6 @@
         "lib/netstandard2.0/Dapper.xml"
       ]
     },
-    "MatheusFroes.Wit.NET/1.0.3": {
-      "sha512": "0/ZsUGihu9lDjbejWM0F9lVOllG5clahqpiId6Aam/x5zPjy1Ehh87TVvYVOXJDbndSdVVMQod4n79K23heaLw==",
-      "type": "package",
-      "path": "matheusfroes.wit.net/1.0.3",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net452/Wit.NET.dll",
-        "matheusfroes.wit.net.1.0.3.nupkg.sha512",
-        "matheusfroes.wit.net.nuspec"
-      ]
-    },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
       "sha512": "yuvf07qFWFqtK3P/MRkEKLhn5r2UbSpVueRziSqj0yJQIKFwG1pq9mOayK3zE5qZCTs0CbrwL9M6R8VwqyGy2w==",
       "type": "package",
@@ -2150,10 +2112,10 @@
         "newtonsoft.json.nuspec"
       ]
     },
-    "Npgsql/7.0.1": {
-      "sha512": "+s2gUPA37wDy9B3mE7ZN8xhfnSrf56OCR8ELMZkEbNxk9MyWS54o7ttrngmu7s7/C2ldjAWMdggkpMMPCZsKSg==",
+    "Npgsql/7.0.2": {
+      "sha512": "/k12hfmg4PI0IU2UTLN6n0s/FKUfox8+RdWtzgADYZoyks7GH82WLyXm27eeqatsi/nmiK9lO3HyULlTD87szg==",
       "type": "package",
-      "path": "npgsql/7.0.1",
+      "path": "npgsql/7.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2170,47 +2132,9 @@
         "lib/netstandard2.0/Npgsql.xml",
         "lib/netstandard2.1/Npgsql.dll",
         "lib/netstandard2.1/Npgsql.xml",
-        "npgsql.7.0.1.nupkg.sha512",
+        "npgsql.7.0.2.nupkg.sha512",
         "npgsql.nuspec",
         "postgresql.png"
-      ]
-    },
-    "RestSharp/105.2.3": {
-      "sha512": "aR2Td2s7DUHSk+H3EdcJ7pAju3JLYUZMwWmkVNtiEl4pAQuQCnU218YMMAdPbTdw0PJnGqLwrJxWr1RdL4ADeQ==",
-      "type": "package",
-      "path": "restsharp/105.2.3",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/MonoAndroid10/RestSharp.dll",
-        "lib/MonoAndroid10/RestSharp.xml",
-        "lib/MonoTouch10/RestSharp.dll",
-        "lib/MonoTouch10/RestSharp.xml",
-        "lib/Xamarin.iOS10/RestSharp.dll",
-        "lib/Xamarin.iOS10/RestSharp.xml",
-        "lib/net35/RestSharp.dll",
-        "lib/net35/RestSharp.xml",
-        "lib/net4-client/RestSharp.dll",
-        "lib/net4-client/RestSharp.xml",
-        "lib/net4/RestSharp.dll",
-        "lib/net4/RestSharp.xml",
-        "lib/net45/RestSharp.dll",
-        "lib/net45/RestSharp.xml",
-        "lib/net451/RestSharp.dll",
-        "lib/net451/RestSharp.xml",
-        "lib/net452/RestSharp.dll",
-        "lib/net452/RestSharp.xml",
-        "lib/net46/RestSharp.dll",
-        "lib/net46/RestSharp.xml",
-        "lib/sl5/RestSharp.dll",
-        "lib/sl5/RestSharp.xml",
-        "lib/windowsphone8/RestSharp.dll",
-        "lib/windowsphone8/RestSharp.xml",
-        "lib/windowsphone81/RestSharp.dll",
-        "lib/windowsphone81/RestSharp.xml",
-        "readme.txt",
-        "restsharp.105.2.3.nupkg.sha512",
-        "restsharp.nuspec"
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {
@@ -5019,9 +4943,8 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "Dapper >= 2.0.123",
-      "MatheusFroes.Wit.NET >= 1.0.3",
       "Microsoft.Data.SqlClient >= 5.1.0",
-      "Npgsql >= 7.0.1",
+      "Npgsql >= 7.0.2",
       "System.Data.Common >= 4.3.0",
       "System.Net.Http >= 4.3.4",
       "Telegram.Bot >= 18.0.0",
@@ -5029,31 +4952,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\AFlor\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/Users/antonioflorio/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\BACKUP\\Documenti\\PROGETTI_ANTONIO\\C#\\hypertension_bot\\hypertension_bot\\hypertension_bot.csproj",
+      "projectUniqueName": "/Users/antonioflorio/Projects/hypertension_bot/hypertension_bot/hypertension_bot.csproj",
       "projectName": "hypertension_bot",
-      "projectPath": "D:\\BACKUP\\Documenti\\PROGETTI_ANTONIO\\C#\\hypertension_bot\\hypertension_bot\\hypertension_bot.csproj",
-      "packagesPath": "C:\\Users\\AFlor\\.nuget\\packages\\",
-      "outputPath": "D:\\BACKUP\\Documenti\\PROGETTI_ANTONIO\\C#\\hypertension_bot\\hypertension_bot\\obj\\",
+      "projectPath": "/Users/antonioflorio/Projects/hypertension_bot/hypertension_bot/hypertension_bot.csproj",
+      "packagesPath": "/Users/antonioflorio/.nuget/packages/",
+      "outputPath": "/Users/antonioflorio/Projects/hypertension_bot/hypertension_bot/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\AFlor\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/antonioflorio/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -5076,17 +4992,13 @@
             "target": "Package",
             "version": "[2.0.123, )"
           },
-          "MatheusFroes.Wit.NET": {
-            "target": "Package",
-            "version": "[1.0.3, )"
-          },
           "Microsoft.Data.SqlClient": {
             "target": "Package",
             "version": "[5.1.0, )"
           },
           "Npgsql": {
             "target": "Package",
-            "version": "[7.0.1, )"
+            "version": "[7.0.2, )"
           },
           "System.Data.Common": {
             "target": "Package",
@@ -5121,30 +5033,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Il pacchetto 'MatheusFroes.Wit.NET 1.0.3' è stato ripristinato mediante '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' e non mediante il framework di destinazione del progetto 'net6.0'. Questo pacchetto potrebbe non essere completamente compatibile con il progetto.",
-      "libraryId": "MatheusFroes.Wit.NET",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Il pacchetto 'RestSharp 105.2.3' è stato ripristinato mediante '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' e non mediante il framework di destinazione del progetto 'net6.0'. Questo pacchetto potrebbe non essere completamente compatibile con il progetto.",
-      "libraryId": "RestSharp",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    }
-  ]
+  }
 }
