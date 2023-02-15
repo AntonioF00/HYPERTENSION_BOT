@@ -151,14 +151,32 @@ namespace hypertension_bot
                                                .ToArray()), out num3);
                         _data.HeartRate = num3;
 
-                        var message = success
-                                            ? ((_data.Sistolic >= Setting.Istance.Configuration.ValoreMaxSi || _data.Sistolic < Setting.Istance.Configuration.ValoreMinSi) && (_data.Diastolic >= Setting.Istance.Configuration.ValoreMaxDi || _data.Diastolic < Setting.Istance.Configuration.ValoreMinDi))
-                                                                                                                                                                                                                                                                                                            ? $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_data.Random.Next(3)]}"
-                                                                                                                                                                                                                                                                                                            : $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nFrequenza cardiaca : {_data.HeartRate} bpm\nSono corretti?"
-                                            : ((_data.Sistolic >= Setting.Istance.Configuration.ValoreMaxSi || _data.Sistolic < Setting.Istance.Configuration.ValoreMinSi) && (_data.Diastolic >= Setting.Istance.Configuration.ValoreMaxDi || _data.Diastolic < Setting.Istance.Configuration.ValoreMinDi))
-                                                                                                                                                                                                                                                                                                            ? $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_data.Random.Next(3)]}"
-                                                                                                                                                                                                                                                                                                            : $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nSono corretti?";
-                        _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId, text: message, cancellationToken: cancellationToken);
+                        if (success)
+                        {
+                            if((_data.Sistolic <= Setting.Istance.Configuration.ValoreMaxSi && _data.Sistolic >= Setting.Istance.Configuration.ValoreMinSi) &&
+                                (_data.Diastolic <= Setting.Istance.Configuration.ValoreMaxDi && _data.Diastolic >= Setting.Istance.Configuration.ValoreMinDi))
+                            {
+                                mess = $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nFrequenza cardiaca : {_data.HeartRate} bpm\nSono corretti?";
+                            }
+                            else
+                            {
+                                mess = $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_data.Random.Next(3)]}";
+                            }
+                        }
+                        else
+                        {
+                            if ((_data.Sistolic <= Setting.Istance.Configuration.ValoreMaxSi && _data.Sistolic >= Setting.Istance.Configuration.ValoreMinSi) &&
+                                (_data.Diastolic <= Setting.Istance.Configuration.ValoreMaxDi && _data.Diastolic >= Setting.Istance.Configuration.ValoreMinDi))
+                            {
+                                mess = $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nSono corretti?";
+                            }
+                            else
+                            {
+                                mess = $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_data.Random.Next(3)]}";
+                            }
+                        }
+
+                        _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId, text: mess, cancellationToken: cancellationToken);
                     }
                 }
             }
