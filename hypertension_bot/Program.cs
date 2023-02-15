@@ -170,7 +170,7 @@ namespace hypertension_bot
             else if (_data.MessageText.Contains("media"))
             {
                 _unknown = true;
-                if (_data.MessageText.Contains("mese") || _data.MessageText.Contains("mensile"))
+s                if (_data.MessageText.Contains("mese") || _data.MessageText.Contains("mensile"))
                     _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                              text: _data.AverageMessage.calculateMonthAVG(_data.Id, _data.FirstName),
                                                                              cancellationToken: cancellationToken);
