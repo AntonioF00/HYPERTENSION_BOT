@@ -12,8 +12,8 @@ namespace hypertension_bot.Models
         public string calculateMonthAVG(long id, string Name)
         {
            string s;
-           var res = _dbController.CalculateMonthAVG(id);
            bool isEmpty;
+           var res = _dbController.CalculateMonthAVG(id);
            using (var dictionaryEnum = res.GetEnumerator())
            {
              isEmpty = !dictionaryEnum.MoveNext();
@@ -21,22 +21,20 @@ namespace hypertension_bot.Models
            if (!isEmpty)
            {
                var sistolic = int.Parse(string.Format("{0}", res["systolic"]));
-               s = (sistolic >= Setting.Istance.Configuration.ValoreMaxSi)
-                                                                                 ? $"{Name} ho trovato questi valori!\nMedia mensile:\nSistolica: {res["systolic"]} mmHg\nDiastolica: {res["diastolic"]} mmHg\nFrequenza cardiaca : {res["heartrate"]} bpm\nLa tua media è molto elevata!\nDovresti chiamare il medico!"
+               s = (sistolic >= Setting.Istance.Configuration.ValoreMaxSi || sistolic < Setting.Istance.Configuration.ValoreMinSi)
+                                                                                 ? $"{Name} ho trovato questi valori!\nMedia mensile:\nSistolica: {res["systolic"]} mmHg\nDiastolica: {res["diastolic"]} mmHg\nFrequenza cardiaca : {res["heartrate"]} bpm\nLa tua media non mi piace!\nDovresti chiamare il medico!"
                                                                                  : $"{Name} ho trovato questi valori!\nMedia mensile:\nSistolica: {res["systolic"]} mmHg\nDiastolica: {res["diastolic"]} mmHg\nA presto!";
            }
            else
-           {
                 s = new string("non ho trovato alcun valore! mi dispiace...");
-           }
            return s; 
         }
 
         public string calculateWeekAVG(long id, string Name)
         {
             string s;
-            var res = _dbController.CalculateWeekAVG(id);
             bool isEmpty;
+            var res = _dbController.CalculateWeekAVG(id);
             using (var dictionaryEnum = res.GetEnumerator())
             {
                 isEmpty = !dictionaryEnum.MoveNext();
@@ -44,23 +42,21 @@ namespace hypertension_bot.Models
             if (!isEmpty)
             {
                 var sistolic = int.Parse(string.Format("{0}", res["systolic"]));
-                s = (sistolic >= Setting.Istance.Configuration.ValoreMaxSi)
+                s = (sistolic >= Setting.Istance.Configuration.ValoreMaxSi || sistolic < Setting.Istance.Configuration.ValoreMinSi)
                                                                                   ? $"{Name} ho trovato questi valori!\nMedia settimanale:\nSistolica: {res["systolic"]} mmHg\nDiastolica: {res["diastolic"]} mmHg\nFrequenza cardiaca : {res["heartrate"]} bpm\nLa tua media è molto elevata!\nDovresti chiamare il medico!"
                                                                                   : $"{Name} ho trovato questi valori!\nMedia settimanale:\nSistolica: {res["systolic"]} mmHg\nDiastolica: {res["diastolic"]} mmHg\nA presto!";
 
             }
             else
-            {
                 s = new string("non ho trovato alcun valore! mi dispiace...");
-            }
             return s;
         }
 
         public string calculateDayAVG(long id, string Name)
         {
             string s;
-            var res = _dbController.CalculateWeekAVG(id);
             bool isEmpty;
+            var res = _dbController.CalculateDayAVG(id);
             using (var dictionaryEnum = res.GetEnumerator())
             {
                 isEmpty = !dictionaryEnum.MoveNext();
@@ -69,14 +65,12 @@ namespace hypertension_bot.Models
             {
 
                 var sistolic = int.Parse(string.Format("{0}", res["systolic"]));
-                s = (sistolic >= Setting.Istance.Configuration.ValoreMaxSi)
+                s = (sistolic >= Setting.Istance.Configuration.ValoreMaxSi || sistolic < Setting.Istance.Configuration.ValoreMinSi)
                                                                               ? $"{Name} ho trovato questi valori!\nMedia giornaliera:\nSistolica: {res["systolic"]} mmHg\nDiastolica: {res["diastolic"]} mmHg\nFrequenza cardiaca : {res["heartrate"]} bpm\nLa tua media è molto elevata!\nDovresti chiamare il medico!"
                                                                               : $"{Name} ho trovato questi valori!\nMedia giornaliera:\nSistolica: {res["systolic"]} mmHg\nDiastolica: {res["diastolic"]} mmHg\nA presto!";
             }
             else
-            {
                 s = new string("non ho trovato alcun valore! mi dispiace...");
-            }
             return s;
         }
     }

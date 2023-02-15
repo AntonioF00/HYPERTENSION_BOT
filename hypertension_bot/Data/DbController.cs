@@ -98,7 +98,7 @@ namespace hypertension_bot.Data
             {
                 _connection.Open();
 
-                var res = _connection.QueryFirstOrDefault<dynamic>(
+                dynamic res = _connection.QueryFirstOrDefault<dynamic>(
                 Setting.Istance.Configuration.CalculateMonthAVG,
                 new Dictionary<string, object>()
                 {
@@ -107,7 +107,12 @@ namespace hypertension_bot.Data
 
                 _connection.Close();
 
-                if (!string.IsNullOrEmpty(res))
+                if (res == null)
+                {
+                    res = new Dictionary<string, object>();
+                }
+
+                if (res.Count!=0)
                 {
                     var json = JsonConvert.SerializeObject(res);
                     var dictionary = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
@@ -132,7 +137,7 @@ namespace hypertension_bot.Data
             {
                 _connection.Open();
 
-                var res = _connection.QueryFirstOrDefault<dynamic>(
+                dynamic res = _connection.QueryFirstOrDefault<dynamic>(
                 Setting.Istance.Configuration.CalculateWeekAVG,
                 new Dictionary<string, object>()
                 {
@@ -141,7 +146,12 @@ namespace hypertension_bot.Data
 
                 _connection.Close();
 
-                if (!string.IsNullOrEmpty(res))
+                if(res == null)
+                {
+                    res = new Dictionary<string, object>();
+                }    
+
+                if (res.Count != 0)
                 {
                     var json = JsonConvert.SerializeObject(res);
                     var dictionary = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
@@ -166,7 +176,7 @@ namespace hypertension_bot.Data
             {
                 _connection.Open();
 
-                var res = _connection.QueryFirstOrDefault<dynamic>(
+                dynamic res = _connection.QueryFirstOrDefault<dynamic>(
                 Setting.Istance.Configuration.CalculateDayAVG,
                 new Dictionary<string, object>()
                 {
@@ -174,7 +184,13 @@ namespace hypertension_bot.Data
                 });
 
                 _connection.Close();
-                if (!string.IsNullOrEmpty(res))
+
+                if (res == null)
+                {
+                    res = new Dictionary<string, object>();
+                }
+
+                if (res.Count != 0)
                 {
                     var json = JsonConvert.SerializeObject(res);
                     var dictionary = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);

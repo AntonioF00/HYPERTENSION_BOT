@@ -1,7 +1,3 @@
-07/02/2023 22:00:31 | System.ArgumentNullException: Value cannot be null. (Parameter 's')
-   at System.Int32.Parse(String s)
-   at hypertension_bot.program.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken) in D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\Program.cs:line 193
-   at Telegram.Bot.Polling.DefaultUpdateHandler.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
-   at Telegram.Bot.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
-   at Telegram.Bot.TelegramBotClientExtensions.ReceiveAsync(ITelegramBotClient botClient, IUpdateHandler updateHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
-   at Telegram.Bot.TelegramBotClientExtensions.<>c__DisplayClass106_0.<<StartReceiving>b__0>d.MoveNext()
+42601: errore di sintassi a o presso ""idTelegram""
+
+POSITION: 142
