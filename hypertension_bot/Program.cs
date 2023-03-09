@@ -66,7 +66,7 @@ namespace hypertension_bot
             _data.ChatId         = update.Message.Chat.Id;
             _data.MessageText    = update.Message.Text.ToLower();
             _data.FirstName      = update.Message.From.FirstName;
-            _data.Id             = update.Message.From.Id;
+            _data.Id             = (int)update.Message.From.Id;
 
             _data.LastDataInsert = _dbController.LastInsert(_data.Id);
             _dbController.InsertUser(_data.Id);
@@ -216,6 +216,7 @@ namespace hypertension_bot
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                          text: $"{_data.ErrorMessage.Messages[_data.Random.Next(6)]}",
                                                                          cancellationToken: cancellationToken);
+
         }
         public static Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
         {

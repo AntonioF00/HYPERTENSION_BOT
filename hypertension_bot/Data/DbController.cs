@@ -15,7 +15,7 @@ namespace hypertension_bot.Data
             _connection = ConnectionFactory.GetConnection(Setting.Istance.Configuration.ConnectionType, Setting.Istance.Configuration.ConnectionString);
         }
 
-        public void InsertMeasures(int diastolic, int sistolic,int heartRate, long id)
+        public void InsertMeasures(int diastolic, int sistolic,int heartRate, int id)
         {
             try
             {
@@ -42,7 +42,7 @@ namespace hypertension_bot.Data
             }
         }
 
-        public void InsertUser(long id)
+        public void InsertUser(int id)
         {
             try
             {

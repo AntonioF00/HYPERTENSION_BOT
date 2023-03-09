@@ -37,7 +37,7 @@ namespace hypertension_bot.Models
         private string?  _firstName;
         private string?  _lastName;
         private string _lastDataInsert;
-        private long  _id;
+        private int  _id;
         private Message?  _sentMessage;
         private bool _done;
         private int _diastolic;
@@ -51,7 +51,7 @@ namespace hypertension_bot.Models
         public int MessageId { get => _messageId; set => _messageId = value; }
         public string FirstName { get => _firstName; set => _firstName = value; }
         public string LastName { get => _lastName; set => _lastName = value; }
-        public long Id { get => _id; set => _id = value; }
+        public int Id { get => _id; set => _id = value; }
         public Message SentMessage { get => _sentMessage; set => _sentMessage = value; }
         public bool Done { get => _done; set => _done = value; }
         public string LastDataInsert { get => _lastDataInsert; set => _lastDataInsert = value; }

@@ -1,3 +1,1 @@
-42601: errore di sintassi a o presso ""idTelegram""
-
-POSITION: 142
+22003: intero fuori dall'intervallo

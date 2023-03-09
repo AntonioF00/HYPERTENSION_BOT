@@ -12,7 +12,7 @@
 	<!-- Querys-->
 	<InsertMeasures>
 		INSERT INTO users."Measurement"(systolic, diastolic, datetime,"heartRate", "User_idUser")
-		VALUES (@sistolic, @diastolic, NOW(),@heartRate,@id);
+		VALUES (@sistolic, @diastolic, NOW(),@heartRate,(SELECT "idUser" FROM users."User" WHERE "idTelegram" = @id));
 	</InsertMeasures>
 
 	<!-- Query per inserire un nuovo utente, qualora fosse già presente farà l'update-->
