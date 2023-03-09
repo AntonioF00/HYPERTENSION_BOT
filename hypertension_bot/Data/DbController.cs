@@ -52,7 +52,7 @@ namespace hypertension_bot.Data
                 _connection.Query(Setting.Istance.Configuration.InsertUser,
                 new Dictionary<string, object>()
                 {
-                    ["id"] = id,
+                    ["id"] = id
                 });
 
                 _connection.Close();

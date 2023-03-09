@@ -12,20 +12,19 @@
 	<!-- Querys-->
 	<InsertMeasures>
 		INSERT INTO users."Measurement"(systolic, diastolic, datetime,"heartRate", "User_idUser")
-		VALUES (@sistolic, @diastolic, NOW(),@heartRate,@id::text);
+		VALUES (@sistolic, @diastolic, NOW(),@heartRate,@id);
 	</InsertMeasures>
 
 	<!-- Query per inserire un nuovo utente, qualora fosse già presente farà l'update-->
 	<InsertUser>
-		INSERT INTO users."User"("idUser","idTelegram")
-		VALUES (@id::text,@id::text)
-		ON CONFLICT ("idUser") DO UPDATE
-		SET "idUser" = @id::text,
-		    "idTelegram" = @id::text;
-
+		INSERT INTO users."User"("idTelegram")
+		VALUES (@id)
+		ON CONFLICT ("idTelegram") DO UPDATE
+		SET  "idTelegram" = @id;
+		
 		INSERT INTO users."Alert"(
 		"firstAlertGiven", "secondAlertGiven", "thirdAlertGiven", "User_idUser")
-		VALUES (false, false, false, @id::text)
+		VALUES (false, false, false, (SELECT "idUser" FROM users."User" WHERE "idTelegram" = @id)::integer)
 		ON CONFLICT DO NOTHING;
 	</InsertUser>
 
@@ -37,7 +36,7 @@
 				ELSE extract(day from datetime::timestamp::date)::text
 			END
 		FROM users."Measurement"
-		WHERE "User_idUser" = @id::text
+		WHERE "User_idUser" = (SELECT "idUser" FROM users."User" WHERE "idTelegram" = @id)::integer
 		group by datetime
 		order by MAX("idMeasurement") desc
 		LIMIT 1
@@ -46,13 +45,13 @@
 	<GetFirstAlert>
 		SELECT "firstAlertGiven"
 		FROM users."Alert"
-		WHERE "User_idUser" = @id::text;
+		WHERE "User_idUser" = (SELECT "idUser" FROM users."User" WHERE "idTelegram" = @id)::integer;
 	</GetFirstAlert>
 
 	<UpdateFirstAlert>
 		UPDATE users."Alert"
 		SET "firstAlertGiven" = @val::boolean
-		WHERE "User_idUser" = @id::text;
+		WHERE "User_idUser" = (SELECT "idUser" FROM users."User" WHERE "idTelegram" = @id)::integer;
 	</UpdateFirstAlert>
 	
 	<!-- Query per calcolare la media mensile -->
@@ -61,7 +60,7 @@
 		FROM users."Measurement"
 		WHERE datetime::timestamp(0) BETWEEN (now()::timestamp(0) - '30 days'::interval)::timestamp(0)
 			  and now()::timestamp(0)
-			  and "User_idUser" = @id::text
+			  and "User_idUser" = (SELECT "idUser" FROM users."User" WHERE "idTelegram" = @id)::integer
 		GROUP BY "User_idUser"
 	</CalculateMonthAVG>
 	
@@ -71,7 +70,7 @@
 		FROM users."Measurement"
 		WHERE datetime::timestamp(0) BETWEEN (now()::timestamp(0) - '7 days'::interval)::timestamp(0)
 			  and now()::timestamp(0)
-			  and "User_idUser" = @id::text
+			  and "User_idUser" = (SELECT "idUser" FROM users."User" WHERE "idTelegram" = @id)::integer
 		GROUP BY "User_idUser"
 	</CalculateWeekAVG>
 	
@@ -81,7 +80,7 @@
 		FROM users."Measurement"
 		WHERE datetime::timestamp(0) BETWEEN (now()::timestamp(0) - '1 days'::interval)::timestamp(0)
 			  and now()::timestamp(0)
-			  and "User_idUser" = @id::text
+			  and "User_idUser" = (SELECT "idUser" FROM users."User" WHERE "idTelegram" = @id)
 		GROUP BY "User_idUser"
 	</CalculateDayAVG>
 	
