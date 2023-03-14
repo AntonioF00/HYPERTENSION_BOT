@@ -222,8 +222,31 @@ namespace hypertension_bot.Data
                     _connection.Close();
                 throw ex;
             }
-        }
+        }        
+        public void DeleteMeasurement(long id, int idMisurazione)
+        {
+            try
+            {
+                if (_connection.State != System.Data.ConnectionState.Open)
+                    _connection.Open();
 
+                _connection.Query(Setting.Istance.Configuration.DeleteMeasurement,
+                new Dictionary<string, object>()
+                {
+                    ["id"] = id,
+                    ["idMisurazione"] = idMisurazione
+                });
+
+                _connection.Close();
+            }
+            catch (Exception ex)
+            {
+                if (_connection.State == System.Data.ConnectionState.Open)
+                    _connection.Close();
+
+                LogHelper.Log(ex.Message);
+            }
+        }
 
         public bool GetFirstAlert(long id)
         {

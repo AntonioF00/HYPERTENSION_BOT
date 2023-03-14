@@ -74,17 +74,32 @@ namespace hypertension_bot
             if (_data.MessageText.Equals("elim"))
             {
                 _unknown = true;
-                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                         text: $"{_data.DeleteMessage.Messages[_data.Random.Next(4)]}",
-                                                                         cancellationToken: cancellationToken);
-                //query che ritorna una lista con gli id
-                Dictionary<string,object> list = _dbController.getMeasurementList(_data.Id);
-                //messaggio a video della lista
-                var text = _data.DeleteMessage.listMessage(list);
-                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                         text: text,
-                                                         cancellationToken: cancellationToken);
-                //query che cancella il rigo scelto per id
+                if (_data.MessageText.Any(char.IsDigit))
+                {
+                    var messageText = _data.MessageText.Replace("/", "-").Replace(",", "-");
+                    var digits = new string(messageText.Where(char.IsDigit).ToArray());
+                    if (int.TryParse(digits, out var num1))
+                    {
+                        _dbController.DeleteMeasurement(_data.Id, num1);
+                        _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+                                                                                 text: $"{_data.DeleteMessage.DeleteMessages[_data.Random.Next(3)]}",
+                                                                                 cancellationToken: cancellationToken);
+                    }
+                }
+                else
+                {
+                    _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+                                                                             text: $"{_data.DeleteMessage.Messages[_data.Random.Next(4)]}",
+                                                                             cancellationToken: cancellationToken);
+                    Dictionary<string, object> list = _dbController.getMeasurementList(_data.Id);
+                    var text = _data.DeleteMessage.listMessage(list);
+                    _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+                                                                             text: text,
+                                                                             cancellationToken: cancellationToken);
+                    _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+                                                                             text: "Per eliminare una misurazione indicarla nella seguente maniera:\n as esempio 'elimina la numero 14'",
+                                                                             cancellationToken: cancellationToken);
+                }
             }
             else if (_data.PressureMessage.Messages.Any(_data.MessageText.Contains))
             {
