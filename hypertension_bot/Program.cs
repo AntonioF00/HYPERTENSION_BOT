@@ -151,55 +151,7 @@ namespace hypertension_bot
                     }
                 }
             }
-
-            //else if (_data.MessageText.Any(char.IsDigit))
-            //{
-            //    int num1, num2, num3;
-
-            //    bool success = int.TryParse(new string(_data.MessageText.Replace("/", "-").Replace(",", "-")
-            //                                .SkipWhile(x => !char.IsDigit(x))
-            //                                .TakeWhile(x => char.IsDigit(x))
-            //                                .ToArray()), out num1);
-            //    if (num1 != 0 && success)
-            //    {
-            //        var mess = _data.MessageText.Replace(num1.ToString(), "");
-
-            //        success = int.TryParse(new string(mess
-            //                                .SkipWhile(x => !char.IsDigit(x))
-            //                                .TakeWhile(x => char.IsDigit(x))
-            //                                .ToArray()), out num2);
-            //        if (num2 != 0 && success)
-            //        {
-            //            _unknown = true;
-            //            _data.Done = true;
-
-            //            _data.Sistolic  = (num1 > num2) ? num1 : num2;
-            //            _data.Diastolic = (num1 > num2) ? num2 : num1;
-
-            //            mess = (_data.Diastolic >= 100) ? mess = mess.Remove(0, 4) : mess = "x" + mess.Substring(3);
-
-            //            success = int.TryParse(new string($"{mess}"
-            //                                   .SkipWhile(x => !char.IsDigit(x))
-            //                                   .TakeWhile(x => char.IsDigit(x))
-            //                                   .ToArray()), out num3);
-            //            _data.HeartRate = num3;
-
-            //            if (_data.Sistolic <= Setting.Istance.Configuration.ValoreMaxSi && _data.Sistolic >= Setting.Istance.Configuration.ValoreMinSi &&
-            //                _data.Diastolic <= Setting.Istance.Configuration.ValoreMaxDi && _data.Diastolic >= Setting.Istance.Configuration.ValoreMinDi)
-            //            {
-            //                mess = success ? $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nFrequenza cardiaca : {_data.HeartRate} bpm\nSono corretti?" :
-            //                                 $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nSono corretti?";
-            //            }
-            //            else
-            //            {
-            //                mess = $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_data.Random.Next(3)]}";
-            //            }
-
-            //            _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId, text: mess, cancellationToken: cancellationToken);
-            //        }
-            //    }
-            //}
-            else if (_data.MessageText.Contains("media"))
+            else if (_data.MessageText.Contains("media") || _data.MessageText.Contains("medio"))
             {
                 _unknown = true;
                 string responseText;
@@ -207,7 +159,7 @@ namespace hypertension_bot
                     responseText = _data.AverageMessage.calculateMonthAVG(_data.Id, _data.FirstName);
                 else if (_data.MessageText.Contains("settimanale") || _data.MessageText.Contains("settimana"))
                     responseText = _data.AverageMessage.calculateWeekAVG(_data.Id, _data.FirstName);
-                else if (_data.MessageText.Contains("giorno") || _data.MessageText.Contains("giornaliera"))
+                else if (_data.MessageText.Contains("giorno") || _data.MessageText.Contains("giornaliera") || _data.MessageText.Contains("oggi"))
                     responseText = _data.AverageMessage.calculateDayAVG(_data.Id, _data.FirstName);
                 else
                     responseText = $"{_data.FirstName} specifica il tipo di media che vuoi visualizzare!\nMedia giornaliera / Media mensile / Media settimanale!";

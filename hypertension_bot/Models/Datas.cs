@@ -5,26 +5,36 @@ namespace hypertension_bot.Models
 {
     public class Datas
     {
-        //Message's model
-        private  readonly HelloMessage _helloMessage;
+        ////Message's model
+        private readonly HelloMessage _helloMessage;
 
-        private  readonly ErrorMessage _errorMessage;
+        private readonly ErrorMessage _errorMessage;
 
-        private  readonly InsertMessage _insertMessage;
+        private readonly InsertMessage _insertMessage;
 
-        private  readonly OkMessage _oKMessage;
+        private readonly OkMessage _oKMessage;
 
-        private  readonly NegativeMessage _negativeMessage;
+        private readonly NegativeMessage _negativeMessage;
 
-        private  readonly PressureMessage _pressureMessage;
+        private readonly PressureMessage _pressureMessage;
 
-        private  readonly ThankMessage _thankMessage;
+        private readonly ThankMessage _thankMessage;
 
-        private  readonly MeasuresAccepted _measuresAccepted;
+        private readonly MeasuresAccepted _measuresAccepted;
 
-        private  readonly AverageMessage _averageMessage;
+        private readonly AverageMessage _averageMessage;
 
         private readonly Random _rnd;
+        public HelloMessage HelloMessage => new();
+        public ErrorMessage ErrorMessage => new();
+        public InsertMessage InsertMessage => new();
+        public OkMessage OKMessage => new();
+        public NegativeMessage NegativeMessage => new();
+        public PressureMessage PressureMessage => new();
+        public ThankMessage ThankMessage => new();
+        public MeasuresAccepted MeasuresAccepted => new();
+        public AverageMessage AverageMessage => new();
+        public Random Random => new();
 
         //Block
         private int  _blockLevel;
@@ -58,17 +68,6 @@ namespace hypertension_bot.Models
         public int Diastolic { get => _diastolic; set => _diastolic = value; }
         public int Sistolic { get => _sistolic; set => _sistolic = value; }
         public int HeartRate { get => _heartRate; set => _heartRate = value; }
-
-        public HelloMessage HelloMessage => new();
-        public ErrorMessage ErrorMessage => new();
-        public InsertMessage InsertMessage => new();
-        public OkMessage OKMessage => new();
-        public NegativeMessage NegativeMessage => new();
-        public PressureMessage PressureMessage => new();
-        public ThankMessage ThankMessage => new();
-        public MeasuresAccepted MeasuresAccepted => new();
-        public AverageMessage AverageMessage => new();
-        public Random Random => new();
 
     }
 }

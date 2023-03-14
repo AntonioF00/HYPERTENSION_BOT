@@ -1,3 +1,0 @@
-23503: la INSERT o l'UPDATE sulla tabella "Measurement" viola il vincolo di chiave esterna "fk_Measurement_User1"
-
-DETAIL: Detail redacted as it may contain sensitive data. Specify 'Include Error Detail' in the connection string to include this information.
