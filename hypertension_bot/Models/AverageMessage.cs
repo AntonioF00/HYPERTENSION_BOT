@@ -7,15 +7,14 @@ namespace hypertension_bot.Models
     {
         private readonly DbController _dbController = new DbController();
 
-        public string calculateMonthAVG(long id, string name)
+        private string FormatAverageMessage(string name, string period, Dictionary<string, object> res)
         {
-            var res = _dbController.CalculateMonthAVG(id);
             if (res.TryGetValue("systolic", out var systolicStr) &&
                 int.TryParse(systolicStr.ToString(), out var sistolic))
             {
                 var valoreMaxSi = Setting.Istance.Configuration.ValoreMaxSi;
                 var valoreMinSi = Setting.Istance.Configuration.ValoreMinSi;
-                var s = $"{name} ho trovato questi valori!\nMedia mensile:\nSistolica: {sistolic} mmHg\nDiastolica: {res["diastolic"]} mmHg\nFrequenza cardiaca: {res["heartrate"]} bpm\n" +
+                var s = $"{name} ho trovato questi valori!\nMedia {period}:\nSistolica: {sistolic} mmHg\nDiastolica: {res["diastolic"]} mmHg\nFrequenza cardiaca: {res["heartrate"]} bpm\n" +
                         (sistolic >= valoreMaxSi || sistolic < valoreMinSi
                             ? "La tua media non mi piace!\nDovresti chiamare il medico!"
                             : "A presto!");
@@ -25,46 +24,27 @@ namespace hypertension_bot.Models
             {
                 return "Non ho trovato alcun valore! Mi dispiace...";
             }
+        }
+
+        public string calculateMonthAVG(long id, string name)
+        {
+            var res = _dbController.CalculateMonthAVG(id);
+            var s = FormatAverageMessage(name, "mensile", res);
+            return s;
         }
 
         public string calculateWeekAVG(long id, string name)
         {
             var res = _dbController.CalculateWeekAVG(id);
-            if (res.TryGetValue("systolic", out var systolicStr) &&
-                int.TryParse(systolicStr.ToString(), out var sistolic))
-            {
-                var valoreMaxSi = Setting.Istance.Configuration.ValoreMaxSi;
-                var valoreMinSi = Setting.Istance.Configuration.ValoreMinSi;
-                var s = $"{name} ho trovato questi valori!\nMedia settimanale:\nSistolica: {sistolic} mmHg\nDiastolica: {res["diastolic"]} mmHg\nFrequenza cardiaca: {res["heartrate"]} bpm\n" +
-                        (sistolic >= valoreMaxSi || sistolic < valoreMinSi
-                            ? "La tua media non mi piace!\nDovresti chiamare il medico!"
-                            : "A presto!");
-                return s;
-            }
-            else
-            {
-                return "Non ho trovato alcun valore! Mi dispiace...";
-            }
+            var s = FormatAverageMessage(name, "settimanale", res);
+            return s;
         }
 
         public string calculateDayAVG(long id, string name)
         {
             var res = _dbController.CalculateDayAVG(id);
-            if (res.TryGetValue("systolic", out var systolicStr) &&
-                int.TryParse(systolicStr.ToString(), out var sistolic))
-            {
-                var valoreMaxSi = Setting.Istance.Configuration.ValoreMaxSi;
-                var valoreMinSi = Setting.Istance.Configuration.ValoreMinSi;
-                var s = $"{name} ho trovato questi valori!\nMedia giornaliera:\nSistolica: {sistolic} mmHg\nDiastolica: {res["diastolic"]} mmHg\nFrequenza cardiaca: {res["heartrate"]} bpm\n" +
-                        (sistolic >= valoreMaxSi || sistolic < valoreMinSi
-                            ? "La tua media non mi piace!\nDovresti chiamare il medico!"
-                            : "A presto!");
-                return s;
-            }
-            else
-            {
-                return "Non ho trovato alcun valore! Mi dispiace...";
-            }
+            var s = FormatAverageMessage(name, "giornaliera", res);
+            return s;
         }
     }
 }

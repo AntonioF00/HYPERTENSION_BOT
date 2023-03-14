@@ -165,8 +165,8 @@ namespace hypertension_bot
                     responseText = $"{_data.FirstName} specifica il tipo di media che vuoi visualizzare!\nMedia giornaliera / Media mensile / Media settimanale!";
 
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                          text: responseText,
-                                                                          cancellationToken: cancellationToken);
+                                                                         text: responseText,
+                                                                         cancellationToken: cancellationToken);
             }
             if (_data.LastDataInsert != "0" && !_firstAlert)
             {
