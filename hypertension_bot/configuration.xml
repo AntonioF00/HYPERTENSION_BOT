@@ -84,6 +84,18 @@
 		GROUP BY "User_idUser"
 	</CalculateDayAVG>
 	
+	<!-- Query per selezionare le misurazione d'un utente -->
+	<CalculateMeasurement>
+	SELECT "idMeasurement", systolic, diastolic, "heartRate", datetime
+	FROM users."Measurement"
+	WHERE "User_idUser" = (SELECT "idUser" FROM users."User" WHERE "idTelegram" = @id)
+	</CalculateMeasurement>
+
+	<DeleteMeasurement>
+	DELETE FROM users."Measurement"
+	WHERE "User_idUser" = (SELECT "idUser" FROM users."User" WHERE "idTelegram" = @id) AND "idMeasurement" = @idMisurazione;
+	</DeleteMeasurement>
+	
 	<!-- Campi -->
 	<!--Valore massimo consentito per la sistolica, sopra questo valore il bot invierà un messaggio di allerta all'utente -->
 	<ValoreMaxSi>250</ValoreMaxSi>
