@@ -1,11 +1,4 @@
-﻿using System;
-using System.Reflection.Metadata.Ecma335;
-using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using Dapper;
-using hypertension_bot.Data;
+﻿using hypertension_bot.Data;
 using hypertension_bot.Loggers;
 using hypertension_bot.Models;
 using hypertension_bot.Settings;
@@ -31,7 +24,7 @@ namespace hypertension_bot
 
             var receiverOptions = new ReceiverOptions
             {
-                AllowedUpdates = { } // receive all update types
+                AllowedUpdates = { }
             };
             try
             {
@@ -55,10 +48,9 @@ namespace hypertension_bot
         {
             var _unknown = false;
 
-            // Only process Message updates: https://core.telegram.org/bots/api#message
             if (update.Type != UpdateType.Message) 
                 return;
-            // Only process text messages
+
             if (update.Message!.Type != MessageType.Text)
                 return;
 
@@ -108,8 +100,8 @@ namespace hypertension_bot
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                          text: $"{_data.InsertMessage.Messages[_data.Random.Next(4)]}\nA presto {_data.FirstName}!\nData : {System.DateOnly.FromDateTime(System.DateTime.Now)}",
                                                                          cancellationToken: cancellationToken);
-                _dbController.InsertMeasures(_data.Diastolic,_data.Sistolic,_data.HeartRate,_data.Id);
-                _dbController.UpdateFirstAlert(_data.Id,false);
+                _dbController.InsertMeasures(_data.Diastolic, _data.Sistolic, _data.HeartRate, _data.Id);
+                _dbController.UpdateFirstAlert(_data.Id, false);
 
             }
             else if (_data.HelloMessage.Messages.Any(_data.MessageText.Contains))
@@ -121,66 +113,93 @@ namespace hypertension_bot
             }
             else if (_data.MessageText.Any(char.IsDigit))
             {
-                int num1, num2, num3;
+                var messageText = _data.MessageText.Replace("/", "-").Replace(",", "-");
+                var digits = new string(messageText.Where(char.IsDigit).ToArray());
 
-                bool success = int.TryParse(new string(_data.MessageText.Replace("/", "-").Replace(",", "-")
-                                            .SkipWhile(x => !char.IsDigit(x))
-                                            .TakeWhile(x => char.IsDigit(x))
-                                            .ToArray()), out num1);
-                if (num1 != 0 && success)
+                if (int.TryParse(digits, out var num1))
                 {
-                    var mess = _data.MessageText.Replace(num1.ToString(), "");
+                    var mess = messageText.Replace(num1.ToString(), "");
 
-                    success = int.TryParse(new string(mess
-                                            .SkipWhile(x => !char.IsDigit(x))
-                                            .TakeWhile(x => char.IsDigit(x))
-                                            .ToArray()), out num2);
-                    if (num2 != 0 && success)
+                    if (int.TryParse(new string(mess.Where(char.IsDigit).ToArray()), out var num2))
                     {
                         _unknown = true;
                         _data.Done = true;
 
-                        _data.Sistolic  = (num1 > num2) ? num1 : num2;
-                        _data.Diastolic = (num1 > num2) ? num2 : num1;
+                        _data.Sistolic = Math.Max(num1, num2);
+                        _data.Diastolic = Math.Min(num1, num2);
 
-                        mess = (_data.Diastolic >= 100) ? mess = mess.Remove(0, 4) : mess = "x" + mess.Substring(3);
+                        mess = (_data.Diastolic >= 100) ? mess.Remove(0, 4) : "x" + mess.Substring(3);
 
-                        success = int.TryParse(new string($"{mess}"
-                                               .SkipWhile(x => !char.IsDigit(x))
-                                               .TakeWhile(x => char.IsDigit(x))
-                                               .ToArray()), out num3);
-                        _data.HeartRate = num3;
-
-                        if (success)
+                        if (int.TryParse(new string(mess.Where(char.IsDigit).ToArray()), out var num3))
                         {
-                            if((_data.Sistolic <= Setting.Istance.Configuration.ValoreMaxSi && _data.Sistolic >= Setting.Istance.Configuration.ValoreMinSi) &&
-                                (_data.Diastolic <= Setting.Istance.Configuration.ValoreMaxDi && _data.Diastolic >= Setting.Istance.Configuration.ValoreMinDi))
-                            {
-                                mess = $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nFrequenza cardiaca : {_data.HeartRate} bpm\nSono corretti?";
-                            }
-                            else
-                            {
-                                mess = $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_data.Random.Next(3)]}";
-                            }
+                            _data.HeartRate = num3;
+                        }
+
+                        if (_data.Sistolic <= Setting.Istance.Configuration.ValoreMaxSi && _data.Sistolic >= Setting.Istance.Configuration.ValoreMinSi &&
+                            _data.Diastolic <= Setting.Istance.Configuration.ValoreMaxDi && _data.Diastolic >= Setting.Istance.Configuration.ValoreMinDi)
+                        {
+                            var text = $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\n";
+                            text += (_data.HeartRate > 0) ? $"Frequenza cardiaca : {_data.HeartRate} bpm\n" : "";
+                            text += "Sono corretti?";
+                            _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId, text: text, cancellationToken: cancellationToken);
                         }
                         else
                         {
-                            if ((_data.Sistolic <= Setting.Istance.Configuration.ValoreMaxSi && _data.Sistolic >= Setting.Istance.Configuration.ValoreMinSi) &&
-                                (_data.Diastolic <= Setting.Istance.Configuration.ValoreMaxDi && _data.Diastolic >= Setting.Istance.Configuration.ValoreMinDi))
-                            {
-                                mess = $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nSono corretti?";
-                            }
-                            else
-                            {
-                                mess = $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_data.Random.Next(3)]}";
-                            }
+                            var text = $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_data.Random.Next(3)]}";
+                            _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId, text: text, cancellationToken: cancellationToken);
                         }
-
-                        _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId, text: mess, cancellationToken: cancellationToken);
                     }
                 }
             }
-            else if (_data.MessageText.Contains("media") )
+
+            //else if (_data.MessageText.Any(char.IsDigit))
+            //{
+            //    int num1, num2, num3;
+
+            //    bool success = int.TryParse(new string(_data.MessageText.Replace("/", "-").Replace(",", "-")
+            //                                .SkipWhile(x => !char.IsDigit(x))
+            //                                .TakeWhile(x => char.IsDigit(x))
+            //                                .ToArray()), out num1);
+            //    if (num1 != 0 && success)
+            //    {
+            //        var mess = _data.MessageText.Replace(num1.ToString(), "");
+
+            //        success = int.TryParse(new string(mess
+            //                                .SkipWhile(x => !char.IsDigit(x))
+            //                                .TakeWhile(x => char.IsDigit(x))
+            //                                .ToArray()), out num2);
+            //        if (num2 != 0 && success)
+            //        {
+            //            _unknown = true;
+            //            _data.Done = true;
+
+            //            _data.Sistolic  = (num1 > num2) ? num1 : num2;
+            //            _data.Diastolic = (num1 > num2) ? num2 : num1;
+
+            //            mess = (_data.Diastolic >= 100) ? mess = mess.Remove(0, 4) : mess = "x" + mess.Substring(3);
+
+            //            success = int.TryParse(new string($"{mess}"
+            //                                   .SkipWhile(x => !char.IsDigit(x))
+            //                                   .TakeWhile(x => char.IsDigit(x))
+            //                                   .ToArray()), out num3);
+            //            _data.HeartRate = num3;
+
+            //            if (_data.Sistolic <= Setting.Istance.Configuration.ValoreMaxSi && _data.Sistolic >= Setting.Istance.Configuration.ValoreMinSi &&
+            //                _data.Diastolic <= Setting.Istance.Configuration.ValoreMaxDi && _data.Diastolic >= Setting.Istance.Configuration.ValoreMinDi)
+            //            {
+            //                mess = success ? $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nFrequenza cardiaca : {_data.HeartRate} bpm\nSono corretti?" :
+            //                                 $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nSono corretti?";
+            //            }
+            //            else
+            //            {
+            //                mess = $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_data.Random.Next(3)]}";
+            //            }
+
+            //            _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId, text: mess, cancellationToken: cancellationToken);
+            //        }
+            //    }
+            //}
+            else if (_data.MessageText.Contains("media"))
             {
                 _unknown = true;
                 string responseText;
