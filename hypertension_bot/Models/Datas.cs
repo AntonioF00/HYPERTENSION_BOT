@@ -8,7 +8,7 @@ namespace hypertension_bot.Models
         ////Message's model
 
         public HelloMessage HelloMessage => new();
-        public HelloMessage DeleteMessage => new();
+        public DeleteMessage DeleteMessage => new();
         public ErrorMessage ErrorMessage => new();
         public InsertMessage InsertMessage => new();
         public OkMessage OKMessage => new();

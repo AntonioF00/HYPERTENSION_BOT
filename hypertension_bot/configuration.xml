@@ -85,11 +85,13 @@
 	</CalculateDayAVG>
 	
 	<!-- Query per selezionare le misurazione d'un utente -->
-	<CalculateMeasurement>
+	<MeasurementList>
 	SELECT "idMeasurement", systolic, diastolic, "heartRate", datetime
 	FROM users."Measurement"
 	WHERE "User_idUser" = (SELECT "idUser" FROM users."User" WHERE "idTelegram" = @id)
-	</CalculateMeasurement>
+		  and datetime::timestamp(0) BETWEEN (now()::timestamp(0) - '2 days'::interval)::timestamp(0)
+			and now()::timestamp(0)
+	</MeasurementList>
 
 	<!-- Query per eliminare una misurazione -->
 	<DeleteMeasurement>

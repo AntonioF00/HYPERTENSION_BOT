@@ -107,20 +107,14 @@ namespace hypertension_bot.Data
 
                 _connection.Close();
 
-                if (res == null)
+                if (res == null || res.Count == 0)
                 {
-                    res = new Dictionary<string, object>();
-                }
-
-                if (res.Count!=0)
-                {
-                    var json = JsonConvert.SerializeObject(res);
-                    var dictionary = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
-                    return dictionary;
+                    return new Dictionary<string, object>();
                 }
                 else
                 {
-                    return new Dictionary<string, object>();
+                    var json = JsonConvert.SerializeObject(res);
+                    return JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
                 }
             }
             catch (Exception ex)
@@ -146,20 +140,14 @@ namespace hypertension_bot.Data
 
                 _connection.Close();
 
-                if(res == null)
+                if (res == null || res.Count == 0)
                 {
-                    res = new Dictionary<string, object>();
-                }    
-
-                if (res.Count != 0)
-                {
-                    var json = JsonConvert.SerializeObject(res);
-                    var dictionary = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
-                    return dictionary;
+                    return new Dictionary<string, object>();
                 }
                 else
                 {
-                    return new Dictionary<string, object>();
+                    var json = JsonConvert.SerializeObject(res);
+                    return JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
                 }
             }
             catch (Exception ex)
@@ -185,20 +173,14 @@ namespace hypertension_bot.Data
 
                 _connection.Close();
 
-                if (res == null)
+                if (res == null || res.Count == 0)
                 {
-                    res = new Dictionary<string, object>();
-                }
-
-                if (res.Count != 0)
-                {
-                    var json = JsonConvert.SerializeObject(res);
-                    var dictionary = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
-                    return dictionary;
+                    return new Dictionary<string, object>();
                 }
                 else
                 {
-                    return new Dictionary<string, object>();
+                    var json = JsonConvert.SerializeObject(res);
+                    return JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
                 }
             }
             catch (Exception ex)
@@ -208,6 +190,40 @@ namespace hypertension_bot.Data
                 throw ex;
             }
         }
+
+        public Dictionary<string, object> getMeasurementList(long id)
+        {
+            try
+            {
+                _connection.Open();
+
+                dynamic res = _connection.QueryFirstOrDefault<dynamic>(
+                Setting.Istance.Configuration.MeasurementList,
+                new Dictionary<string, object>()
+                {
+                    ["id"] = id
+                });
+
+                _connection.Close();
+
+                if (res == null || res.Count == 0)
+                {
+                    return new Dictionary<string, object>();
+                }
+                else
+                {
+                    var json = JsonConvert.SerializeObject(res);
+                    return JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_connection.State == System.Data.ConnectionState.Open)
+                    _connection.Close();
+                throw ex;
+            }
+        }
+
 
         public bool GetFirstAlert(long id)
         {

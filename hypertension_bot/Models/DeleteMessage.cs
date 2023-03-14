@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 
 namespace hypertension_bot.Models
 {
@@ -17,6 +18,25 @@ namespace hypertension_bot.Models
         public DeleteMessage()
         {
             Messages = _deleteMessages;
+        }
+
+        public string listMessage(Dictionary<string,object> list)
+        {
+            StringBuilder res = new StringBuilder();
+            res.Append("Id | Sistolica | Diastolica | Frequenza cardiaca | data\n");
+            int i = 0;
+            foreach (var e in list)
+            {
+                res.Append($"{e.Value}");
+                i++;
+
+                if (i == 5)
+                {
+                    res.Append("\n");
+                    i = 0;
+                }
+            }
+            return res.ToString();
         }
     }
 }

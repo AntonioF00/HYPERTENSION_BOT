@@ -16,6 +16,7 @@ namespace hypertension_bot.Models
         private string _calculateDayAVG;
         private string _getFirstAlert;
         private string _updateFirstAlert;
+        private string _measurementList;
         private int    _valoreMaxSi;
         private int    _valoreMaxDi;        
         private int    _valoreMinSi;
@@ -31,11 +32,12 @@ namespace hypertension_bot.Models
         public string CalculateMonthAVG { get => _calculateMonthAVG; set => _calculateMonthAVG = value; }
         public string CalculateWeekAVG { get => _calculateWeekAVG; set => _calculateWeekAVG = value; }
         public string CalculateDayAVG { get => _calculateDayAVG; set => _calculateDayAVG = value; }
+        public string MeasurementList { get => _measurementList; set => _measurementList = value; }
+        public string GetFirstAlert { get => _getFirstAlert; set => _getFirstAlert = value; }
+        public string UpdateFirstAlert { get => _updateFirstAlert; set => _updateFirstAlert = value; }
         public int ValoreMaxSi { get => _valoreMaxSi; set => _valoreMaxSi = value; }
         public int ValoreMaxDi { get => _valoreMaxDi; set => _valoreMaxDi = value; }        
         public int ValoreMinSi { get => _valoreMinSi; set => _valoreMinSi = value; }
         public int ValoreMinDi { get => _valoreMinDi; set => _valoreMinDi = value; }
-        public string GetFirstAlert { get => _getFirstAlert; set => _getFirstAlert = value; }
-        public string UpdateFirstAlert { get => _updateFirstAlert; set => _updateFirstAlert = value; }
     }
 }

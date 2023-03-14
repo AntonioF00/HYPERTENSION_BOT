@@ -71,6 +71,21 @@ namespace hypertension_bot
                                                                          text: $"{_data.HelloMessage.InitialMessages[_data.Random.Next(1)]}",
                                                                          cancellationToken: cancellationToken);
             }
+            if (_data.MessageText.Equals("elim"))
+            {
+                _unknown = true;
+                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+                                                                         text: $"{_data.DeleteMessage.Messages[_data.Random.Next(4)]}",
+                                                                         cancellationToken: cancellationToken);
+                //query che ritorna una lista con gli id
+                Dictionary<string,object> list = _dbController.getMeasurementList(_data.Id);
+                //messaggio a video della lista
+                var text = _data.DeleteMessage.listMessage(list);
+                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+                                                         text: text,
+                                                         cancellationToken: cancellationToken);
+                //query che cancella il rigo scelto per id
+            }
             else if (_data.PressureMessage.Messages.Any(_data.MessageText.Contains))
             {
                 _unknown = true;
