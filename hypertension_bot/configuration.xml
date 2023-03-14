@@ -91,6 +91,7 @@
 	WHERE "User_idUser" = (SELECT "idUser" FROM users."User" WHERE "idTelegram" = @id)
 	</CalculateMeasurement>
 
+	<!-- Query per eliminare una misurazione -->
 	<DeleteMeasurement>
 	DELETE FROM users."Measurement"
 	WHERE "User_idUser" = (SELECT "idUser" FROM users."User" WHERE "idTelegram" = @id) AND "idMeasurement" = @idMisurazione;

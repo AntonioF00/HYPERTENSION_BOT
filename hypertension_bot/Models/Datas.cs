@@ -6,25 +6,7 @@ namespace hypertension_bot.Models
     public class Datas
     {
         ////Message's model
-        private readonly HelloMessage _helloMessage;
 
-        private readonly ErrorMessage _errorMessage;
-
-        private readonly InsertMessage _insertMessage;
-
-        private readonly OkMessage _oKMessage;
-
-        private readonly NegativeMessage _negativeMessage;
-
-        private readonly PressureMessage _pressureMessage;
-
-        private readonly ThankMessage _thankMessage;
-
-        private readonly MeasuresAccepted _measuresAccepted;
-
-        private readonly AverageMessage _averageMessage;
-
-        private readonly Random _rnd;
         public HelloMessage HelloMessage => new();
         public ErrorMessage ErrorMessage => new();
         public InsertMessage InsertMessage => new();
@@ -68,6 +50,5 @@ namespace hypertension_bot.Models
         public int Diastolic { get => _diastolic; set => _diastolic = value; }
         public int Sistolic { get => _sistolic; set => _sistolic = value; }
         public int HeartRate { get => _heartRate; set => _heartRate = value; }
-
     }
 }
