@@ -151,15 +151,18 @@ namespace hypertension_bot
                     }
                 }
             }
-            else if (_data.MessageText.Contains("medi"))
+            else if (_data.MessageText.Contains("medi") || 
+                     _data.MessageText.Contains("mensile") || 
+                     _data.MessageText.Contains("giornaliera") ||
+                     _data.MessageText.Contains("settimanale"))
             {
                 _unknown = true;
                 string responseText;
                 if (_data.MessageText.Contains("mese") || _data.MessageText.Contains("mensile"))
                     responseText = _data.AverageMessage.calculateMonthAVG(_data.Id, _data.FirstName);
-                else if (_data.MessageText.Contains("settimanale") || _data.MessageText.Contains("settimana"))
+                else if (_data.MessageText.Contains("settima"))
                     responseText = _data.AverageMessage.calculateWeekAVG(_data.Id, _data.FirstName);
-                else if (_data.MessageText.Contains("giorno") || _data.MessageText.Contains("giornaliera") || _data.MessageText.Contains("oggi"))
+                else if (_data.MessageText.Contains("giorn") || _data.MessageText.Contains("oggi"))
                     responseText = _data.AverageMessage.calculateDayAVG(_data.Id, _data.FirstName);
                 else
                     responseText = $"{_data.FirstName} specifica il tipo di media che vuoi visualizzare!\nMedia giornaliera / Media mensile / Media settimanale!";
