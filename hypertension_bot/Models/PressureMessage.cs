@@ -9,7 +9,7 @@ namespace hypertension_bot.Models
 
         private readonly List<string> _messages = new List<string>()
         {
-            "pressione",
+            "pressi",
         };        
         
         private readonly List<string> _HowTomessages = new List<string>()
