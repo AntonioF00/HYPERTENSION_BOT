@@ -18,10 +18,10 @@ namespace hypertension_bot.Models
         
         private static readonly List<string> _deleteMessages = new List<string>
         {
-            "Oh oh! vuoi elimare una misurazione? lascia che ti mostri le tue ultime misurazioni!",
-            "Ecco le tue ultime misurazioni!",
-            "Eliminiamo la misurazione prima che la possa vedere il medico! Queste sono le tue ultime misurazioni:",
-            "Questo rimarrà un segreto tra me e te! il medico non lo verrà mai a sapere! ecco le tue ultime misurazioni:"
+            "Perfetto! Ho eliminato la misurazione!",
+            "Agli ordini! il dottore non scoprirà nulla!",
+            "Ho eliminato la misurazione!",
+            "Misurazione eliminata! Spero di non aver lasciato tracce!"
         };
 
         public DeleteMessage()
