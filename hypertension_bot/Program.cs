@@ -151,7 +151,7 @@ namespace hypertension_bot
                     }
                 }
             }
-            else if (_data.MessageText.Contains("media") || _data.MessageText.Contains("medio"))
+            else if (_data.MessageText.Contains("medi"))
             {
                 _unknown = true;
                 string responseText;
