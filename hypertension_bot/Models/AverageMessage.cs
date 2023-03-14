@@ -1,7 +1,5 @@
 ﻿using hypertension_bot.Data;
 using hypertension_bot.Settings;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace hypertension_bot.Models
 {
