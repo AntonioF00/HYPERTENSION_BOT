@@ -37,7 +37,7 @@ namespace hypertension_bot.Models
             int i = 0;
             foreach (var e in list)
             {
-                res.Append($"{e.Value}");
+                res.Append($"{e.Value} | ");
                 i++;
 
                 if (i == 5)

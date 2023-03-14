@@ -47,3 +47,45 @@
 //        }
 //    }
 //}
+
+
+            //else if (_data.MessageText.Any(char.IsDigit))
+            //{
+            //    var messageText = _data.MessageText.Replace("/", "-").Replace(",", "-");
+            //    var digits = new string(messageText.Where(char.IsDigit).ToArray());
+
+            //    if (int.TryParse(digits, out var num1))
+            //    {
+            //        var mess = messageText.Replace(num1.ToString(), "");
+
+            //        if (int.TryParse(new string(mess.Where(char.IsDigit).ToArray()), out var num2))
+            //        {
+            //            _unknown = true;
+            //            _data.Done = true;
+
+            //            _data.Sistolic = Math.Max(num1, num2);
+            //            _data.Diastolic = Math.Min(num1, num2);
+
+            //            mess = (_data.Diastolic >= 100) ? mess.Remove(0, 4) : "x" + mess.Substring(3);
+
+            //            if (int.TryParse(new string(mess.Where(char.IsDigit).ToArray()), out var num3))
+            //            {
+            //                _data.HeartRate = num3;
+            //            }
+
+            //            if (_data.Sistolic <= Setting.Istance.Configuration.ValoreMaxSi && _data.Sistolic >= Setting.Istance.Configuration.ValoreMinSi &&
+            //                _data.Diastolic <= Setting.Istance.Configuration.ValoreMaxDi && _data.Diastolic >= Setting.Istance.Configuration.ValoreMinDi)
+            //            {
+            //                var text = $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\n";
+            //                text += (_data.HeartRate > 0) ? $"Frequenza cardiaca : {_data.HeartRate} bpm\n" : "";
+            //                text += "Sono corretti?";
+            //                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId, text: text, cancellationToken: cancellationToken);
+            //            }
+            //            else
+            //            {
+            //                var text = $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_data.Random.Next(3)]}";
+            //                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId, text: text, cancellationToken: cancellationToken);
+            //            }
+            //        }
+            //    }
+            //}
