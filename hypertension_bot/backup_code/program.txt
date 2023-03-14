@@ -1,4 +1,6 @@
-﻿//else if (_data.MessageText.Any(char.IsDigit))
+﻿2023-03-14
+
+//else if (_data.MessageText.Any(char.IsDigit))
 //{
 //    int num1, num2, num3;
 
