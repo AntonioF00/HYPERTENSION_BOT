@@ -2,21 +2,23 @@
 
 namespace hypertension_bot.Models
 {
-    public class DeleteMessage
+    public class ErrorMessage
     {
         public List<string> Messages { get; }
 
-        private static readonly List<string> _deleteMessages = new List<string>
+        private static readonly List<string> _errorMessages = new List<string>
         {
-            "Oh oh! vuoi elimare una misurazione? lascia che ti mostri le tue ultime misurazioni!",
-            "Ecco le tue ultime misurazioni!",
-            "Eliminiamo la misurazione prima che la possa vedere il medico! Queste sono le tue ultime misurazioni:",
-            "Questo rimarrà un segreto tra me e te! il medico non lo verrà mai a sapere! ecco le tue ultime misurazioni:"
+            "Non credo di aver capito!",
+            "Potresti ripetere...oggi non sono proprio attento!",
+            "Piano piano non ti ho capito!",
+            "Scusami...non ho capito!",
+            "Ieri sera non avrei dovuto far così tardi...\nnon ho capito, potresti ripetere?",
+            "Oh oh...\nQualcosa dev'essere andato storto!\nForse quel bicchiere di vino non mi ha fatto bene!\nPotresti ripetere? non ho capito!",
         };
 
-        public DeleteMessage()
+        public ErrorMessage()
         {
-            Messages = _deleteMessages;
+            Messages = _errorMessages;
         }
     }
 }
