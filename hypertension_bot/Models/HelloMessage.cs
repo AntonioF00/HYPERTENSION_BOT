@@ -22,9 +22,9 @@ namespace hypertension_bot.Models
         private static readonly List<string> _replyMessages = new List<string>
         {
             "Ciao",
-            "Ciao!, sono felice di vederti",
+            "Ciao! sono felice di vederti",
             "E' da un pò che non ci sentiamo",
-            "Finalmente posso dire ch'è un BUONGIORNO, Ciao",
+            "Finalmente posso dire ch'è un BUONGIORNO, Ciao!",
         };        
         
         private static readonly List<string> _initialMessages = new List<string>
