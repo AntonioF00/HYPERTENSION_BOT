@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="backup_code\idee.tt">
+    <None Update="backup_code\idee.txt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>idee.cs</LastGenOutput>
     </None>
@@ -39,7 +39,7 @@
     <Compile Update="backup_code\idee.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>idee.tt</DependentUpon>
+      <DependentUpon>idee.txt</DependentUpon>
     </Compile>
   </ItemGroup>
 
