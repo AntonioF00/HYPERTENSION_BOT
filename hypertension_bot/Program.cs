@@ -91,15 +91,15 @@ namespace hypertension_bot
                     _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                              text: $"{_data.DeleteMessage.Messages[_data.Random.Next(4)]}",
                                                                              cancellationToken: cancellationToken);
-
                     Dictionary<string, object> list = _dbController.getMeasurementList(_data.Id);
                     var text = _data.DeleteMessage.listMessage(list);
                     _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                              text: text,
                                                                              cancellationToken: cancellationToken);
-                    _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                             text: "Per eliminare una misurazione indicarla nella seguente maniera:\n as esempio 'elimina la numero 14'",
-                                                                             cancellationToken: cancellationToken);
+                    if(!text.Equals("Per visualizzare le misurazioni, inserirne prima una!"))
+                        _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+                                                                                 text: "Per eliminare una misurazione indicarla nella seguente maniera:\n as esempio 'elimina la numero 14'",
+                                                                                 cancellationToken: cancellationToken);
                 }
             }
             else if (_data.PressureMessage.Messages.Any(_data.MessageText.Contains))
