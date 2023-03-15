@@ -33,19 +33,17 @@ namespace hypertension_bot.Models
         public string listMessage(Dictionary<string,object> list)
         {
             StringBuilder res = new StringBuilder();
-            if(list.Count > 0)
+            if (list.Count > 0)
             {
-                res.Append("Id | Sistolica | Diastolica | Frequenza cardiaca | data\n");
+                res.AppendLine("Id | Sistolica | Diastolica | Frequenza cardiaca | data");
                 int i = 0;
                 foreach (var e in list)
                 {
-                    res.Append($"{e.Value} | ");
-                    i++;
+                    res.AppendFormat("{0} | ", e.Value);
 
-                    if (i == 5)
+                    if (++i % 5 == 0)
                     {
-                        res.Append("\n");
-                        i = 0;
+                        res.AppendLine();
                     }
                 }
             }
