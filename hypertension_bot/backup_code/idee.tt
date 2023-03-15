@@ -1,0 +1,1 @@
+﻿1. sviluppare un background Worker per gestire la questione della notifica qualora l'utente non avesse fatto misurazioni nell'arco delle ultime 72 ore

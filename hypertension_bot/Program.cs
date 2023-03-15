@@ -2,6 +2,7 @@
 using hypertension_bot.Loggers;
 using hypertension_bot.Models;
 using hypertension_bot.Settings;
+using System.Threading;
 using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 using Telegram.Bot.Polling;
@@ -29,7 +30,6 @@ namespace hypertension_bot
             try
             {
                 _telegramBot.StartReceiving(HandleUpdateAsync, HandleErrorAsync, receiverOptions, cancellationToken: _cancellationTokenSource.Token);
-
                 var me = await _telegramBot.GetMeAsync();
 
                 Console.WriteLine($"\n{me.Username} token: {Setting.Istance.Configuration.BotToken}\n{me.Username}: online\nHello! I'm {me.Username} and i'm your Bot!");
@@ -60,8 +60,8 @@ namespace hypertension_bot
             _data.FirstName      = update.Message.From.FirstName;
             _data.Id             = (int)update.Message.From.Id;
 
-            _data.LastDataInsert = _dbController.LastInsert(_data.Id);
             _dbController.InsertUser(_data.Id);
+            _data.LastDataInsert = _dbController.LastInsert(_data.Id);
             var _firstAlert = _dbController.GetFirstAlert(_data.Id);
 
             if (_data.LastDataInsert != "0" && !_firstAlert)
@@ -74,7 +74,6 @@ namespace hypertension_bot
 
                 if (n > 2)
                 {
-                    _unknown = true;
                     _dbController.UpdateFirstAlert(_data.Id, true);
                     _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                              text: $"{_data.FirstName} è da un po' che non prendiamo i valori!\nOggi potrebbe essere un buon giorno per farlo!",
