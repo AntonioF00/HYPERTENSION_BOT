@@ -64,6 +64,23 @@ namespace hypertension_bot
             _dbController.InsertUser(_data.Id);
             var _firstAlert = _dbController.GetFirstAlert(_data.Id);
 
+            if (_data.LastDataInsert != "0" && !_firstAlert)
+            {
+                var n = 0;
+                n = (int.Parse(_data.LastDataInsert) > int.Parse(System.DateTime.Today.Day.ToString()))
+                                                                                                       ? int.Parse(_data.LastDataInsert) - int.Parse(System.DateTime.Today.Day.ToString())
+                                                                                                       : int.Parse(System.DateTime.Today.Day.ToString()) - int.Parse(_data.LastDataInsert);
+                _dbController.UpdateFirstAlert(_data.Id, false);
+
+                if (n > 2)
+                {
+                    _unknown = true;
+                    _dbController.UpdateFirstAlert(_data.Id, true);
+                    _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+                                                                             text: $"{_data.FirstName} è da un po' che non prendiamo i valori!\nOggi potrebbe essere un buon giorno per farlo!",
+                                                                             cancellationToken: cancellationToken);
+                }
+            }
             if (_data.MessageText.Equals("/start"))
             {
                 _unknown = true;
@@ -145,20 +162,19 @@ namespace hypertension_bot
 
             else if (_data.MessageText.Any(char.IsDigit))
             {
-                int num1, num2, num3;
-
                 bool success = int.TryParse(new string(_data.MessageText.Replace("/", "-").Replace(",", "-")
-                                            .SkipWhile(x => !char.IsDigit(x))
-                                            .TakeWhile(x => char.IsDigit(x))
-                                            .ToArray()), out num1);
+                    .SkipWhile(x => !char.IsDigit(x))
+                    .TakeWhile(char.IsDigit)
+                    .ToArray()), out int num1);
+
                 if (num1 != 0 && success)
                 {
                     var mess = _data.MessageText.Replace(num1.ToString(), "");
 
-                    success = int.TryParse(new string(mess
-                                            .SkipWhile(x => !char.IsDigit(x))
-                                            .TakeWhile(x => char.IsDigit(x))
-                                            .ToArray()), out num2);
+                    success = int.TryParse(new string(_data.MessageText.Replace("/", "-").Replace(",", "-")
+                                           .SkipWhile(x => !char.IsDigit(x))
+                                           .TakeWhile(char.IsDigit)
+                                           .ToArray()), out int num2);
                     if (num2 != 0 && success)
                     {
                         _unknown = true;
@@ -170,16 +186,19 @@ namespace hypertension_bot
                         mess = (_data.Diastolic >= 100) ? mess = mess.Remove(0, 4) : mess = "x" + mess.Substring(3);
 
                         success = int.TryParse(new string($"{mess}"
-                                               .SkipWhile(x => !char.IsDigit(x))
-                                               .TakeWhile(x => char.IsDigit(x))
-                                               .ToArray()), out num3);
+                                              .SkipWhile(x => !char.IsDigit(x))
+                                              .TakeWhile(char.IsDigit)
+                                              .ToArray()), out int num3);
                         _data.HeartRate = num3;
 
-                        if (_data.Sistolic <= Setting.Istance.Configuration.ValoreMaxSi && _data.Sistolic >= Setting.Istance.Configuration.ValoreMinSi &&
-                            _data.Diastolic <= Setting.Istance.Configuration.ValoreMaxDi && _data.Diastolic >= Setting.Istance.Configuration.ValoreMinDi)
+                        bool sistolicInRange = _data.Sistolic >= Setting.Istance.Configuration.ValoreMinSi && _data.Sistolic <= Setting.Istance.Configuration.ValoreMaxSi;
+                        bool diastolicInRange = _data.Diastolic >= Setting.Istance.Configuration.ValoreMinDi && _data.Diastolic <= Setting.Istance.Configuration.ValoreMaxDi;
+
+                        if (sistolicInRange && diastolicInRange)
                         {
-                            mess = success ? $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nFrequenza cardiaca : {_data.HeartRate} bpm\nSono corretti?" :
-                                             $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nSono corretti?";
+                            mess = success
+                                ? $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nFrequenza cardiaca : {_data.HeartRate} bpm\nSono corretti?"
+                                : $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nSono corretti?";
                         }
                         else
                         {
@@ -209,21 +228,6 @@ namespace hypertension_bot
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                          text: responseText,
                                                                          cancellationToken: cancellationToken);
-            }
-            if (_data.LastDataInsert != "0" && !_firstAlert)
-            {
-                var n = 0;
-                n = (int.Parse(_data.LastDataInsert) > int.Parse(System.DateTime.Today.Day.ToString())) 
-                                                                                                       ? int.Parse(_data.LastDataInsert) - int.Parse(System.DateTime.Today.Day.ToString()) 
-                                                                                                       : int.Parse(System.DateTime.Today.Day.ToString()) - int.Parse(_data.LastDataInsert);
-                if (n > 2)
-                {
-                    _unknown = true;
-                    _dbController.UpdateFirstAlert(_data.Id,true);
-                    _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                             text: $"{_data.FirstName} è da un po' che non prendiamo i valori!\nOggi potrebbe essere un buon giorno per farlo!",
-                                                                             cancellationToken: cancellationToken);
-                }
             }
             if (!_unknown)
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,

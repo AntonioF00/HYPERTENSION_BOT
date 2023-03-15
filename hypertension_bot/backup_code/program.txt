@@ -49,43 +49,60 @@
 //}
 
 
-            //else if (_data.MessageText.Any(char.IsDigit))
-            //{
-            //    var messageText = _data.MessageText.Replace("/", "-").Replace(",", "-");
-            //    var digits = new string(messageText.Where(char.IsDigit).ToArray());
+//else if (_data.MessageText.Any(char.IsDigit))
+//{
+//    var messageText = _data.MessageText.Replace("/", "-").Replace(",", "-");
+//    var digits = new string(messageText.Where(char.IsDigit).ToArray());
 
-            //    if (int.TryParse(digits, out var num1))
-            //    {
-            //        var mess = messageText.Replace(num1.ToString(), "");
+//    if (int.TryParse(digits, out var num1))
+//    {
+//        var mess = messageText.Replace(num1.ToString(), "");
 
-            //        if (int.TryParse(new string(mess.Where(char.IsDigit).ToArray()), out var num2))
-            //        {
-            //            _unknown = true;
-            //            _data.Done = true;
+//        if (int.TryParse(new string(mess.Where(char.IsDigit).ToArray()), out var num2))
+//        {
+//            _unknown = true;
+//            _data.Done = true;
 
-            //            _data.Sistolic = Math.Max(num1, num2);
-            //            _data.Diastolic = Math.Min(num1, num2);
+//            _data.Sistolic = Math.Max(num1, num2);
+//            _data.Diastolic = Math.Min(num1, num2);
 
-            //            mess = (_data.Diastolic >= 100) ? mess.Remove(0, 4) : "x" + mess.Substring(3);
+//            mess = (_data.Diastolic >= 100) ? mess.Remove(0, 4) : "x" + mess.Substring(3);
 
-            //            if (int.TryParse(new string(mess.Where(char.IsDigit).ToArray()), out var num3))
-            //            {
-            //                _data.HeartRate = num3;
-            //            }
+//            if (int.TryParse(new string(mess.Where(char.IsDigit).ToArray()), out var num3))
+//            {
+//                _data.HeartRate = num3;
+//            }
 
-            //            if (_data.Sistolic <= Setting.Istance.Configuration.ValoreMaxSi && _data.Sistolic >= Setting.Istance.Configuration.ValoreMinSi &&
-            //                _data.Diastolic <= Setting.Istance.Configuration.ValoreMaxDi && _data.Diastolic >= Setting.Istance.Configuration.ValoreMinDi)
-            //            {
-            //                var text = $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\n";
-            //                text += (_data.HeartRate > 0) ? $"Frequenza cardiaca : {_data.HeartRate} bpm\n" : "";
-            //                text += "Sono corretti?";
-            //                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId, text: text, cancellationToken: cancellationToken);
-            //            }
-            //            else
-            //            {
-            //                var text = $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_data.Random.Next(3)]}";
-            //                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId, text: text, cancellationToken: cancellationToken);
-            //            }
-            //        }
-            //    }
-            //}
+//            if (_data.Sistolic <= Setting.Istance.Configuration.ValoreMaxSi && _data.Sistolic >= Setting.Istance.Configuration.ValoreMinSi &&
+//                _data.Diastolic <= Setting.Istance.Configuration.ValoreMaxDi && _data.Diastolic >= Setting.Istance.Configuration.ValoreMinDi)
+//            {
+//                var text = $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\n";
+//                text += (_data.HeartRate > 0) ? $"Frequenza cardiaca : {_data.HeartRate} bpm\n" : "";
+//                text += "Sono corretti?";
+//                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId, text: text, cancellationToken: cancellationToken);
+//            }
+//            else
+//            {
+//                var text = $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_data.Random.Next(3)]}";
+//                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId, text: text, cancellationToken: cancellationToken);
+//            }
+//        }
+//    }
+//}
+
+15/03/2023 metodo per scomporre i numeri in una stringa 
+bool success = int.TryParse(new string(_data.MessageText.Replace("/", "-").Replace(",", "-")
+                            .SkipWhile(x => !char.IsDigit(x))
+                            .TakeWhile(x => char.IsDigit(x))
+                            .ToArray()), out num1);
+
+if (_data.Sistolic <= Setting.Istance.Configuration.ValoreMaxSi && _data.Sistolic >= Setting.Istance.Configuration.ValoreMinSi &&
+    _data.Diastolic <= Setting.Istance.Configuration.ValoreMaxDi && _data.Diastolic >= Setting.Istance.Configuration.ValoreMinDi)
+{
+    mess = success ? $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nFrequenza cardiaca : {_data.HeartRate} bpm\nSono corretti?" :
+                        $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nSono corretti?";
+}
+else
+{
+    mess = $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_data.Random.Next(3)]}";
+}
