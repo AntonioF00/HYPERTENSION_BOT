@@ -22,9 +22,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="backup_code\idee.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>idee.cs</LastGenOutput>
+    </None>
     <None Update="configuration.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="backup_code\idee.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>idee.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>
