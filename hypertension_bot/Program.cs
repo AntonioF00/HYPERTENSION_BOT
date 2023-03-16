@@ -3,7 +3,6 @@ using hypertension_bot.Loggers;
 using hypertension_bot.Models;
 using hypertension_bot.Services;
 using hypertension_bot.Settings;
-using System.Threading;
 using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 using Telegram.Bot.Polling;

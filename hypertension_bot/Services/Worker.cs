@@ -1,12 +1,6 @@
 ﻿using hypertension_bot.Data;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using Telegram.Bot;
 
 namespace hypertension_bot.Services
@@ -60,7 +54,7 @@ namespace hypertension_bot.Services
                     }
                 }
 
-                await Task.Delay(1000000, stoppingToken);
+                await Task.Delay(864000000, stoppingToken);
             }
         }
 
