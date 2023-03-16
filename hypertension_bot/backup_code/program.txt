@@ -106,3 +106,26 @@ else
 {
     mess = $"{_data.FirstName}!\n{_data.MeasuresAccepted.Message[_data.Random.Next(3)]}";
 }
+
+15-03-2023
+Creata classe Worker ed eliminato da program le seguenti porzioni di codice:
+    _data.LastDataInsert = _dbController.LastInsert(_data.Id);
+    var _firstAlert = _dbController.GetFirstAlert(_data.Id);
+
+    
+    if (_data.LastDataInsert != "0" && !_firstAlert)
+    {
+        var n = 0;
+        n = (int.Parse(_data.LastDataInsert) > int.Parse(System.DateTime.Today.Day.ToString()))
+                                                                                                ? int.Parse(_data.LastDataInsert) - int.Parse(System.DateTime.Today.Day.ToString())
+                                                                                                : int.Parse(System.DateTime.Today.Day.ToString()) - int.Parse(_data.LastDataInsert);
+        _dbController.UpdateFirstAlert(_data.Id, false);
+
+        if (n > 2)
+        {
+            _dbController.UpdateFirstAlert(_data.Id, true);
+            _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
+                                                                        text: $"{_data.FirstName} è da un po' che non prendiamo i valori!\nOggi potrebbe essere un buon giorno per farlo!",
+                                                                        cancellationToken: cancellationToken);
+        }
+    }

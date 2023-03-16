@@ -1,6 +1,7 @@
 ﻿using hypertension_bot.Data;
 using hypertension_bot.Loggers;
 using hypertension_bot.Models;
+using hypertension_bot.Services;
 using hypertension_bot.Settings;
 using System.Threading;
 using Telegram.Bot;
@@ -61,25 +62,10 @@ namespace hypertension_bot
             _data.Id             = (int)update.Message.From.Id;
 
             _dbController.InsertUser(_data.Id);
-            _data.LastDataInsert = _dbController.LastInsert(_data.Id);
-            var _firstAlert = _dbController.GetFirstAlert(_data.Id);
 
-            if (_data.LastDataInsert != "0" && !_firstAlert)
-            {
-                var n = 0;
-                n = (int.Parse(_data.LastDataInsert) > int.Parse(System.DateTime.Today.Day.ToString()))
-                                                                                                       ? int.Parse(_data.LastDataInsert) - int.Parse(System.DateTime.Today.Day.ToString())
-                                                                                                       : int.Parse(System.DateTime.Today.Day.ToString()) - int.Parse(_data.LastDataInsert);
-                _dbController.UpdateFirstAlert(_data.Id, false);
-
-                if (n > 2)
-                {
-                    _dbController.UpdateFirstAlert(_data.Id, true);
-                    _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                             text: $"{_data.FirstName} è da un po' che non prendiamo i valori!\nOggi potrebbe essere un buon giorno per farlo!",
-                                                                             cancellationToken: cancellationToken);
-                }
-            }
+            Worker worker = new Worker();
+            worker.setting(botClient,cancellationToken,_data.Id,_data.ChatId);
+            
             if (_data.MessageText.Equals("/start"))
             {
                 _unknown = true;
