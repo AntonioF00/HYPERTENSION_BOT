@@ -62,7 +62,7 @@ namespace hypertension_bot
 
             _dbController.InsertUser(_data.Id);
 
-            //scusa mamma
+            //porte dell'inferno
             Worker worker = new Worker();
             worker.setting(botClient,cancellationToken,_data.Id,_data.ChatId);
             
