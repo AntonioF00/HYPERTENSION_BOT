@@ -63,8 +63,8 @@ namespace hypertension_bot
             _dbController.InsertUser(_data.Id);
 
             //porte dell'inferno
-            Worker worker = new Worker();
-            worker.setting(botClient,cancellationToken,_data.Id,_data.ChatId);
+            //Worker worker = new Worker();
+            //worker.setting(botClient,cancellationToken,_data.Id,_data.ChatId);
             
             if (_data.MessageText.Equals("/start"))
             {
