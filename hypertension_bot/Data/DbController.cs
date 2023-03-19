@@ -221,7 +221,104 @@ namespace hypertension_bot.Data
                     _connection.Close();
                 throw ex;
             }
-        }        
+        }
+
+        public List<Dictionary<string, object>> getMeasurementDayList(long id)
+        {
+            try
+            {
+                _connection.Open();
+
+                dynamic res = _connection.Query<dynamic>(
+                Setting.Istance.Configuration.MeasurementDayList,
+                new Dictionary<string, object>()
+                {
+                    ["id"] = id
+                });
+
+                _connection.Close();
+
+                if (res == null || res.Count == 0)
+                {
+                    return new List<Dictionary<string, object>>();
+                }
+                else
+                {
+                    return JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(JsonConvert.SerializeObject(res));
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_connection.State == System.Data.ConnectionState.Open)
+                    _connection.Close();
+                throw ex;
+            }
+        }
+
+        public List<Dictionary<string, object>> getMeasurementMonthList(long id)
+        {
+            try
+            {
+                _connection.Open();
+
+                dynamic res = _connection.Query<dynamic>(
+                Setting.Istance.Configuration.MeasurementMonthList,
+                new Dictionary<string, object>()
+                {
+                    ["id"] = id
+                });
+
+                _connection.Close();
+
+                if (res == null || res.Count == 0)
+                {
+                    return new List<Dictionary<string, object>>();
+                }
+                else
+                {
+                    return JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(JsonConvert.SerializeObject(res));
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_connection.State == System.Data.ConnectionState.Open)
+                    _connection.Close();
+                throw ex;
+            }
+        }
+
+        public List<Dictionary<string, object>> getMeasurementWeekList(long id)
+        {
+            try
+            {
+                _connection.Open();
+
+                dynamic res = _connection.Query<dynamic>(
+                Setting.Istance.Configuration.MeasurementWeekList,
+                new Dictionary<string, object>()
+                {
+                    ["id"] = id
+                });
+
+                _connection.Close();
+
+                if (res == null || res.Count == 0)
+                {
+                    return new List<Dictionary<string, object>>();
+                }
+                else
+                {
+                    return JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(JsonConvert.SerializeObject(res));
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_connection.State == System.Data.ConnectionState.Open)
+                    _connection.Close();
+                throw ex;
+            }
+        }
+
         public bool DeleteMeasurement(long id, int idMisurazione)
         {
             try

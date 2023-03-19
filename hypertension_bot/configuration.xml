@@ -92,6 +92,33 @@
 		  and datetime::timestamp(0) BETWEEN (now()::timestamp(0) - '2 days'::interval)::timestamp(0)
 			and now()::timestamp(0)
 	</MeasurementList>
+	
+	<!-- Query per selezionare le misurazioni giornaliere d'un utente -->
+	<MeasurementDayList>
+	SELECT "idMeasurement", systolic, diastolic, "heartRate", datetime
+	FROM users."Measurement"
+	WHERE "User_idUser" = (SELECT "idUser" FROM users."User" WHERE "idTelegram" = @id)
+		  and datetime::timestamp(0) BETWEEN (now()::timestamp(0) - '1 days'::interval)::timestamp(0)
+			and now()::timestamp(0)
+	</MeasurementDayList>
+	
+	<!-- Query per selezionare le misurazioni settimanali d'un utente -->
+	<MeasurementWeekList>
+	SELECT "idMeasurement", systolic, diastolic, "heartRate", datetime
+	FROM users."Measurement"
+	WHERE "User_idUser" = (SELECT "idUser" FROM users."User" WHERE "idTelegram" = @id)
+		  and datetime::timestamp(0) BETWEEN (now()::timestamp(0) - '7 days'::interval)::timestamp(0)
+			and now()::timestamp(0)
+	</MeasurementWeekList>
+	
+	<!-- Query per selezionare le misurazioni mensili d'un utente -->
+	<MeasurementMonthList>
+	SELECT "idMeasurement", systolic, diastolic, "heartRate", datetime
+	FROM users."Measurement"
+	WHERE "User_idUser" = (SELECT "idUser" FROM users."User" WHERE "idTelegram" = @id)
+		  and datetime::timestamp(0) BETWEEN (now()::timestamp(0) - '30 days'::interval)::timestamp(0)
+			and now()::timestamp(0)
+	</MeasurementMonthList>
 
 	<!-- Query per eliminare una misurazione -->
 	<DeleteMeasurement>

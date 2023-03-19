@@ -17,6 +17,7 @@ namespace hypertension_bot.Models
         public ThankMessage ThankMessage => new();
         public MeasuresAccepted MeasuresAccepted => new();
         public AverageMessage AverageMessage => new();
+        public ListMessage ListMessage => new();
         public Random Random => new();
 
         //Block

@@ -18,6 +18,9 @@ namespace hypertension_bot.Models
         private string _updateFirstAlert;
         private string _measurementList;
         private string _deleteMeasurement;
+        private string _measurementDayList;
+        private string _measurementWeekList;
+        private string _measurementMonthList;
         private int    _valoreMaxSi;
         private int    _valoreMaxDi;        
         private int    _valoreMinSi;
@@ -37,6 +40,9 @@ namespace hypertension_bot.Models
         public string GetFirstAlert { get => _getFirstAlert; set => _getFirstAlert = value; }
         public string UpdateFirstAlert { get => _updateFirstAlert; set => _updateFirstAlert = value; }
         public string DeleteMeasurement { get => _deleteMeasurement; set => _deleteMeasurement = value; }
+        public string MeasurementDayList { get => _measurementDayList; set => _measurementDayList = value; }
+        public string MeasurementWeekList { get => _measurementWeekList; set => _measurementWeekList = value; }
+        public string MeasurementMonthList { get => _measurementMonthList; set => _measurementMonthList = value; }
         public int ValoreMaxSi { get => _valoreMaxSi; set => _valoreMaxSi = value; }
         public int ValoreMaxDi { get => _valoreMaxDi; set => _valoreMaxDi = value; }        
         public int ValoreMinSi { get => _valoreMinSi; set => _valoreMinSi = value; }
