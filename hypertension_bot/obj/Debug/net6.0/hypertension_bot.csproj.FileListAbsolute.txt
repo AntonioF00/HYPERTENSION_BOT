@@ -114,3 +114,8 @@ D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\obj\De
 D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\obj\Debug\net6.0\hypertension_bot.pdb
 D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\obj\Debug\net6.0\hypertension_bot.genruntimeconfig.cache
 D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\obj\Debug\net6.0\ref\hypertension_bot.dll
+D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Debug\net6.0\Microsoft.Extensions.Hosting.Abstractions.dll
+D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll

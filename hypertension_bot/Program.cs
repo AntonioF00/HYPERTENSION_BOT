@@ -154,9 +154,9 @@ namespace hypertension_bot
 
                 if (num1 != 0 && success)
                 {
-                    var mess = _data.MessageText.Replace(num1.ToString(), "");
+                    var mess = _data.MessageText.Replace(num1.ToString(), "").Replace("/", "-").Replace(",", "-");
 
-                    success = int.TryParse(new string(_data.MessageText.Replace("/", "-").Replace(",", "-")
+                    success = int.TryParse(new string($"{mess}"
                                            .SkipWhile(x => !char.IsDigit(x))
                                            .TakeWhile(char.IsDigit)
                                            .ToArray()), out int num2);
