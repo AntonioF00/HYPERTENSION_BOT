@@ -82,9 +82,10 @@ namespace hypertension_bot
                     var digits = new string(messageText.Where(char.IsDigit).ToArray());
                     if (int.TryParse(digits, out var num1))
                     {
-                        _dbController.DeleteMeasurement(_data.Id, num1);
+                        var r = _dbController.DeleteMeasurement(_data.Id, num1);
+                        var t = (r)? $"{_data.DeleteMessage.DeleteMessages[_data.Random.Next(3)]}" : "Non ho trovato la misurazione che mi hai indicato!";
                         _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                                 text: $"{_data.DeleteMessage.DeleteMessages[_data.Random.Next(3)]}",
+                                                                                 text: t,
                                                                                  cancellationToken: cancellationToken);
                     }
                 }

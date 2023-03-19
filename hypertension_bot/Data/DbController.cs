@@ -223,14 +223,14 @@ namespace hypertension_bot.Data
                 throw ex;
             }
         }        
-        public void DeleteMeasurement(long id, int idMisurazione)
+        public bool DeleteMeasurement(long id, int idMisurazione)
         {
             try
             {
                 if (_connection.State != System.Data.ConnectionState.Open)
                     _connection.Open();
 
-                _connection.Query(Setting.Istance.Configuration.DeleteMeasurement,
+                var r = _connection.QueryFirstOrDefault<bool>(Setting.Istance.Configuration.DeleteMeasurement,
                 new Dictionary<string, object>()
                 {
                     ["id"] = id,
@@ -238,12 +238,16 @@ namespace hypertension_bot.Data
                 });
 
                 _connection.Close();
+
+                return r; 
             }
             catch (Exception ex)
             {
                 if (_connection.State == System.Data.ConnectionState.Open)
                     _connection.Close();
 
+                throw ex;
+                 
                 LogHelper.Log(ex.Message);
             }
         }

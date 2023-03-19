@@ -95,6 +95,10 @@
 
 	<!-- Query per eliminare una misurazione -->
 	<DeleteMeasurement>
+	SELECT true 
+	FROM users."Measurement"
+	WHERE "User_idUser" = (SELECT "idUser" FROM users."User" WHERE "idTelegram" = @id) AND "idMeasurement" = @idMisurazione;
+	
 	DELETE FROM users."Measurement"
 	WHERE "User_idUser" = (SELECT "idUser" FROM users."User" WHERE "idTelegram" = @id) AND "idMeasurement" = @idMisurazione;
 	</DeleteMeasurement>
