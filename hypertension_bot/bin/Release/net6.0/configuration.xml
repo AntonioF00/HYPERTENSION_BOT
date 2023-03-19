@@ -111,4 +111,5 @@
 	
 	<!--Valore minimo consentito per la diastolica, sopra questo valore il bot invierà un messaggio di allerta all'utente -->
 	<ValoreMinDi>40</ValoreMinDi>
+
 </Configuration>

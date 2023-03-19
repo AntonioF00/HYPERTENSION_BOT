@@ -9,12 +9,12 @@ namespace hypertension_bot.Models
 
         private readonly List<string> _messages = new List<string>()
         {
-            "grazie",
-            "ti ringrazio",
+            "graz",
+            "ti ringraz",
             "ok",
-            "va bene",
-            "vabene",
-            "perfetto"
+            "va ben",
+            "vaben",
+            "perfet"
         };
 
         private readonly List<string> _replyMessages = new List<string>

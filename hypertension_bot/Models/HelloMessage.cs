@@ -10,12 +10,12 @@ namespace hypertension_bot.Models
 
         private static readonly List<string> _messages = new List<string>
         {
-            "ciao",
-            "buongiorno",
-            "buon giorno",
-            "buonasera",
-            "buona sera",
-            "bella",
+            "cia",
+            "buongior",
+            "buon gio",
+            "buonase",
+            "buona se",
+            "bel",
             "we"
         };
 
