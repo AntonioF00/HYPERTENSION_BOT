@@ -191,13 +191,13 @@ namespace hypertension_bot.Data
             }
         }
 
-        public Dictionary<string, object> getMeasurementList(long id)
+        public List<Dictionary<string, object>> getMeasurementList(long id)
         {
             try
             {
                 _connection.Open();
 
-                dynamic res = _connection.QueryFirstOrDefault<dynamic>(
+                dynamic res = _connection.Query<dynamic>(
                 Setting.Istance.Configuration.MeasurementList,
                 new Dictionary<string, object>()
                 {
@@ -208,12 +208,11 @@ namespace hypertension_bot.Data
 
                 if (res == null || res.Count == 0)
                 {
-                    return new Dictionary<string, object>();
+                    return new List<Dictionary<string, object>>();
                 }
                 else
                 {
-                    var json = JsonConvert.SerializeObject(res);
-                    return JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+                    return JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(JsonConvert.SerializeObject(res));
                 }
             }
             catch (Exception ex)

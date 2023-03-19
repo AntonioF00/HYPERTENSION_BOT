@@ -94,7 +94,7 @@ namespace hypertension_bot
                     _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                              text: $"{_data.DeleteMessage.Messages[_data.Random.Next(4)]}",
                                                                              cancellationToken: cancellationToken);
-                    Dictionary<string, object> list = _dbController.getMeasurementList(_data.Id);
+                    List<Dictionary<string, object>> list = _dbController.getMeasurementList(_data.Id);
                     var text = _data.DeleteMessage.listMessage(list);
                     _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
                                                                              text: text,

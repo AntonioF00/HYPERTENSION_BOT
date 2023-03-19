@@ -30,7 +30,7 @@ namespace hypertension_bot.Models
             DeleteMessages = _deleteMessages;
         }
 
-        public string listMessage(Dictionary<string,object> list)
+        public string listMessage(List<Dictionary<string,object>> list)
         {
             StringBuilder res = new StringBuilder();
             if (list.Count > 0)
@@ -39,11 +39,14 @@ namespace hypertension_bot.Models
                 int i = 0;
                 foreach (var e in list)
                 {
-                    res.AppendFormat("{0} | ", e.Value);
-
-                    if (++i % 5 == 0)
+                    foreach (var v in e)
                     {
-                        res.AppendLine();
+                        res.AppendFormat("{0} | ", v.Value);
+
+                        if (++i % 5 == 0)
+                        {
+                            res.AppendLine();
+                        }
                     }
                 }
             }
