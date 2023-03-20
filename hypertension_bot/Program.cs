@@ -82,11 +82,11 @@ namespace hypertension_bot
                     var digits = new string(messageText.Where(char.IsDigit).ToArray());
                     if (int.TryParse(digits, out var num1))
                     {
-                        var r = _dbController.DeleteMeasurement(_data.Id, num1);
-                        var t = (r)? $"{_data.DeleteMessage.DeleteMessages[_data.Random.Next(3)]}" : "Non ho trovato la misurazione che mi hai indicato!";
+                        _data.DoneDelete = true;
+                        _data.NumDelete = num1;
                         _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                                 text: t,
-                                                                                 cancellationToken: cancellationToken);
+                                                         text: $"Sei sicuro di voler eliminare la misurazione numero {num1}?" ,
+                                                         cancellationToken: cancellationToken);
                     }
                 }
                 else
@@ -119,23 +119,45 @@ namespace hypertension_bot
                                                                          text: $"{_data.ThankMessage.ReplyMessages[_data.Random.Next(5)]}",
                                                                          cancellationToken: cancellationToken);
             }
-            else if ((_data.NegativeMessage.Messages.Any(_data.MessageText.Contains)) && (_data.Done))
+            else if ((_data.NegativeMessage.Messages.Any(_data.MessageText.Contains)) && ((_data.DoneInsert) || (_data.DoneDelete)))
             {
-                _data.Done = false;
+                var t = "";
                 _unknown = true;
+                if (_data.DoneInsert)
+                {
+                    _data.DoneInsert = false;
+                    t = $"{_data.ErrorMessage.Messages[_data.Random.Next(4)]}\n{_data.FirstName} prova a reinserire i dati!";
+                }
+                if (_data.DoneDelete)
+                {
+                    _data.DoneDelete = false;
+                    t = $"Non preoccuparti {_data.FirstName}, non eliminerò alcuna misurazione!\nprova a indicarmi nuovamente quale misurazione devo eliminare!";
+                }
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                         text: $"{_data.ErrorMessage.Messages[_data.Random.Next(4)]}\n{_data.FirstName} prova a reinserire i dati!",
+                                                                         text: t,
                                                                          cancellationToken: cancellationToken);
             }
-            else if ((_data.OKMessage.Messages.Any(_data.MessageText.Contains)) && (_data.Done))
+            else if ((_data.OKMessage.Messages.Any(_data.MessageText.Contains)) && ((_data.DoneInsert) || (_data.DoneDelete)))
             {
-                _data.Done = false;
+                var t = "";
                 _unknown = true;
+                if (_data.DoneInsert)
+                {
+                    _data.DoneInsert = false;
+                    _dbController.InsertMeasures(_data.Diastolic, _data.Sistolic, _data.HeartRate, _data.Id);
+                    _dbController.UpdateFirstAlert(_data.Id, false);
+                    t = $"{_data.InsertMessage.Messages[_data.Random.Next(4)]}\nA presto {_data.FirstName}!\nData : {System.DateOnly.FromDateTime(System.DateTime.Now)}";
+                }
+                if (_data.DoneDelete)
+                {
+                    _data.DoneDelete = false;
+                    var r = _dbController.DeleteMeasurement(_data.Id, _data.NumDelete);
+                    t = (r) ? $"{_data.DeleteMessage.DeleteMessages[_data.Random.Next(3)]}!\nData : {System.DateOnly.FromDateTime(System.DateTime.Now)}" : "Non ho trovato la misurazione che mi hai indicato!";
+                }
+
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                         text: $"{_data.InsertMessage.Messages[_data.Random.Next(4)]}\nA presto {_data.FirstName}!\nData : {System.DateOnly.FromDateTime(System.DateTime.Now)}",
+                                                                         text: t,
                                                                          cancellationToken: cancellationToken);
-                _dbController.InsertMeasures(_data.Diastolic, _data.Sistolic, _data.HeartRate, _data.Id);
-                _dbController.UpdateFirstAlert(_data.Id, false);
 
             }
             else if (_data.HelloMessage.Messages.Any(_data.MessageText.Contains))
@@ -164,7 +186,7 @@ namespace hypertension_bot
                     if (num2 != 0 && success)
                     {
                         _unknown = true;
-                        _data.Done = true;
+                        _data.DoneInsert = true;
 
                         _data.Sistolic = (num1 > num2) ? num1 : num2;
                         _data.Diastolic = (num1 > num2) ? num2 : num1;
