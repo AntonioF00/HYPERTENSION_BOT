@@ -13,10 +13,10 @@ namespace hypertension_bot.Models
             "list",
             "elenc",
             "le",
-            "tutt",
+            "tut",
             "veder",
-            "visualiz",
-            "mostra"
+            "visuali",
+            "mostr"
         };
   
         public ListMessage()
