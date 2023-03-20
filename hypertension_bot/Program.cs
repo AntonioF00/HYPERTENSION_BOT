@@ -131,7 +131,7 @@ namespace hypertension_bot
                 if (_data.DoneDelete)
                 {
                     _data.DoneDelete = false;
-                    t = $"Non preoccuparti {_data.FirstName}, non eliminerò alcuna misurazione!\nprova a indicarmi nuovamente quale misurazione devo eliminare!";
+                    t = $"Non preoccuparti non eliminerò alcuna misurazione!\n{_data.FirstName} prova a indicarmi nuovamente quale misurazione devo eliminare!";
                 }
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId, text: t, cancellationToken: cancellationToken);
             }
@@ -162,7 +162,6 @@ namespace hypertension_bot
                                                                          text: $"{_data.HelloMessage.ReplyMessages[_data.Random.Next(4)]} {_data.FirstName}!",
                                                                          cancellationToken: cancellationToken);
             }
-
             else if (_data.MessageText.Any(char.IsDigit))
             {
                 bool success = int.TryParse(new string(_data.MessageText.Replace("/", "-").Replace(",", "-")
@@ -212,10 +211,7 @@ namespace hypertension_bot
                     }
                 }
             }
-            else if ((_data.MessageText.Contains("medi") ||
-                      _data.MessageText.Contains("mensile") ||
-                      _data.MessageText.Contains("giornaliera") ||
-                      _data.MessageText.Contains("settimanale")) && (_data.MessageText.Contains("medi") || _data.ListMessage.Messages.Any(_data.MessageText.Contains)))
+            else if (_data.AverageMessage.Messages.Any(_data.MessageText.Contains) && (_data.MessageText.Contains("medi") || _data.ListMessage.Messages.Any(_data.MessageText.Contains)))
             {
                 _unknown = true;
                 string responseText;
@@ -233,9 +229,7 @@ namespace hypertension_bot
                     responseText = (_data.MessageText.Contains("medi")) ? $"{_data.FirstName} specifica il tipo di media che vuoi visualizzare!\nMedia giornaliera / Media mensile / Media settimanale!"
                                                                         : $"{_data.FirstName} specifica quale elenco vuoi visualizzare!\nElenco mensile / Elenco settimanale / Elenco giornaliero!";
 
-                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                        text: responseText,
-                                                                        cancellationToken: cancellationToken);
+                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId, text: responseText, cancellationToken: cancellationToken);
             }
             if (!_unknown)
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,

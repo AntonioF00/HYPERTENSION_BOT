@@ -6,6 +6,20 @@ namespace hypertension_bot.Models
     public class AverageMessage
     {
         private readonly DbController _dbController = new DbController();
+        public List<string> Messages { get; }
+
+        private static readonly List<string> _messages = new List<string>
+        {
+            "mensil",
+            "mes",
+            "giorn",
+            "settim"
+        };
+
+        public AverageMessage()
+        {
+            Messages = _messages;
+        }
 
         private string FormatAverageMessage(string name, string period, Dictionary<string, object> res)
         {
