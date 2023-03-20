@@ -17,7 +17,6 @@ namespace hypertension_bot.Data
 
         public static DbConnection GetConnection(ConnectionTypes type, String connectionString)
         {
-
             if (type == ConnectionTypes.POSTGRESQL)
             {
                 return new NpgsqlConnection(connectionString);
