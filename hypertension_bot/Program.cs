@@ -101,7 +101,7 @@ namespace hypertension_bot
                                                                              cancellationToken: cancellationToken);
                     if(!text.Equals("Per visualizzare le misurazioni, inserirne prima una!"))
                         _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                                 text: "Per eliminare una misurazione indicarla nella seguente maniera:\n as esempio 'elimina la numero 14'",
+                                                                                 text: "Per eliminare una misurazione indicarla nella seguente maniera:\n Ad esempio 'elimina la numero 14'",
                                                                                  cancellationToken: cancellationToken);
                 }
             }
@@ -212,45 +212,30 @@ namespace hypertension_bot
                     }
                 }
             }
-            else if ((_data.MessageText.Contains("medi") || 
-                     _data.MessageText.Contains("mensile") || 
-                     _data.MessageText.Contains("giornaliera") ||
-                     _data.MessageText.Contains("settimanale")) && _data.MessageText.Contains("medi"))
-            {
-                _unknown = true;
-                string responseText;
-                if (_data.MessageText.Contains("mese") || _data.MessageText.Contains("mensile"))
-                    responseText = _data.AverageMessage.calculateMonthAVG(_data.Id, _data.FirstName);
-                else if (_data.MessageText.Contains("settima"))
-                    responseText = _data.AverageMessage.calculateWeekAVG(_data.Id, _data.FirstName);
-                else if (_data.MessageText.Contains("giorn") || _data.MessageText.Contains("oggi"))
-                    responseText = _data.AverageMessage.calculateDayAVG(_data.Id, _data.FirstName);
-                else
-                    responseText = $"{_data.FirstName} specifica il tipo di media che vuoi visualizzare!\nMedia giornaliera / Media mensile / Media settimanale!";
-
-                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                         text: responseText,
-                                                                         cancellationToken: cancellationToken);
-            }
             else if ((_data.MessageText.Contains("medi") ||
-                     _data.MessageText.Contains("mens") ||
-                     _data.MessageText.Contains("giorn") ||
-                     _data.MessageText.Contains("settima")) && _data.ListMessage.Messages.Any(_data.MessageText.Contains))
+                      _data.MessageText.Contains("mensile") ||
+                      _data.MessageText.Contains("giornaliera") ||
+                      _data.MessageText.Contains("settimanale")) && (_data.MessageText.Contains("medi") || _data.ListMessage.Messages.Any(_data.MessageText.Contains)))
             {
                 _unknown = true;
                 string responseText;
+
                 if (_data.MessageText.Contains("mese") || _data.MessageText.Contains("mensile"))
-                    responseText = _data.ListMessage.MonthList(_data.Id, _data.FirstName);
+                    responseText = (_data.MessageText.Contains("medi")) ? _data.AverageMessage.calculateMonthAVG(_data.Id, _data.FirstName) 
+                                                                        : _data.ListMessage.MonthList(_data.Id, _data.FirstName);
                 else if (_data.MessageText.Contains("settima"))
-                    responseText = _data.ListMessage.WeekList(_data.Id, _data.FirstName);
+                    responseText = (_data.MessageText.Contains("medi")) ? _data.AverageMessage.calculateWeekAVG(_data.Id, _data.FirstName) 
+                                                                        : _data.ListMessage.WeekList(_data.Id, _data.FirstName);
                 else if (_data.MessageText.Contains("giorn") || _data.MessageText.Contains("oggi"))
-                    responseText = _data.ListMessage.DayList(_data.Id, _data.FirstName);
+                    responseText = (_data.MessageText.Contains("medi")) ? _data.AverageMessage.calculateDayAVG(_data.Id, _data.FirstName) 
+                                                                        : _data.ListMessage.DayList(_data.Id, _data.FirstName);
                 else
-                    responseText = $"{_data.FirstName} specifica quale elenco vuoi visualizzare!\nElenco mensile / Elenco settimanale / Elenco giornaliero!";
+                    responseText = (_data.MessageText.Contains("medi")) ? $"{_data.FirstName} specifica il tipo di media che vuoi visualizzare!\nMedia giornaliera / Media mensile / Media settimanale!"
+                                                                        : $"{_data.FirstName} specifica quale elenco vuoi visualizzare!\nElenco mensile / Elenco settimanale / Elenco giornaliero!";
 
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                         text: responseText,
-                                                                         cancellationToken: cancellationToken);
+                                                                        text: responseText,
+                                                                        cancellationToken: cancellationToken);
             }
             if (!_unknown)
                 _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
