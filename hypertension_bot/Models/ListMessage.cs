@@ -11,12 +11,13 @@ namespace hypertension_bot.Models
         private static readonly List<string> _messages = new List<string>
         {
             "list",
-            "elenc",
+            "elen",
             "le",
             "tut",
             "veder",
             "visuali",
-            "mostr"
+            "mostr",
+            "stamp"
         };
   
         public ListMessage()
@@ -29,7 +30,7 @@ namespace hypertension_bot.Models
             StringBuilder res = new StringBuilder();
             if (list.Count > 0)
             {
-                res.AppendLine($"Elenco {period}:");
+                res.AppendLine($"Elenco {period} di {name}:");
                 res.AppendLine("Id | Sistolica | Diastolica | Frequenza cardiaca | data");
                 int i = 0;
                 foreach (var e in list)
