@@ -14,19 +14,13 @@ namespace hypertension_bot
     class program
     {
         private static TelegramBotClient _telegramBot = new TelegramBotClient(Setting.Istance.Configuration.BotToken);
-
         private static readonly Datas _data = new(); 
-
         private static readonly DbController _dbController = new();
-
         static async Task Main(string[] args)
         {
             using var _cancellationTokenSource = new CancellationTokenSource();
 
-            var receiverOptions = new ReceiverOptions
-            {
-                AllowedUpdates = { }
-            };
+            var receiverOptions = new ReceiverOptions { AllowedUpdates = { } };
             try
             {
                 _telegramBot.StartReceiving(HandleUpdateAsync, HandleErrorAsync, receiverOptions, cancellationToken: _cancellationTokenSource.Token);
@@ -50,7 +44,6 @@ namespace hypertension_bot
 
             if (update.Type != UpdateType.Message) 
                 return;
-
             if (update.Message!.Type != MessageType.Text)
                 return;
 
