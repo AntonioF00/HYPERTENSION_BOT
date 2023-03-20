@@ -9,12 +9,10 @@ namespace hypertension_bot.Data
     public class DbController
     {
         private readonly DbConnection _connection;
-
         public DbController()
         {
             _connection = ConnectionFactory.GetConnection(Setting.Istance.Configuration.ConnectionType, Setting.Istance.Configuration.ConnectionString);
         }
-
         public void InsertMeasures(int diastolic, int sistolic,int heartRate, int id)
         {
             try
@@ -41,7 +39,6 @@ namespace hypertension_bot.Data
                 LogHelper.Log(ex.Message);
             }
         }
-
         public void InsertUser(int id)
         {
             try
@@ -65,7 +62,6 @@ namespace hypertension_bot.Data
                 LogHelper.Log(ex.Message);
             }
         }
-
         public string LastInsert(long id)
         {
             try
@@ -91,7 +87,6 @@ namespace hypertension_bot.Data
                 throw ex;
             }
         }
-
         public Dictionary<string,object> CalculateMonthAVG(long id)
         {
             try
@@ -124,7 +119,6 @@ namespace hypertension_bot.Data
                 throw ex;
             }
         }
-
         public Dictionary<string, object> CalculateWeekAVG(long id)
         {
             try
@@ -157,7 +151,6 @@ namespace hypertension_bot.Data
                 throw ex;
             }
         }
-
         public Dictionary<string, object> CalculateDayAVG(long id)
         {
             try
@@ -190,7 +183,6 @@ namespace hypertension_bot.Data
                 throw ex;
             }
         }
-
         public List<Dictionary<string, object>> getMeasurementList(long id)
         {
             try
@@ -222,7 +214,6 @@ namespace hypertension_bot.Data
                 throw ex;
             }
         }
-
         public List<Dictionary<string, object>> getMeasurementDayList(long id)
         {
             try
@@ -254,7 +245,6 @@ namespace hypertension_bot.Data
                 throw ex;
             }
         }
-
         public List<Dictionary<string, object>> getMeasurementMonthList(long id)
         {
             try
@@ -286,7 +276,6 @@ namespace hypertension_bot.Data
                 throw ex;
             }
         }
-
         public List<Dictionary<string, object>> getMeasurementWeekList(long id)
         {
             try
@@ -318,7 +307,6 @@ namespace hypertension_bot.Data
                 throw ex;
             }
         }
-
         public bool DeleteMeasurement(long id, int idMisurazione)
         {
             try
@@ -347,7 +335,6 @@ namespace hypertension_bot.Data
                 LogHelper.Log(ex.Message);
             }
         }
-
         public bool GetFirstAlert(long id)
         {
             try
@@ -372,7 +359,6 @@ namespace hypertension_bot.Data
                 throw ex;
             }
         }
-
         public void UpdateFirstAlert(long id, bool b)
         {
             try

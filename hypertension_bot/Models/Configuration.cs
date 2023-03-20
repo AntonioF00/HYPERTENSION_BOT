@@ -6,8 +6,8 @@ namespace hypertension_bot.Models
     {
         private string _connectionString;
         private ConnectionTypes _connectionType;
-        private string? _botToken;
-        private string? _witToken;
+        private string _botToken;
+        private string _witToken;
         private string  _insertMeasures;
         private string _insertUser;
         private string _lastInsert;
