@@ -10,15 +10,13 @@ namespace hypertension_bot.Models
         {
             "si",
             "s",
-            "perfetto",
-            "vabene",
+            "perfet",
+            "vaben",
             "ok",
             "oky",
             "yes",
-            "esatto",
-            "esattamente",
-            "esatti",
-            "bene"
+            "esat",
+            "ben",
         };
 
         public OkMessage()

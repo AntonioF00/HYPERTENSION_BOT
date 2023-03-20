@@ -10,10 +10,10 @@ namespace hypertension_bot.Models
         {
             "no",
             "n",
-            "sbagliato",
-            "errato",
-            "errati",
-            "sbagliati"
+            "sbagli",
+            "erra",
+            "cance",
+            "negat"
         };
 
         public NegativeMessage()
