@@ -14,7 +14,11 @@ namespace hypertension_bot.Models
             "ok",
             "va ben",
             "vaben",
-            "perfet"
+            "perfet",
+            "genti",
+            "teso",
+            "amo",
+            "brav"
         };
 
         private readonly List<string> _replyMessages = new List<string>

@@ -133,9 +133,7 @@ namespace hypertension_bot
                     _data.DoneDelete = false;
                     t = $"Non preoccuparti {_data.FirstName}, non eliminerò alcuna misurazione!\nprova a indicarmi nuovamente quale misurazione devo eliminare!";
                 }
-                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                         text: t,
-                                                                         cancellationToken: cancellationToken);
+                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId, text: t, cancellationToken: cancellationToken);
             }
             else if ((_data.OKMessage.Messages.Any(_data.MessageText.Contains)) && ((_data.DoneInsert) || (_data.DoneDelete)))
             {
@@ -155,10 +153,7 @@ namespace hypertension_bot
                     t = (r) ? $"{_data.DeleteMessage.DeleteMessages[_data.Random.Next(3)]}!\nData : {System.DateOnly.FromDateTime(System.DateTime.Now)}" : "Non ho trovato la misurazione che mi hai indicato!";
                 }
 
-                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId,
-                                                                         text: t,
-                                                                         cancellationToken: cancellationToken);
-
+                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: _data.ChatId, text: t, cancellationToken: cancellationToken);
             }
             else if (_data.HelloMessage.Messages.Any(_data.MessageText.Contains))
             {
