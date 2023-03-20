@@ -3,7 +3,6 @@ using Npgsql;
 using System;
 using System.Data.Common;
 
-
 namespace hypertension_bot.Data
 {
     public class ConnectionFactory
