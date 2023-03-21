@@ -17,7 +17,8 @@ namespace hypertension_bot.Models
             "veder",
             "visuali",
             "mostr",
-            "stamp"
+            "stamp",
+            "val"
         };
   
         public ListMessage()
