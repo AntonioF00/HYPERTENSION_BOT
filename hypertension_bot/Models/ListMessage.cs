@@ -15,9 +15,9 @@ namespace hypertension_bot.Models
             "le",
             "tut",
             "veder",
-            "visuali",
+            "visua",
             "mostr",
-            "stamp",
+            "stam",
             "val"
         };
   
