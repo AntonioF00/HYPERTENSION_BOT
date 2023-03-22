@@ -32,11 +32,13 @@ namespace hypertension_bot.Services
             _data.FirstName = _firstName;
             _data.Id = id;
 
+            ///messaggio iniziale /start
             if (_data.MessageText.Equals("/start"))
             {
                 _unknown = true;
                 res.Add($"{_data.HelloMessage.InitialMessages[_data.Random.Next(1)]}");
             }
+            ///contesto di eliminazione d'una misura
             else if (_data.MessageText.Contains("elim"))
             {
                 _unknown = true;
@@ -61,16 +63,19 @@ namespace hypertension_bot.Services
                         res.Add("Per eliminare una misurazione indicarla nella seguente maniera:\n Ad esempio 'elimina la numero 14'");
                 }
             }
+            ///contesto su come si misura la pressione
             else if (_data.PressureMessage.Messages.Any(_data.MessageText.Contains))
             {
                 _unknown = true;
                 res.Add($"{_data.PressureMessage.HowToMessages[_data.Random.Next(1)]}");
             }
+            ///contesto d'un messaggio di ringraziamento
             else if (_data.ThankMessage.Messages.Any(_data.MessageText.Contains))
             {
                 _unknown = true;
                 res.Add($"{_data.ThankMessage.ReplyMessages[_data.Random.Next(5)]}");
             }
+            ///contesto d'un messaggi di negazione dovuto alla richiesta d'inesrimento o eliminazione
             else if ((_data.NegativeMessage.Messages.Any(_data.MessageText.Contains)) && ((_data.DoneInsert) || (_data.DoneDelete)))
             {
                 _unknown = true;
@@ -85,6 +90,7 @@ namespace hypertension_bot.Services
                     res.Add($"Non preoccuparti non eliminerò alcuna misurazione!\n{_data.FirstName} prova a indicarmi nuovamente quale misurazione devo eliminare!");
                 }
             }
+            ///contesto d'un messaggi di conferma dovuto alla richiesta d'inesrimento o eliminazione
             else if ((_data.OKMessage.Messages.Any(_data.MessageText.Contains)) && ((_data.DoneInsert) || (_data.DoneDelete)))
             {
                 _unknown = true;
@@ -103,11 +109,13 @@ namespace hypertension_bot.Services
                                 : "Non ho trovato la misurazione che mi hai indicato!");
                 }
             }
+            ///contesto d'un messaggio di saluto
             else if (_data.HelloMessage.Messages.Any(_data.MessageText.Contains))
             {
                 _unknown = true;
                 res.Add($"{_data.HelloMessage.ReplyMessages[_data.Random.Next(4)]} {_data.FirstName}!");
-            }            
+            }
+            ///contesto d'un messaggio di esportazione dei dati e invio via mail
             else if (_data.ExportMessage.Messages.Any(_data.MessageText.Contains))
             {
                 _unknown = true;
@@ -121,6 +129,7 @@ namespace hypertension_bot.Services
                              : "Qualcosa dev'essere andato storto! Riprova ad inviare piu' tardi la mail!");
 
             }
+            ///contesto d'un messaggio di una creazione di grafici
             else if (_data.ChartMessage.Messages.Any(_data.MessageText.Contains))
             {
                 _unknown = true;
@@ -128,6 +137,7 @@ namespace hypertension_bot.Services
                 //routine di creazione grafici
                 List<Dictionary<string, object>> list = _dbController.getMeasurementMonthList(_data.Id);
             }
+            ///contesto d'un messaggio in cui sono presenti le misure di sistolica diastolica e frequenza cardiaca
             else if (_data.MessageText.Any(char.IsDigit))
             {
                 bool success = int.TryParse(new string(_data.MessageText.Replace("/", "-").Replace(",", "-")
@@ -175,6 +185,7 @@ namespace hypertension_bot.Services
                     }
                 }
             }
+            ///contesto d'un messaggio per ottenere la media o una lista delle misurazioni
             else if (_data.AverageMessage.Messages.Any(_data.MessageText.Contains) && (_data.MessageText.Contains("medi") || _data.ListMessage.Messages.Any(_data.MessageText.Contains)))
             {
                 _unknown = true;
@@ -192,6 +203,7 @@ namespace hypertension_bot.Services
                     res.Add((_data.MessageText.Contains("medi")) ? $"{_data.FirstName} specifica il tipo di media che vuoi visualizzare!\nMedia giornaliera / Media mensile / Media settimanale!"
                                                                  : $"{_data.FirstName} specifica quale elenco vuoi visualizzare!\nElenco mensile / Elenco settimanale / Elenco giornaliero!");
             }
+            ///contesto d'un messaggio in cui il contesto non è stato compreso
             if (!_unknown)
             {
                 //res.Add($"{_data.ErrorMessage.Messages[_data.Random.Next(6)]}");
