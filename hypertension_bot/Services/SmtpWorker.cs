@@ -1,4 +1,5 @@
 ﻿using hypertension_bot.Settings;
+using System.Net.Http;
 using System.Net.Mail;
 
 namespace hypertension_bot.Services
@@ -12,11 +13,14 @@ namespace hypertension_bot.Services
         {
             try
             {
-                SmtpClient mySmtpClient = new SmtpClient(Setting.Istance.Configuration.Smtp);
+                SmtpClient mySmtpClient = new SmtpClient();
                 // set smtp-client with basicAuthentication
-                mySmtpClient.UseDefaultCredentials = false;
+                mySmtpClient.UseDefaultCredentials = true;
+                mySmtpClient.Host = "localhost";
+                mySmtpClient.Port = 587;
                 System.Net.NetworkCredential basicAuthenticationInfo = new
                 System.Net.NetworkCredential(Setting.Istance.Configuration.Username, Setting.Istance.Configuration.Pwd);
+                mySmtpClient.EnableSsl = true;
                 mySmtpClient.Credentials = basicAuthenticationInfo;
                 // add from,to mailaddresses
                 MailAddress from = new MailAddress(Setting.Istance.Configuration.Username, Setting.Istance.Configuration.NickName);
