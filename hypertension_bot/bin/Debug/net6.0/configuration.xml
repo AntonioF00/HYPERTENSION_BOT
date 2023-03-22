@@ -154,10 +154,10 @@
 	<!--Smtp configuration-->
 	<Smtp>smtp-relay.sendinblue.com</Smtp>
 	<Username>AFlorio45@gmail.com</Username>
-	<NickName>Antonio</NickName>
+	<NickName>HypertensionBot</NickName>
 	<Pwd>58CXVStO1QAaLN03</Pwd>
 	<Recipient>AFlorio45@gmail.com</Recipient>
-	<RecipientUsername>Antonions</RecipientUsername>
+	<RecipientUsername>Receiver</RecipientUsername>
 	<Subject>MISURAZIONI</Subject>
 	<Body></Body>
 	
