@@ -218,7 +218,6 @@ namespace hypertension_bot.Services
             ///contesto d'un messaggio in cui il contesto non è stato compreso
             if (!_unknown)
             {
-                //res.Add($"{_data.ErrorMessage.Messages[_data.Random.Next(6)]}");
                 ///chiamo il NLPWorker per gestire il contesto sconosciuto
                 NLPWorker _nlpWorker = new();
                 await _nlpWorker.RunAsync(_data.MessageText);
