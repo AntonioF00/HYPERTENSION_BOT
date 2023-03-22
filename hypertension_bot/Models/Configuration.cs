@@ -25,7 +25,16 @@ namespace hypertension_bot.Models
         private int    _valoreMaxSi;
         private int    _valoreMaxDi;        
         private int    _valoreMinSi;
-        private int    _valoreMinDi;
+        private int    _valoreMinDi; 
+        private string _smtp;
+        private string _username;
+        private string _pwd;
+        private string _recipient;
+        private string _recipientUsername;
+        private string _body;
+        private string _subject;
+        private string _attachments;
+        private string _nickName;
 
         public string ConnectionString { get => _connectionString; set => _connectionString = value; }
         public ConnectionTypes ConnectionType { get => _connectionType; set => _connectionType = value; }
@@ -49,5 +58,14 @@ namespace hypertension_bot.Models
         public int ValoreMaxDi { get => _valoreMaxDi; set => _valoreMaxDi = value; }        
         public int ValoreMinSi { get => _valoreMinSi; set => _valoreMinSi = value; }
         public int ValoreMinDi { get => _valoreMinDi; set => _valoreMinDi = value; }
+        public string Smtp { get => _smtp; set => _smtp = value; }
+        public string Username { get => _username; set => _username = value; }
+        public string Pwd { get => _pwd; set => _pwd = value; }
+        public string Recipient { get => _recipient; set => _recipient = value; }
+        public string RecipientUsername { get => _recipientUsername; set => _recipientUsername = value; }
+        public string Body { get => _body; set => _body = value; }
+        public string Subject { get => _subject; set => _subject = value; }
+        public string Attachments { get => _attachments; set => _attachments = value; }
+        public string NickName { get => _nickName; set => _nickName = value; }
     }
 }

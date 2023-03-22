@@ -150,4 +150,14 @@
 	<!--Valore minimo consentito per la diastolica, sopra questo valore il bot invierà un messaggio di allerta all'utente -->
 	<ValoreMinDi>40</ValoreMinDi>
 
+	<!--Smtp configuration-->
+	<Smtp>10.32.11.141</Smtp>
+	<Username>email</Username>
+	<NickName>nickname</NickName>
+	<Pwd>emailpwd</Pwd>
+	<Recipient>destinatario email</Recipient>
+	<RecipientUsername>destinatario nickname</RecipientUsername>
+	<Subject>oggetto</Subject>
+	<Body></Body>
+	
 </Configuration>

@@ -1,6 +1,7 @@
 ﻿using hypertension_bot.Data;
 using hypertension_bot.Models;
 using hypertension_bot.Settings;
+using System.Net.Mail;
 
 namespace hypertension_bot.Services
 {
@@ -112,6 +113,13 @@ namespace hypertension_bot.Services
                 _unknown = true;
                 res.Add($"{_data.ExportMessage.ReplyMessages[_data.Random.Next(3)]}!");
                 //routine di invio email
+                List<Dictionary<string, object>> list = _dbController.getMeasurementAllList(_data.Id);
+                Setting.Istance.Configuration.Body = _data.DeleteMessage.listMessage(list);
+                SmtpWorker _smtpWorker = new();
+                var send = _smtpWorker.Run();
+                res.Add(send ? "Il dottore ha ricevuto la mail!" 
+                             : "Qualcosa dev'essere andato storto! Riprova ad inviare la mail!");
+
             }
             else if (_data.MessageText.Any(char.IsDigit))
             {
