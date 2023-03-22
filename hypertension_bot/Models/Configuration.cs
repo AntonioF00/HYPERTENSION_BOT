@@ -8,6 +8,7 @@ namespace hypertension_bot.Models
         private ConnectionTypes _connectionType;
         private string _botToken;
         private string _witToken;
+        private string _gpt3Api;
         private string  _insertMeasures;
         private string _insertUser;
         private string _lastInsert;
@@ -40,6 +41,7 @@ namespace hypertension_bot.Models
         public ConnectionTypes ConnectionType { get => _connectionType; set => _connectionType = value; }
         public string BotToken { get => _botToken; set => _botToken = value; }
         public string WitToken { get => _witToken; set => _witToken = value; }
+        public string GPT3Api { get => _gpt3Api; set => _gpt3Api = value; }
         public string InsertMeasures { get => _insertMeasures; set => _insertMeasures = value; }
         public string InsertUser { get => _insertUser; set => _insertUser = value; }
         public string LastInsert { get => _lastInsert; set => _lastInsert = value; }

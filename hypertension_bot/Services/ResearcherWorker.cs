@@ -16,10 +16,10 @@ namespace hypertension_bot.Services
             _id = id;
         }        
 
-        public List<string> FindResponse(long _chatId,
-                                         string _messageText, 
-                                         string _firstName,
-                                         int id)
+        public async Task<List<string>> FindResponse(long _chatId,
+                                                     string _messageText, 
+                                                     string _firstName,
+                                                     int id)
         {
             ///variabile per determinare se il bot è stato in grado di comprendere il contesto
             bool _unknown = false;
@@ -193,8 +193,13 @@ namespace hypertension_bot.Services
                                                                  : $"{_data.FirstName} specifica quale elenco vuoi visualizzare!\nElenco mensile / Elenco settimanale / Elenco giornaliero!");
             }
             if (!_unknown)
-                res.Add($"{_data.ErrorMessage.Messages[_data.Random.Next(6)]}");
-
+            {
+                //res.Add($"{_data.ErrorMessage.Messages[_data.Random.Next(6)]}");
+                ///chiamo il NLPWorker per gestire il contesto sconosciuto
+                NLPWorker _nlpWorker = new();
+                _ = _nlpWorker.RunAsync(_data.MessageText);
+                res.Add(_nlpWorker.res);
+            }
             return res;
         }
     }

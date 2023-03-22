@@ -8,6 +8,7 @@
 	<!--Bot settings-->
 	<BotToken>5505039837:AAGceHkTc7OVOn4AmwZ5x_Ol_srrDNkf3rs</BotToken>
 	<WitToken>TOL255PV5YN7NCIULDK7JQWV5MG72WP4</WitToken>
+	<GPT3Api>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</GPT3Api>
 
 	<!-- Querys-->
 	<InsertMeasures>
