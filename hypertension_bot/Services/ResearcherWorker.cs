@@ -118,7 +118,7 @@ namespace hypertension_bot.Services
                 SmtpWorker _smtpWorker = new();
                 var send = _smtpWorker.Run();
                 res.Add(send ? "Il dottore ha ricevuto la mail!" 
-                             : "Qualcosa dev'essere andato storto! Riprova ad inviare la mail!");
+                             : "Qualcosa dev'essere andato storto! Riprova ad inviare piu' tardi la mail!");
 
             }
             else if (_data.MessageText.Any(char.IsDigit))
