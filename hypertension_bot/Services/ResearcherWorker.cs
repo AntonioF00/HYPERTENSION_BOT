@@ -209,7 +209,7 @@ namespace hypertension_bot.Services
                 //res.Add($"{_data.ErrorMessage.Messages[_data.Random.Next(6)]}");
                 ///chiamo il NLPWorker per gestire il contesto sconosciuto
                 NLPWorker _nlpWorker = new();
-                _ = _nlpWorker.RunAsync(_data.MessageText);
+                _ = await _nlpWorker.RunAsync(_data.MessageText);
                 res.Add(_nlpWorker.res);
             }
             return res;
