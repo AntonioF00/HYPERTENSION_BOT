@@ -19,6 +19,7 @@ namespace hypertension_bot.Models
         public AverageMessage AverageMessage => new();
         public ListMessage ListMessage => new();
         public ExportMessage ExportMessage => new();
+        public ChartMessage ChartMessage => new();
         public Random Random => new();
 
         //Block
