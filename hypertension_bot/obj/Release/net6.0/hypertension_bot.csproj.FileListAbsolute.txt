@@ -125,3 +125,15 @@ D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\obj\Re
 D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\obj\Release\net6.0\hypertension_bot.pdb
 D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\obj\Release\net6.0\hypertension_bot.genruntimeconfig.cache
 D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\obj\Release\net6.0\ref\hypertension_bot.dll
+C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\OpenAI.GPT3.dll
+C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Microsoft.Extensions.Configuration.Binder.dll
+C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Microsoft.Extensions.Hosting.Abstractions.dll
+C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Microsoft.Extensions.Http.dll
+C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Microsoft.Extensions.Logging.dll
+C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Microsoft.Extensions.Options.dll
+C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Microsoft.Extensions.Options.ConfigurationExtensions.dll
+C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Microsoft.Extensions.Primitives.dll
