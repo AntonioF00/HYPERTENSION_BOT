@@ -1,7 +1,9 @@
 ﻿using hypertension_bot.Data;
 using hypertension_bot.Models;
 using hypertension_bot.Settings;
+using Microsoft.VisualBasic;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Mail;
 using Telegram.Bot;
 using Telegram.Bot.Types;
@@ -141,8 +143,12 @@ namespace hypertension_bot.Services
                 res.Add($"{_data.ChartMessage.ReplyMessages[_data.Random.Next(3)]}!");
                 //routine di creazione grafici
                 List<Dictionary<string, object>> list = _dbController.getMeasurementMonthList(_data.Id);
-                //_ = _botClient.SendMediaGroupAsync(chatId : _data.ChatId,
-                //                                   media : );
+                ChartWorker _chartWorker = new ChartWorker();
+                _chartWorker.Run(list);
+                //IAlbumInputMedia[] inputMedia = new InputMediaPhoto(new InputMedia("grafico.png")) { Caption = "grafico"};
+                //_  = await _botClient.SendMediaGroupAsync(chatId: _data.ChatId,
+                //                                          media: inputMedia,
+                //                                          allowSendingWithoutReply: true);
             }
             ///contesto d'un messaggio in cui sono presenti le misure di sistolica diastolica e frequenza cardiaca
             else if (_data.MessageText.Any(char.IsDigit))
