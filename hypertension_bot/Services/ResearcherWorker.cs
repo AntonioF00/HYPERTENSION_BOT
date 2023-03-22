@@ -121,6 +121,13 @@ namespace hypertension_bot.Services
                              : "Qualcosa dev'essere andato storto! Riprova ad inviare piu' tardi la mail!");
 
             }
+            else if (_data.ChartMessage.Messages.Any(_data.MessageText.Contains))
+            {
+                _unknown = true;
+                res.Add($"{_data.ChartMessage.ReplyMessages[_data.Random.Next(3)]}!");
+                //routine di creazione grafici
+                List<Dictionary<string, object>> list = _dbController.getMeasurementMonthList(_data.Id);
+            }
             else if (_data.MessageText.Any(char.IsDigit))
             {
                 bool success = int.TryParse(new string(_data.MessageText.Replace("/", "-").Replace(",", "-")
