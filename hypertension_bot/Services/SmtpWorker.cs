@@ -21,7 +21,7 @@ namespace hypertension_bot.Services
                 // add from,to mailaddresses
                 MailAddress from = new MailAddress(Setting.Istance.Configuration.Username, Setting.Istance.Configuration.NickName);
                 MailAddress to = new MailAddress(Setting.Istance.Configuration.Recipient, Setting.Istance.Configuration.RecipientUsername);
-                MailMessage myMail = new System.Net.Mail.MailMessage(from, to);
+                MailMessage myMail = new MailMessage(from, to);
                 // add ReplyTo
                 MailAddress replyTo = new MailAddress(Setting.Istance.Configuration.Recipient);
                 myMail.ReplyToList.Add(replyTo);
