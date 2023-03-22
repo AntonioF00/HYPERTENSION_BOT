@@ -17,7 +17,7 @@ namespace hypertension_bot
         private static readonly Datas _data = new(); 
         private static readonly DbController _dbController = new();
         private static readonly List<ResearcherWorker> _researcherWorker = new();
-        private static readonly Worker _worker = new Worker();
+
         static async Task Main(string[] args)
         {
             using var _cancellationTokenSource = new CancellationTokenSource();
@@ -56,6 +56,7 @@ namespace hypertension_bot
             _researcherWorker.Add(new ResearcherWorker((int)update.Message.From.Id, botClient));
 
             ///porte dell'inferno
+            Worker _worker = new Worker();
             _worker.setting(botClient, cancellationToken, (int)update.Message.From.Id, update.Message.Chat.Id);
 
             ///cerco il contesto del messaggio e riporto una lista contenente i messaggi di ritorno
