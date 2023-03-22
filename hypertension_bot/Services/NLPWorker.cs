@@ -17,42 +17,21 @@ namespace hypertension_bot.Services
     /// per sviluppare l'intelligenza artificiale mi sono basato sulle API di chatGPT
     /// Betalgo.OpenAI.GPT3
     /// https://liuhongbo.medium.com/how-to-use-chatgpt-api-in-c-d9133a3b8ef9
+    /// https://rogerpincombe.com/openai-dotnet-api
     /// </summary>
     internal class NLPWorker
     {
-        public string res { get; set; }
+        public StringBuilder res = new();
         public NLPWorker() { }
 
         public async Task RunAsync(string text)
         {
-            var gpt3 = new OpenAIService(new OpenAiOptions()
-            {
-                ApiKey = Setting.Istance.Configuration.GPT3Api
-            });
+            var api = new OpenAI_API.OpenAIAPI(Setting.Istance.Configuration.GPT3Api);
 
-            var completionResult = await gpt3.Completions.CreateCompletion(new CompletionCreateRequest()
+            var result = await api.Completions.CreateCompletionAsync(text, temperature: 0.1);
+            foreach (var r in result.Completions)
             {
-                Prompt = text,
-                Temperature = 0.5F,
-                MaxTokens = 100,
-                N = 3
-            });
-
-            if (completionResult.Successful)
-            {
-                foreach (var choice in completionResult.Choices)
-                {
-                    res = choice.Text;
-                }
-            }
-            else
-            {
-                if (completionResult.Error == null)
-                {
-                    res = "Non credo di aver capito!";
-                    throw new Exception("Unknown Error");
-                }
-                LogHelper.Log($"{completionResult.Error.Code}: {completionResult.Error.Message}");
+                res.AppendLine(r.Text);
             }
         }
     }

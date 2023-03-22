@@ -126,13 +126,12 @@ namespace hypertension_bot.Services
             else if (_data.ExportMessage.Messages.Any(_data.MessageText.Contains))
             {
                 _unknown = true;
-                res.Add($"{_data.ExportMessage.ReplyMessages[_data.Random.Next(3)]}!");
                 //routine di invio email
                 List<Dictionary<string, object>> list = _dbController.getMeasurementAllList(_data.Id);
                 Setting.Istance.Configuration.Body = _data.DeleteMessage.listMessage(list);
                 SmtpWorker _smtpWorker = new();
                 var send = _smtpWorker.Run();
-                res.Add(send ? "Il dottore ha ricevuto la mail!" 
+                res.Add(send ? $"{_data.ExportMessage.ReplyMessages[_data.Random.Next(3)]}!"
                              : "Qualcosa dev'essere andato storto! Riprova ad inviare piu' tardi la mail!");
 
             }
@@ -222,8 +221,8 @@ namespace hypertension_bot.Services
                 //res.Add($"{_data.ErrorMessage.Messages[_data.Random.Next(6)]}");
                 ///chiamo il NLPWorker per gestire il contesto sconosciuto
                 NLPWorker _nlpWorker = new();
-                _ = await _nlpWorker.RunAsync(_data.MessageText);
-                res.Add(_nlpWorker.res);
+                await _nlpWorker.RunAsync(_data.MessageText);
+                res.Add(_nlpWorker.res.ToString());
             }
             return res;
         }

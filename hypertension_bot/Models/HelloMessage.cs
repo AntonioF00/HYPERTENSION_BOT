@@ -15,7 +15,6 @@ namespace hypertension_bot.Models
             "buon gio",
             "buonase",
             "buona se",
-            "bel",
             "we"
         };
 

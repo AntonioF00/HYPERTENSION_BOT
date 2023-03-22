@@ -152,13 +152,13 @@
 	<ValoreMinDi>40</ValoreMinDi>
 
 	<!--Smtp configuration-->
-	<Smtp>10.32.11.141</Smtp>
-	<Username>email</Username>
-	<NickName>nickname</NickName>
-	<Pwd>emailpwd</Pwd>
-	<Recipient>destinatario email</Recipient>
-	<RecipientUsername>destinatario nickname</RecipientUsername>
-	<Subject>oggetto</Subject>
+	<Smtp>smtp-relay.sendinblue.com</Smtp>
+	<Username>AFlorio45@gmail.com</Username>
+	<NickName>Antonio</NickName>
+	<Pwd>58CXVStO1QAaLN03</Pwd>
+	<Recipient>AFlorio45@gmail.com</Recipient>
+	<RecipientUsername>Antonions</RecipientUsername>
+	<Subject>MISURAZIONI</Subject>
 	<Body></Body>
 	
 </Configuration>

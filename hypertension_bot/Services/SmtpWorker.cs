@@ -6,6 +6,9 @@ namespace hypertension_bot.Services
 {
     internal class SmtpWorker
     {
+        /// <summary>
+        /// https://app.sendinblue.com/settings/keys/smtp
+        /// </summary>
         private bool res = true;
         public SmtpWorker() { }
 
@@ -13,10 +16,10 @@ namespace hypertension_bot.Services
         {
             try
             {
-                SmtpClient mySmtpClient = new SmtpClient();
+                SmtpClient mySmtpClient = new SmtpClient(Setting.Istance.Configuration.Smtp);
                 // set smtp-client with basicAuthentication
-                mySmtpClient.UseDefaultCredentials = true;
-                mySmtpClient.Host = "localhost";
+                //mySmtpClient.UseDefaultCredentials = true;
+                //mySmtpClient.Host = "localhost";
                 mySmtpClient.Port = 587;
                 System.Net.NetworkCredential basicAuthenticationInfo = new
                 System.Net.NetworkCredential(Setting.Istance.Configuration.Username, Setting.Istance.Configuration.Pwd);

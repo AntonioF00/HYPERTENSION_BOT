@@ -137,3 +137,12 @@ C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Microsoft
 C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Microsoft.Extensions.Options.dll
 C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Microsoft.Extensions.Options.ConfigurationExtensions.dll
 C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Microsoft.Extensions.Primitives.dll
+D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\OpenAI.GPT3.dll
+D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Microsoft.Extensions.Configuration.Binder.dll
+D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Microsoft.Extensions.DependencyInjection.dll
+D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Microsoft.Extensions.Http.dll
+D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Microsoft.Extensions.Logging.dll
+D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Microsoft.Extensions.Options.dll
+D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Microsoft.Extensions.Options.ConfigurationExtensions.dll
+D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\OpenAI_API.dll
+D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\ScottPlot.dll

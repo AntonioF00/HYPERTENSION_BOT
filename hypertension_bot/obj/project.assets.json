@@ -562,15 +562,15 @@
           }
         }
       },
-      "Newtonsoft.Json/12.0.2": {
+      "Newtonsoft.Json/13.0.3": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -588,6 +588,23 @@
         },
         "runtime": {
           "lib/net6.0/Npgsql.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "OpenAI/1.6.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl.AsyncInterfaces": "1.1.1",
+          "Newtonsoft.Json": "13.0.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/OpenAI_API.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/OpenAI_API.dll": {
             "related": ".xml"
           }
         }
@@ -2602,14 +2619,15 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Newtonsoft.Json/12.0.2": {
-      "sha512": "rTK0s2EKlfHsQsH6Yx2smvcTCeyoDNgCW7FEYyV01drPlh2T243PR2DiDXqtC5N4GDm4Ma/lkxfW5a/4793vbA==",
+    "Newtonsoft.Json/13.0.3": {
+      "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
       "type": "package",
-      "path": "newtonsoft.json/12.0.2",
+      "path": "newtonsoft.json/13.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.md",
+        "README.md",
         "lib/net20/Newtonsoft.Json.dll",
         "lib/net20/Newtonsoft.Json.xml",
         "lib/net35/Newtonsoft.Json.dll",
@@ -2618,18 +2636,17 @@
         "lib/net40/Newtonsoft.Json.xml",
         "lib/net45/Newtonsoft.Json.dll",
         "lib/net45/Newtonsoft.Json.xml",
+        "lib/net6.0/Newtonsoft.Json.dll",
+        "lib/net6.0/Newtonsoft.Json.xml",
         "lib/netstandard1.0/Newtonsoft.Json.dll",
         "lib/netstandard1.0/Newtonsoft.Json.xml",
         "lib/netstandard1.3/Newtonsoft.Json.dll",
         "lib/netstandard1.3/Newtonsoft.Json.xml",
         "lib/netstandard2.0/Newtonsoft.Json.dll",
         "lib/netstandard2.0/Newtonsoft.Json.xml",
-        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.dll",
-        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
-        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
-        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
-        "newtonsoft.json.12.0.2.nupkg.sha512",
-        "newtonsoft.json.nuspec"
+        "newtonsoft.json.13.0.3.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
       ]
     },
     "Npgsql/7.0.2": {
@@ -2655,6 +2672,20 @@
         "npgsql.7.0.2.nupkg.sha512",
         "npgsql.nuspec",
         "postgresql.png"
+      ]
+    },
+    "OpenAI/1.6.0": {
+      "sha512": "j4LeK4p4g0j+JCdajypWVEFLuD7hnRanO7BhfXDogTPHc6q6JA/DgD8voEG9l6jN0SprSFO4cmQ/Lrk0h+knug==",
+      "type": "package",
+      "path": "openai/1.6.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/netstandard2.0/OpenAI_API.dll",
+        "lib/netstandard2.0/OpenAI_API.xml",
+        "openai.1.6.0.nupkg.sha512",
+        "openai.nuspec"
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {
@@ -5487,6 +5518,7 @@
       "Microsoft.Data.SqlClient >= 5.1.0",
       "Microsoft.Extensions.Hosting.Abstractions >= 7.0.0",
       "Npgsql >= 7.0.2",
+      "OpenAI >= 1.6.0",
       "ScottPlot >= 4.1.61",
       "System.Data.Common >= 4.3.0",
       "System.Net.Http >= 4.3.4",
@@ -5495,23 +5527,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Software2\\.nuget\\packages\\": {},
+    "C:\\Users\\AFlor\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\PROGETTI_AN\\C#\\hypertension_bot\\hypertension_bot\\hypertension_bot.csproj",
+      "projectUniqueName": "D:\\BACKUP\\Documenti\\PROGETTI_ANTONIO\\C#\\hypertension_bot\\hypertension_bot\\hypertension_bot.csproj",
       "projectName": "hypertension_bot",
-      "projectPath": "C:\\PROGETTI_AN\\C#\\hypertension_bot\\hypertension_bot\\hypertension_bot.csproj",
-      "packagesPath": "C:\\Users\\Software2\\.nuget\\packages\\",
-      "outputPath": "C:\\PROGETTI_AN\\C#\\hypertension_bot\\hypertension_bot\\obj\\",
+      "projectPath": "D:\\BACKUP\\Documenti\\PROGETTI_ANTONIO\\C#\\hypertension_bot\\hypertension_bot\\hypertension_bot.csproj",
+      "packagesPath": "C:\\Users\\AFlor\\.nuget\\packages\\",
+      "outputPath": "D:\\BACKUP\\Documenti\\PROGETTI_ANTONIO\\C#\\hypertension_bot\\hypertension_bot\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Software2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\AFlor\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -5520,7 +5552,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -5559,6 +5590,10 @@
             "target": "Package",
             "version": "[7.0.2, )"
           },
+          "OpenAI": {
+            "target": "Package",
+            "version": "[1.6.0, )"
+          },
           "ScottPlot": {
             "target": "Package",
             "version": "[4.1.61, )"
@@ -5596,7 +5631,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }

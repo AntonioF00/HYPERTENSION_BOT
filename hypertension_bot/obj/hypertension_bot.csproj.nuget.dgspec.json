@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\PROGETTI_AN\\C#\\hypertension_bot\\hypertension_bot\\hypertension_bot.csproj": {}
+    "D:\\BACKUP\\Documenti\\PROGETTI_ANTONIO\\C#\\hypertension_bot\\hypertension_bot\\hypertension_bot.csproj": {}
   },
   "projects": {
-    "C:\\PROGETTI_AN\\C#\\hypertension_bot\\hypertension_bot\\hypertension_bot.csproj": {
+    "D:\\BACKUP\\Documenti\\PROGETTI_ANTONIO\\C#\\hypertension_bot\\hypertension_bot\\hypertension_bot.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\PROGETTI_AN\\C#\\hypertension_bot\\hypertension_bot\\hypertension_bot.csproj",
+        "projectUniqueName": "D:\\BACKUP\\Documenti\\PROGETTI_ANTONIO\\C#\\hypertension_bot\\hypertension_bot\\hypertension_bot.csproj",
         "projectName": "hypertension_bot",
-        "projectPath": "C:\\PROGETTI_AN\\C#\\hypertension_bot\\hypertension_bot\\hypertension_bot.csproj",
-        "packagesPath": "C:\\Users\\Software2\\.nuget\\packages\\",
-        "outputPath": "C:\\PROGETTI_AN\\C#\\hypertension_bot\\hypertension_bot\\obj\\",
+        "projectPath": "D:\\BACKUP\\Documenti\\PROGETTI_ANTONIO\\C#\\hypertension_bot\\hypertension_bot\\hypertension_bot.csproj",
+        "packagesPath": "C:\\Users\\AFlor\\.nuget\\packages\\",
+        "outputPath": "D:\\BACKUP\\Documenti\\PROGETTI_ANTONIO\\C#\\hypertension_bot\\hypertension_bot\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Software2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\AFlor\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -65,6 +64,10 @@
               "target": "Package",
               "version": "[7.0.2, )"
             },
+            "OpenAI": {
+              "target": "Package",
+              "version": "[1.6.0, )"
+            },
             "ScottPlot": {
               "target": "Package",
               "version": "[4.1.61, )"
@@ -102,7 +105,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }
