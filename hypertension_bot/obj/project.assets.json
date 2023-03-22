@@ -543,7 +543,7 @@
       "Microsoft.Win32.SystemEvents/6.0.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/_._": {
+          "lib/net6.0/Microsoft.Win32.SystemEvents.dll": {
             "related": ".xml"
           }
         },
@@ -750,6 +750,23 @@
           }
         }
       },
+      "ScottPlot/4.1.61": {
+        "type": "package",
+        "dependencies": {
+          "System.Drawing.Common": "4.7.2",
+          "System.Numerics.Vectors": "4.5.0"
+        },
+        "compile": {
+          "lib/net6.0/ScottPlot.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/ScottPlot.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "System.Collections/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -878,7 +895,7 @@
           "Microsoft.Win32.SystemEvents": "6.0.0"
         },
         "compile": {
-          "lib/net6.0/_._": {
+          "lib/net6.0/System.Drawing.Common.dll": {
             "related": ".xml"
           }
         },
@@ -2848,6 +2865,26 @@
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.nuspec",
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
+      ]
+    },
+    "ScottPlot/4.1.61": {
+      "sha512": "MdAL3fLlFMTlCGwc19w+IcPNQL77RQExZRsx5cfUdtjvJKk6X81PdQ/eKdYVIhYLhTOXJ7X60GeLU63iZg4hFA==",
+      "type": "package",
+      "path": "scottplot/4.1.61",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "icon.ico",
+        "icon.png",
+        "lib/net462/ScottPlot.dll",
+        "lib/net462/ScottPlot.xml",
+        "lib/net6.0/ScottPlot.dll",
+        "lib/net6.0/ScottPlot.xml",
+        "lib/netstandard2.0/ScottPlot.dll",
+        "lib/netstandard2.0/ScottPlot.xml",
+        "scottplot.4.1.61.nupkg.sha512",
+        "scottplot.nuspec"
       ]
     },
     "System.Collections/4.3.0": {
@@ -5450,6 +5487,7 @@
       "Microsoft.Data.SqlClient >= 5.1.0",
       "Microsoft.Extensions.Hosting.Abstractions >= 7.0.0",
       "Npgsql >= 7.0.2",
+      "ScottPlot >= 4.1.61",
       "System.Data.Common >= 4.3.0",
       "System.Net.Http >= 4.3.4",
       "Telegram.Bot >= 18.0.0",
@@ -5520,6 +5558,10 @@
           "Npgsql": {
             "target": "Package",
             "version": "[7.0.2, )"
+          },
+          "ScottPlot": {
+            "target": "Package",
+            "version": "[4.1.61, )"
           },
           "System.Data.Common": {
             "target": "Package",

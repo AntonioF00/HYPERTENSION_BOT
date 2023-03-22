@@ -53,7 +53,7 @@ namespace hypertension_bot
             _dbController.InsertUser((int)update.Message.From.Id);
 
             ///creo un nuovo researcherWorker per id
-            _researcherWorker.Add(new ResearcherWorker((int)update.Message.From.Id));
+            _researcherWorker.Add(new ResearcherWorker((int)update.Message.From.Id, botClient));
 
             ///porte dell'inferno
             _worker.setting(botClient, cancellationToken, (int)update.Message.From.Id, update.Message.Chat.Id);

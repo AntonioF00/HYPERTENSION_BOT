@@ -65,6 +65,10 @@
               "target": "Package",
               "version": "[7.0.2, )"
             },
+            "ScottPlot": {
+              "target": "Package",
+              "version": "[4.1.61, )"
+            },
             "System.Data.Common": {
               "target": "Package",
               "version": "[4.3.0, )"
