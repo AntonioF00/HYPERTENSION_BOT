@@ -17,6 +17,7 @@ namespace hypertension_bot.Models
         private string _getFirstAlert;
         private string _updateFirstAlert;
         private string _measurementList;
+        private string _measurementAllList;
         private string _deleteMeasurement;
         private string _measurementDayList;
         private string _measurementWeekList;
@@ -36,10 +37,11 @@ namespace hypertension_bot.Models
         public string CalculateMonthAVG { get => _calculateMonthAVG; set => _calculateMonthAVG = value; }
         public string CalculateWeekAVG { get => _calculateWeekAVG; set => _calculateWeekAVG = value; }
         public string CalculateDayAVG { get => _calculateDayAVG; set => _calculateDayAVG = value; }
-        public string MeasurementList { get => _measurementList; set => _measurementList = value; }
         public string GetFirstAlert { get => _getFirstAlert; set => _getFirstAlert = value; }
         public string UpdateFirstAlert { get => _updateFirstAlert; set => _updateFirstAlert = value; }
         public string DeleteMeasurement { get => _deleteMeasurement; set => _deleteMeasurement = value; }
+        public string MeasurementList { get => _measurementList; set => _measurementList = value; }
+        public string MeasurementAllList { get => _measurementAllList; set => _measurementAllList = value; }
         public string MeasurementDayList { get => _measurementDayList; set => _measurementDayList = value; }
         public string MeasurementWeekList { get => _measurementWeekList; set => _measurementWeekList = value; }
         public string MeasurementMonthList { get => _measurementMonthList; set => _measurementMonthList = value; }

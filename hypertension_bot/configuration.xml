@@ -84,7 +84,7 @@
 	GROUP BY "User_idUser"
 	</CalculateDayAVG>
 	
-	<!-- Query per selezionare le misurazione d'un utente -->
+	<!-- Query per selezionare le misurazione d'un utente comprese tra now() e due giorni fa -->
 	<MeasurementList>
 	SELECT "idMeasurement", systolic, diastolic, "heartRate", datetime
 	FROM users."Measurement"
@@ -92,6 +92,13 @@
 		  and datetime::timestamp(0) BETWEEN (now()::timestamp(0) - '2 days'::interval)::timestamp(0)
 			and now()::timestamp(0)
 	</MeasurementList>
+
+	<!-- Query per selezionare tutte le misurazione d'un utente -->
+	<MeasurementAllList>
+		SELECT "idMeasurement", systolic, diastolic, "heartRate", datetime
+		FROM users."Measurement"
+		WHERE "User_idUser" = (SELECT "idUser" FROM users."User" WHERE "idTelegram" = @id)
+	</MeasurementAllList>
 	
 	<!-- Query per selezionare le misurazioni giornaliere d'un utente -->
 	<MeasurementDayList>
@@ -129,7 +136,7 @@
 	DELETE FROM users."Measurement"
 	WHERE "User_idUser" = (SELECT "idUser" FROM users."User" WHERE "idTelegram" = @id) AND "idMeasurement" = @idMisurazione;
 	</DeleteMeasurement>
-	
+
 	<!-- Campi -->
 	<!--Valore massimo consentito per la sistolica, sopra questo valore il bot invierà un messaggio di allerta all'utente -->
 	<ValoreMaxSi>250</ValoreMaxSi>

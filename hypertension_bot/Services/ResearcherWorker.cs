@@ -106,6 +106,12 @@ namespace hypertension_bot.Services
             {
                 _unknown = true;
                 res.Add($"{_data.HelloMessage.ReplyMessages[_data.Random.Next(4)]} {_data.FirstName}!");
+            }            
+            else if (_data.ExportMessage.Messages.Any(_data.MessageText.Contains))
+            {
+                _unknown = true;
+                res.Add($"{_data.ExportMessage.ReplyMessages[_data.Random.Next(3)]}!");
+                //routine di invio email
             }
             else if (_data.MessageText.Any(char.IsDigit))
             {
