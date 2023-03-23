@@ -155,7 +155,7 @@ namespace hypertension_bot.Services
                 }
                 catch (Exception ex)
                 {
-                    LogHelper.Log($"{System.DateTime.Now} | {ex.Message} | {ex.StackTrace}");
+                    LogHelper.Log($"{System.DateTime.Now} | Message: {ex.Message} | StackTrace: {ex.StackTrace}");
                     _unknown = false;
                 }
             }
@@ -190,8 +190,8 @@ namespace hypertension_bot.Services
                         if (sistolicInRange && diastolicInRange)
                         {
                             res.Add(success
-                                            ? $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nFrequenza cardiaca : {_data.HeartRate} bpm\nSono corretti?"
-                                            : $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nSono corretti?");
+                                           ? $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nFrequenza cardiaca : {_data.HeartRate} bpm\nSono corretti?"
+                                           : $"Sistolica : {_data.Sistolic} mmHg\nDiastolica : {_data.Diastolic} mmHg\nSono corretti?");
                         }
                         else
                         {
@@ -201,7 +201,8 @@ namespace hypertension_bot.Services
                 }
             }
             ///contesto d'un messaggio per ottenere la media o una lista delle misurazioni
-            else if (_data.AverageMessage.Messages.Any(_data.MessageText.Contains) || (_data.MessageText.Contains("medi") || _data.ListMessage.Messages.Any(_data.MessageText.Contains)))
+            else if (_data.AverageMessage.Messages.Any(_data.MessageText.Contains) || 
+                    (_data.MessageText.Contains("medi") || _data.ListMessage.Messages.Any(_data.MessageText.Contains)))
             {
                 _unknown = true;
 

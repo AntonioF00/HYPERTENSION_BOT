@@ -34,7 +34,7 @@ namespace hypertension_bot
             }
             catch(Exception ex)
             {
-                LogHelper.Log($"{System.DateTime.Now} | {ex.Message} |{ex.StackTrace}");
+                LogHelper.Log($"{System.DateTime.Now} | Message: {ex.Message} | StackTrace: {ex.StackTrace}");
                 Console.WriteLine($"\nBot : offline..error");
                 _cancellationTokenSource.Cancel();
             }
@@ -85,7 +85,7 @@ namespace hypertension_bot
                     => $"Telegram API Error:\n[{apiRequestException.ErrorCode}]\n{apiRequestException.Message}",
                   _ => exception.ToString()
             };
-            LogHelper.Log($"{System.DateTime.Now} | {ErrorMessage}");
+            LogHelper.Log($"{System.DateTime.Now} | Message: {ErrorMessage}");
             return Task.CompletedTask;
         }
     }

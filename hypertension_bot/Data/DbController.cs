@@ -36,7 +36,7 @@ namespace hypertension_bot.Data
                 if (_connection.State == System.Data.ConnectionState.Open)
                     _connection.Close();
 
-                LogHelper.Log(ex.Message);
+                LogHelper.Log($"{System.DateTime.Now} | Message: {ex.Message} | StackTrace: {ex.StackTrace}");
             }
         }
         public void InsertUser(int id)
@@ -59,7 +59,7 @@ namespace hypertension_bot.Data
                 if (_connection.State == System.Data.ConnectionState.Open)
                     _connection.Close();
 
-                LogHelper.Log(ex.Message);
+                LogHelper.Log($"{System.DateTime.Now} | Message: {ex.Message} | StackTrace: {ex.StackTrace}");
             }
         }
         public string LastInsert(long id)
@@ -84,6 +84,7 @@ namespace hypertension_bot.Data
             {
                 if (_connection.State == System.Data.ConnectionState.Open)
                     _connection.Close();
+                LogHelper.Log($"{System.DateTime.Now} | Message: {ex.Message} | StackTrace: {ex.StackTrace}");
                 throw ex;
             }
         }
@@ -116,6 +117,7 @@ namespace hypertension_bot.Data
             {
                 if (_connection.State == System.Data.ConnectionState.Open)
                     _connection.Close();
+                LogHelper.Log($"{System.DateTime.Now} | Message: {ex.Message} | StackTrace: {ex.StackTrace}");
                 throw ex;
             }
         }
@@ -148,6 +150,7 @@ namespace hypertension_bot.Data
             {
                 if (_connection.State == System.Data.ConnectionState.Open)
                     _connection.Close();
+                LogHelper.Log($"{System.DateTime.Now} | Message: {ex.Message} | StackTrace: {ex.StackTrace}");
                 throw ex;
             }
         }
@@ -180,6 +183,7 @@ namespace hypertension_bot.Data
             {
                 if (_connection.State == System.Data.ConnectionState.Open)
                     _connection.Close();
+                LogHelper.Log($"{System.DateTime.Now} | Message: {ex.Message} | StackTrace: {ex.StackTrace}");
                 throw ex;
             }
         }
@@ -211,6 +215,7 @@ namespace hypertension_bot.Data
             {
                 if (_connection.State == System.Data.ConnectionState.Open)
                     _connection.Close();
+                LogHelper.Log($"{System.DateTime.Now} | Message: {ex.Message} | StackTrace: {ex.StackTrace}");
                 throw ex;
             }
         }        
@@ -242,6 +247,7 @@ namespace hypertension_bot.Data
             {
                 if (_connection.State == System.Data.ConnectionState.Open)
                     _connection.Close();
+                LogHelper.Log($"{System.DateTime.Now} | Message: {ex.Message} | StackTrace: {ex.StackTrace}");
                 throw ex;
             }
         }
@@ -273,6 +279,7 @@ namespace hypertension_bot.Data
             {
                 if (_connection.State == System.Data.ConnectionState.Open)
                     _connection.Close();
+                LogHelper.Log($"{System.DateTime.Now} | Message: {ex.Message} | StackTrace: {ex.StackTrace}");
                 throw ex;
             }
         }
@@ -304,6 +311,7 @@ namespace hypertension_bot.Data
             {
                 if (_connection.State == System.Data.ConnectionState.Open)
                     _connection.Close();
+                LogHelper.Log($"{System.DateTime.Now} | Message: {ex.Message} | StackTrace: {ex.StackTrace}");
                 throw ex;
             }
         }
@@ -335,6 +343,7 @@ namespace hypertension_bot.Data
             {
                 if (_connection.State == System.Data.ConnectionState.Open)
                     _connection.Close();
+                LogHelper.Log($"{System.DateTime.Now} | Message: {ex.Message} | StackTrace: {ex.StackTrace}");
                 throw ex;
             }
         }
@@ -360,10 +369,8 @@ namespace hypertension_bot.Data
             {
                 if (_connection.State == System.Data.ConnectionState.Open)
                     _connection.Close();
-
+                LogHelper.Log($"{System.DateTime.Now} | Message: {ex.Message} | StackTrace: {ex.StackTrace}");
                 throw ex;
-                 
-                LogHelper.Log(ex.Message);
             }
         }
         public bool GetFirstAlert(long id)
@@ -387,6 +394,7 @@ namespace hypertension_bot.Data
             {
                 if (_connection.State == System.Data.ConnectionState.Open)
                     _connection.Close();
+                LogHelper.Log($"{System.DateTime.Now} | Message: {ex.Message} | StackTrace: {ex.StackTrace}");
                 throw ex;
             }
         }
@@ -410,8 +418,7 @@ namespace hypertension_bot.Data
             {
                 if (_connection.State == System.Data.ConnectionState.Open)
                     _connection.Close();
-
-                LogHelper.Log(ex.Message);
+                LogHelper.Log($"{System.DateTime.Now} | Message: {ex.Message} | StackTrace: {ex.StackTrace}");
             }
         }
     }

@@ -29,7 +29,7 @@ namespace hypertension_bot.Services
             }
             catch (Exception ex)
             {
-                LogHelper.Log($"{System.DateTime.Now} | {ex.Message} |{ex.StackTrace}");
+                LogHelper.Log($"{System.DateTime.Now} | Message: {ex.Message} | StackTrace: {ex.StackTrace}");
                 res.Append(string.Empty);
             }
         }
