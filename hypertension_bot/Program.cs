@@ -42,6 +42,8 @@ namespace hypertension_bot
         }
         public static async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
         {
+            ///creo una lista che conterrà il risultato della chiamata FindResponse, questa lista verrà letta a seguito dell'ottenimento
+            ///del risultato ed il bot la userà come oggetto dei suoi messaggi da inviare all'utente finale.
             List<string> message = new List<string>();
 
             if (update.Type != UpdateType.Message) 
@@ -53,7 +55,9 @@ namespace hypertension_bot
             _dbController.InsertUser((int)update.Message.From.Id);
 
             ///creo un nuovo researcherWorker per id
-            _researcherWorker.Add(new ResearcherWorker((int)update.Message.From.Id, botClient));
+            if(_researcherWorker.Find(x => x._id.Equals((int)update.Message.From.Id)) == null){
+                _researcherWorker.Add(new ResearcherWorker((int)update.Message.From.Id, botClient));
+            }
 
             ///porte dell'inferno
             Worker _worker = new Worker();
@@ -72,6 +76,7 @@ namespace hypertension_bot
                                                                          cancellationToken: cancellationToken);
             }
         }
+        
         public static Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
         {
             var ErrorMessage = exception switch

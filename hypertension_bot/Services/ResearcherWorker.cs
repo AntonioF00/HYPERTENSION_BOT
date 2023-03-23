@@ -30,7 +30,7 @@ namespace hypertension_bot.Services
             ///variabile che dovrà ritornare il metodo
             List<string> res = new List<string>();
 
-            //set variables
+            ///set variables
             _data.ChatId = _chatId;
             _data.MessageText = _messageText;
             _data.FirstName = _firstName;
@@ -123,7 +123,7 @@ namespace hypertension_bot.Services
             else if (_data.ExportMessage.Messages.Any(_data.MessageText.Contains))
             {
                 _unknown = true;
-                //routine di invio email
+                ///routine di invio email
                 List<Dictionary<string, object>> list = _dbController.getMeasurementAllList(_data.Id);
                 Setting.Istance.Configuration.Body = _data.DeleteMessage.listMessage(list);
                 Setting.Istance.Configuration.Subject = $"MISURAZIONI - {_data.Id} - {_data.FirstName} | {System.DateTime.Now}";
@@ -139,7 +139,7 @@ namespace hypertension_bot.Services
                 _unknown = true;
                 try
                 {
-                    //routine di creazione grafici
+                    ///routine di creazione grafici
                     List<Dictionary<string, object>> list = _dbController.getMeasurementMonthList(_data.Id);
                     ChartWorker _chartWorker = new ChartWorker();
                     _chartWorker.Run(list);
