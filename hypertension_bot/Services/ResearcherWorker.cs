@@ -143,9 +143,9 @@ namespace hypertension_bot.Services
                 //routine di creazione grafici
                 List<Dictionary<string, object>> list = _dbController.getMeasurementMonthList(_data.Id);
                 ChartWorker _chartWorker = new ChartWorker();
-                _chartWorker.Run(list);
-                //IAlbumInputMedia[] inputMedia = new InputMediaPhoto(new InputMedia("grafico.png")) { Caption = "grafico"};
-                //_  = await _botClient.SendMediaGroupAsync(chatId: _data.ChatId,
+                //_chartWorker.Run(list);
+                //IAlbumInputMedia[] inputMedia = new InputMediaPhoto(new InputMedia("grafico.png")) { Caption = "grafico" };
+                //_ = await _botClient.SendMediaGroupAsync(chatId: _data.ChatId,
                 //                                          media: inputMedia,
                 //                                          allowSendingWithoutReply: true);
             }
@@ -198,7 +198,7 @@ namespace hypertension_bot.Services
                 }
             }
             ///contesto d'un messaggio per ottenere la media o una lista delle misurazioni
-            else if (_data.AverageMessage.Messages.Any(_data.MessageText.Contains) && (_data.MessageText.Contains("medi") || _data.ListMessage.Messages.Any(_data.MessageText.Contains)))
+            else if (_data.AverageMessage.Messages.Any(_data.MessageText.Contains) || (_data.MessageText.Contains("medi") || _data.ListMessage.Messages.Any(_data.MessageText.Contains)))
             {
                 _unknown = true;
 

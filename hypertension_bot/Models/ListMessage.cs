@@ -18,7 +18,8 @@ namespace hypertension_bot.Models
             "visua",
             "mostr",
             "stam",
-            "val"
+            "val",
+            "misu"
         };
   
         public ListMessage()
