@@ -33,7 +33,7 @@ namespace hypertension_bot.Services
             {
                 var api = new OpenAI_API.OpenAIAPI(Setting.Istance.Configuration.GPT3Api);
 
-                var result = await api.Completions.CreateCompletionAsync(text, temperature: 0.1);
+                var result = await api.Completions.CreateCompletionAsync(text, temperature: 0.9);
                 foreach (var r in result.Completions)
                 {
                     res.AppendLine(r.Text);
