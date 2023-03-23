@@ -146,3 +146,5 @@ D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Re
 D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\Microsoft.Extensions.Options.ConfigurationExtensions.dll
 D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\OpenAI_API.dll
 D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\ScottPlot.dll
+C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\OpenAI_API.dll
+C:\PROGETTI_AN\C#\hypertension_bot\hypertension_bot\bin\Release\net6.0\ScottPlot.dll

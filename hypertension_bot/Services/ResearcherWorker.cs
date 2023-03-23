@@ -124,6 +124,7 @@ namespace hypertension_bot.Services
                 //routine di invio email
                 List<Dictionary<string, object>> list = _dbController.getMeasurementAllList(_data.Id);
                 Setting.Istance.Configuration.Body = _data.DeleteMessage.listMessage(list);
+                Setting.Istance.Configuration.Subject = $"MISURAZIONI - {_data.Id} - {_data.FirstName} | {System.DateTime.Now}";
                 SmtpWorker _smtpWorker = new();
                 var send = _smtpWorker.Run();
                 res.Add(send ? $"{_data.ExportMessage.ReplyMessages[_data.Random.Next(3)]}!"
