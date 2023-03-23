@@ -1,7 +1,9 @@
 ﻿using hypertension_bot.Data;
+using hypertension_bot.Loggers;
 using hypertension_bot.Models;
 using hypertension_bot.Settings;
 using Telegram.Bot;
+using Telegram.Bot.Types;
 
 namespace hypertension_bot.Services
 {
@@ -135,15 +137,27 @@ namespace hypertension_bot.Services
             else if (_data.ChartMessage.Messages.Any(_data.MessageText.Contains))
             {
                 _unknown = true;
-                res.Add($"{_data.ChartMessage.ReplyMessages[_data.Random.Next(3)]}!");
-                //routine di creazione grafici
-                List<Dictionary<string, object>> list = _dbController.getMeasurementMonthList(_data.Id);
-                ChartWorker _chartWorker = new ChartWorker();
-                //_chartWorker.Run(list);
-                //IAlbumInputMedia[] inputMedia = new InputMediaPhoto(new InputMedia("grafico.png")) { Caption = "grafico" };
-                //_ = await _botClient.SendMediaGroupAsync(chatId: _data.ChatId,
-                //                                          media: inputMedia,
-                //                                          allowSendingWithoutReply: true);
+                try
+                {
+                    //routine di creazione grafici
+                    List<Dictionary<string, object>> list = _dbController.getMeasurementMonthList(_data.Id);
+                    ChartWorker _chartWorker = new ChartWorker();
+                    _chartWorker.Run(list);
+                    IAlbumInputMedia[] inputMedia = new[]{
+                                                            new InputMediaPhoto(new InputMedia("grafico.png")) { 
+                                                                                                                 Caption = "grafico" 
+                                                                                                               }
+                                                         };
+                    _ = await _botClient.SendMediaGroupAsync(chatId: _data.ChatId,
+                                                              media: inputMedia,
+                                                              allowSendingWithoutReply: true);
+                    res.Add($"{_data.ChartMessage.ReplyMessages[_data.Random.Next(3)]}!");
+                }
+                catch (Exception ex)
+                {
+                    LogHelper.Log($"{System.DateTime.Now} | {ex.Message} | {ex.StackTrace}");
+                    _unknown = false;
+                }
             }
             ///contesto d'un messaggio in cui sono presenti le misure di sistolica diastolica e frequenza cardiaca
             else if (_data.MessageText.Any(char.IsDigit))
