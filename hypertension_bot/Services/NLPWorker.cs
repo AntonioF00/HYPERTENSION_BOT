@@ -10,6 +10,9 @@ using OpenAI.GPT3.ObjectModels.RequestModels;
 using OpenAI.GPT3.ObjectModels;
 using hypertension_bot.Loggers;
 using hypertension_bot.Settings;
+using Microsoft.Extensions.Primitives;
+using Microsoft.IdentityModel.Logging;
+using LogHelper = hypertension_bot.Loggers.LogHelper;
 
 namespace hypertension_bot.Services
 {
@@ -26,12 +29,20 @@ namespace hypertension_bot.Services
 
         public async Task RunAsync(string text)
         {
-            var api = new OpenAI_API.OpenAIAPI(Setting.Istance.Configuration.GPT3Api);
-
-            var result = await api.Completions.CreateCompletionAsync(text, temperature: 0.1);
-            foreach (var r in result.Completions)
+            try
             {
-                res.AppendLine(r.Text);
+                var api = new OpenAI_API.OpenAIAPI(Setting.Istance.Configuration.GPT3Api);
+
+                var result = await api.Completions.CreateCompletionAsync(text, temperature: 0.1);
+                foreach (var r in result.Completions)
+                {
+                    res.AppendLine(r.Text);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Log($"{System.DateTime.Now} | {ex.Message} |{ex.StackTrace}");
+                res.Append(string.Empty);
             }
         }
     }
