@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenAI.GPT3;
-using OpenAI.GPT3.Interfaces;
-using OpenAI.GPT3.Managers;
-using OpenAI.GPT3.ObjectModels.RequestModels;
-using OpenAI.GPT3.ObjectModels;
-using hypertension_bot.Loggers;
+﻿using System.Text;
 using hypertension_bot.Settings;
-using Microsoft.Extensions.Primitives;
-using Microsoft.IdentityModel.Logging;
 using LogHelper = hypertension_bot.Loggers.LogHelper;
 
 namespace hypertension_bot.Services

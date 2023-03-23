@@ -1,12 +1,7 @@
 ﻿using hypertension_bot.Data;
 using hypertension_bot.Models;
 using hypertension_bot.Settings;
-using Microsoft.VisualBasic;
-using System.Collections.Generic;
-using System.IO;
-using System.Net.Mail;
 using Telegram.Bot;
-using Telegram.Bot.Types;
 
 namespace hypertension_bot.Services
 {
