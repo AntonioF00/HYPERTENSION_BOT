@@ -66,20 +66,10 @@ namespace hypertension_bot
                             update.Message.Chat.Id);
 
             ///cerco il contesto del messaggio e riporto una lista contenente i messaggi di ritorno
-            
-            ///Metodo piu' lento nel cercare il researchWorker corretto
-            //message = await _researcherWorker.Find(x => x._id.Equals((int)update.Message.From.Id)).FindResponse(update.Message.Chat.Id,
-            //                                                                                                    update.Message.Text.ToLower(),
-            //                                                                                                    update.Message.From.FirstName,
-            //                                                                                                    (int)update.Message.From.Id);
-
-            ///piu' veloce nel cercare il researchWorker corretto
-            var researcher = _researcherWorker.Find(x => x._id == update.Message.From.Id);
-            message = await researcher.FindResponse(update.Message.Chat.Id, 
-                                                    update.Message.Text.ToLower(), 
-                                                    update.Message.From.FirstName, 
-                                                    (int)update.Message.From.Id);
-
+            message = await _researcherWorker.Find(x => x._id.Equals((int)update.Message.From.Id)).FindResponse(update.Message.Chat.Id,
+                                                                                                                update.Message.Text.ToLower(),
+                                                                                                                update.Message.From.FirstName,
+                                                                                                                (int)update.Message.From.Id);
             ///analizzo e scorro la lista dei messaggi e li riporto all'utente
             message.ForEach(async x => {
                                         _data.SentMessage = await botClient.SendTextMessageAsync(chatId: update.Message.Chat.Id,
@@ -87,7 +77,6 @@ namespace hypertension_bot
                                                              cancellationToken: cancellationToken);
                                        });
         }
-        
         public static Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
         {
             var ErrorMessage = exception switch

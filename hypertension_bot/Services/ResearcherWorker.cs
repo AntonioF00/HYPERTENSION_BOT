@@ -12,6 +12,7 @@ namespace hypertension_bot.Services
         private static readonly Datas _data = new();
         private static readonly DbController _dbController = new();
         private readonly ITelegramBotClient _botClient;
+        private NLPWorker _nlpWorker = new();
         public long _id { get; set; }
 
         public ResearcherWorker(long id, ITelegramBotClient botClient) 
@@ -114,11 +115,14 @@ namespace hypertension_bot.Services
                 }
             }
             ///contesto d'un messaggio di saluto attualmente rimosso perchè interviene NLPworker
-            //else if (_data.HelloMessage.Messages.Any(_data.MessageText.Contains))
-            //{
-            //    _unknown = true;
-            //    res.Add($"{_data.HelloMessage.ReplyMessages[_data.Random.Next(4)]} {_data.FirstName}!");
-            //}
+            else if (_data.HelloMessage.Messages.Any(_data.MessageText.Contains))
+            {
+                _unknown = true;
+                NLPWorker _nlpWorker = new();
+                await _nlpWorker.RunAsync(_data.MessageText);
+                res.Add((string.IsNullOrWhiteSpace(_nlpWorker.res.ToString())) ? $"{_data.HelloMessage.ReplyMessages[_data.Random.Next(4)]} {_data.FirstName}!"
+                                                                               : _nlpWorker.res.ToString());
+            }
             ///contesto d'un messaggio di esportazione dei dati e invio via mail
             else if (_data.ExportMessage.Messages.Any(_data.MessageText.Contains))
             {
@@ -223,7 +227,6 @@ namespace hypertension_bot.Services
             if (!_unknown)
             {
                 ///chiamo il NLPWorker per gestire il contesto sconosciuto
-                NLPWorker _nlpWorker = new();
                 await _nlpWorker.RunAsync(_data.MessageText);
                 res.Add((string.IsNullOrWhiteSpace(_nlpWorker.res.ToString())) ? $"{_data.ErrorMessage.Messages[_data.Random.Next(6)]}"
                                                                                : _nlpWorker.res.ToString());
