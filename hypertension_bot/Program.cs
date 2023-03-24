@@ -55,9 +55,8 @@ namespace hypertension_bot
             _dbController.InsertUser((int)update.Message.From.Id);
 
             ///creo un nuovo researcherWorker per id
-            if(_researcherWorker.Find(x => x._id.Equals((int)update.Message.From.Id)) == null){
+            if(_researcherWorker.Find(x => x._id.Equals((int)update.Message.From.Id)) == null)
                 _researcherWorker.Add(new ResearcherWorker((int)update.Message.From.Id, botClient));
-            }
 
             ///porte dell'inferno
             Worker _worker = new Worker();
