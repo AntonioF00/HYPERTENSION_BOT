@@ -17,7 +17,6 @@ namespace hypertension_bot.Models
             "perfet",
             "genti",
             "teso",
-            "amo",
             "brav"
         };
 

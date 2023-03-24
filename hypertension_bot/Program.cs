@@ -76,13 +76,6 @@ namespace hypertension_bot
                                                              text: x,
                                                              cancellationToken: cancellationToken);
                                        });
-
-            //foreach (var m in message)
-            //{
-            //    _data.SentMessage = await botClient.SendTextMessageAsync(chatId: update.Message.Chat.Id,
-            //                                                             text: m,
-            //                                                             cancellationToken: cancellationToken);
-            //}
         }
         
         public static Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)

@@ -12,7 +12,6 @@ namespace hypertension_bot.Models
         {
             "list",
             "elen",
-            "le",
             "tut",
             "veder",
             "visua",

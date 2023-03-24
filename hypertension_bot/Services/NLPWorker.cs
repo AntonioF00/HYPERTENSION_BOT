@@ -1,5 +1,7 @@
 ﻿using System.Text;
 using hypertension_bot.Settings;
+using OpenAI_API.Models;
+using Telegram.Bot.Types;
 using LogHelper = hypertension_bot.Loggers.LogHelper;
 
 namespace hypertension_bot.Services
@@ -9,6 +11,7 @@ namespace hypertension_bot.Services
     /// Betalgo.OpenAI.GPT3
     /// https://liuhongbo.medium.com/how-to-use-chatgpt-api-in-c-d9133a3b8ef9
     /// https://rogerpincombe.com/openai-dotnet-api
+    /// https://github.com/OkGoDoIt/OpenAI-API-dotnet/blob/master/README.md
     /// </summary>
     internal class NLPWorker
     {
@@ -21,11 +24,12 @@ namespace hypertension_bot.Services
             {
                 var api = new OpenAI_API.OpenAIAPI(Setting.Istance.Configuration.GPT3Api);
 
-                var result = await api.Completions.CreateCompletionAsync(text, temperature: 0.9);
-                foreach (var r in result.Completions)
-                {
-                    res.AppendLine(r.Text.ToString());
-                }
+                var chat = api.Chat.CreateConversation();
+                chat.AppendUserInput(text);
+                string response = await chat.GetResponseFromChatbot();
+                res.AppendLine(response);
+
+                var result = await api.Completions.CreateCompletionAsync(text, temperature: 0.1);
             }
             catch (Exception ex)
             {
