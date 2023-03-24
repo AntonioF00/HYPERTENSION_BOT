@@ -113,12 +113,12 @@ namespace hypertension_bot.Services
                                 : "Non ho trovato la misurazione che mi hai indicato!");
                 }
             }
-            ///contesto d'un messaggio di saluto
-            else if (_data.HelloMessage.Messages.Any(_data.MessageText.Contains))
-            {
-                _unknown = true;
-                res.Add($"{_data.HelloMessage.ReplyMessages[_data.Random.Next(4)]} {_data.FirstName}!");
-            }
+            ///contesto d'un messaggio di saluto attualmente rimosso perchè interviene NLPworker
+            //else if (_data.HelloMessage.Messages.Any(_data.MessageText.Contains))
+            //{
+            //    _unknown = true;
+            //    res.Add($"{_data.HelloMessage.ReplyMessages[_data.Random.Next(4)]} {_data.FirstName}!");
+            //}
             ///contesto d'un messaggio di esportazione dei dati e invio via mail
             else if (_data.ExportMessage.Messages.Any(_data.MessageText.Contains))
             {
