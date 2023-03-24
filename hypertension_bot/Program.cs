@@ -56,11 +56,15 @@ namespace hypertension_bot
 
             ///creo un nuovo researcherWorker per id
             if(_researcherWorker.Find(x => x._id.Equals((int)update.Message.From.Id)) == null)
-                _researcherWorker.Add(new ResearcherWorker((int)update.Message.From.Id, botClient));
+                _researcherWorker.Add(new ResearcherWorker((int)update.Message.From.Id, 
+                                                           botClient));
 
             ///porte dell'inferno
             Worker _worker = new Worker();
-            _worker.setting(botClient, cancellationToken, (int)update.Message.From.Id, update.Message.Chat.Id);
+            _worker.setting(botClient, 
+                            cancellationToken, 
+                            (int)update.Message.From.Id, 
+                            update.Message.Chat.Id);
 
             ///cerco il contesto del messaggio e riporto una lista contenente i messaggi di ritorno
             message = await _researcherWorker.Find(x => x._id.Equals((int)update.Message.From.Id)).FindResponse(update.Message.Chat.Id,

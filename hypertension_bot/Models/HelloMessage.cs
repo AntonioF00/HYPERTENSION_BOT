@@ -15,7 +15,7 @@ namespace hypertension_bot.Models
             "buon gio",
             "buonase",
             "buona se",
-            "we"
+            "w"
         };
 
         private static readonly List<string> _replyMessages = new List<string>

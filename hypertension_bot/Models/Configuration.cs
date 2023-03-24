@@ -4,11 +4,14 @@ namespace hypertension_bot.Models
 {
     public class Configuration
     {
+        /// Connessione al database
         private string _connectionString;
         private ConnectionTypes _connectionType;
+        /// Token
         private string _botToken;
         private string _witToken;
         private string _gpt3Api;
+        /// Query
         private string  _insertMeasures;
         private string _insertUser;
         private string _lastInsert;
@@ -23,10 +26,12 @@ namespace hypertension_bot.Models
         private string _measurementDayList;
         private string _measurementWeekList;
         private string _measurementMonthList;
+        /// Range di inserimento 
         private int    _valoreMaxSi;
         private int    _valoreMaxDi;        
         private int    _valoreMinSi;
         private int    _valoreMinDi; 
+        ///Variabili per il server smtp
         private string _smtp;
         private string _username;
         private string _pwd;
