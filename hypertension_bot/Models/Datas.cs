@@ -1,12 +1,10 @@
-﻿using System;
-using Telegram.Bot.Types;
+﻿using Telegram.Bot.Types;
 
 namespace hypertension_bot.Models
 {
     public class Datas
     {
         ////Message's model
-
         public HelloMessage HelloMessage => new();
         public DeleteMessage DeleteMessage => new();
         public ErrorMessage ErrorMessage => new();

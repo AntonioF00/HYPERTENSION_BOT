@@ -58,7 +58,6 @@ namespace hypertension_bot
             if(_researcherWorker.Find(x => x._id.Equals((int)update.Message.From.Id)) == null)
                 _researcherWorker.Add(new ResearcherWorker((int)update.Message.From.Id, 
                                                            botClient));
-
             ///porte dell'inferno
             Worker _worker = new Worker();
             _worker.setting(botClient, 
@@ -72,12 +71,18 @@ namespace hypertension_bot
                                                                                                                 update.Message.From.FirstName,
                                                                                                                 (int)update.Message.From.Id);
             ///analizzo e scorro la lista dei messaggi e li riporto all'utente
-            foreach(var m in message)
-            {
-                _data.SentMessage = await botClient.SendTextMessageAsync(chatId: update.Message.Chat.Id,
-                                                                         text: m,
-                                                                         cancellationToken: cancellationToken);
-            }
+            message.ForEach(async x => {
+                                        _data.SentMessage = await botClient.SendTextMessageAsync(chatId: update.Message.Chat.Id,
+                                                             text: x,
+                                                             cancellationToken: cancellationToken);
+                                       });
+
+            //foreach(var m in message)
+            //{
+            //    _data.SentMessage = await botClient.SendTextMessageAsync(chatId: update.Message.Chat.Id,
+            //                                                             text: m,
+            //                                                             cancellationToken: cancellationToken);
+            //}
         }
         
         public static Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
