@@ -29,7 +29,7 @@ namespace hypertension_bot.Services
                 string response = await chat.GetResponseFromChatbot();
                 res.AppendLine(response);
 
-                var result = await api.Completions.CreateCompletionAsync(text, temperature: 0.1);
+                //var result = await api.Completions.CreateCompletionAsync(text, temperature: 0.1);
             }
             catch (Exception ex)
             {
