@@ -24,7 +24,7 @@ namespace hypertension_bot.Services
                 var result = await api.Completions.CreateCompletionAsync(text, temperature: 0.9);
                 foreach (var r in result.Completions)
                 {
-                    res.AppendLine(r.Text);
+                    res.AppendLine(r.Text.ToString());
                 }
             }
             catch (Exception ex)

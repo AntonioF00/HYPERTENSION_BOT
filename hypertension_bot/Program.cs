@@ -77,7 +77,7 @@ namespace hypertension_bot
                                                              cancellationToken: cancellationToken);
                                        });
 
-            //foreach(var m in message)
+            //foreach (var m in message)
             //{
             //    _data.SentMessage = await botClient.SendTextMessageAsync(chatId: update.Message.Chat.Id,
             //                                                             text: m,
