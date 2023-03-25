@@ -166,13 +166,19 @@ namespace hypertension_bot.Services
             ///contesto d'un messaggio in cui sono presenti le misure di sistolica diastolica e frequenza cardiaca
             else if (_data.MessageText.Any(char.IsDigit))
             {
-                bool success = int.TryParse(new string(_data.MessageText.Replace("/", "-").Replace(",", "-").Where(char.IsDigit).ToArray()), out int num1);
+                bool success = int.TryParse(new string(_data.MessageText.Replace("/", "-").Replace(",", "-")
+                                            .SkipWhile(x => !char.IsDigit(x))
+                                            .TakeWhile(x => char.IsDigit(x))
+                                            .ToArray()), out int num1);
 
                 if (num1 != 0 && success)
                 {
                     var mess = _data.MessageText.Replace(num1.ToString(), "").Replace("/", "-").Replace(",", "-");
 
-                    success = int.TryParse(new string(mess.Where(char.IsDigit).ToArray()), out int num2);
+                    success = int.TryParse(new string(mess
+                                            .SkipWhile(x => !char.IsDigit(x))
+                                            .TakeWhile(x => char.IsDigit(x))
+                                            .ToArray()), out int num2);
 
                     if (num2 != 0 && success)
                     {
@@ -184,7 +190,10 @@ namespace hypertension_bot.Services
 
                         mess = (_data.Diastolic >= 100) ? mess = mess.Remove(0, 4) : mess = "x" + mess.Substring(3);
 
-                        success = int.TryParse(new string(mess.Where(char.IsDigit).ToArray()), out int num3);
+                        success = int.TryParse(new string(mess
+                                                .SkipWhile(x => !char.IsDigit(x))
+                                                .TakeWhile(x => char.IsDigit(x))
+                                                .ToArray()), out int num3);
 
                         _data.HeartRate = num3;
 
