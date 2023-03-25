@@ -15,13 +15,14 @@ namespace hypertension_bot.Services
     /// </summary>
     internal class NLPWorker
     {
-        public StringBuilder res = new();
+        public StringBuilder res;
         public NLPWorker() { }
 
         public async Task RunAsync(string text)
         {
             try
             {
+                res = new();
                 var api = new OpenAI_API.OpenAIAPI(Setting.Istance.Configuration.GPT3Api);
 
                 var chat = api.Chat.CreateConversation();
