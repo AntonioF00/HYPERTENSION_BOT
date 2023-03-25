@@ -32,7 +32,7 @@ namespace hypertension_bot.Models
             if (list.Count > 0)
             {
                 res.AppendLine($"Elenco {period} di {name}:");
-                res.AppendLine("Id | Sistolica | Diastolica | Frequenza cardiaca | data");
+                res.AppendLine("Id | Sistolica | Diastolica | Freq. cardiaca | Data");
                 int i = 0;
                 foreach (var e in list)
                 {
