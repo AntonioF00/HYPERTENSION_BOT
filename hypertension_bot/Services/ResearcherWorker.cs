@@ -78,7 +78,10 @@ namespace hypertension_bot.Services
             else if (_data.ThankMessage.Messages.Any(_data.MessageText.Contains))
             {
                 _unknown = true;
-                res.Add($"{_data.ThankMessage.ReplyMessages[_data.Random.Next(5)]}");
+                NLPWorker _nlpWorker = new();
+                await _nlpWorker.RunAsync(_data.MessageText);
+                res.Add((string.IsNullOrWhiteSpace(_nlpWorker.res.ToString())) ? $"{_data.ThankMessage.ReplyMessages[_data.Random.Next(5)]}"
+                                                                               : _nlpWorker.res.ToString());
             }
             ///contesto d'un messaggi di negazione dovuto alla richiesta d'inesrimento o eliminazione
             else if ((_data.NegativeMessage.Messages.Any(_data.MessageText.Contains)) && ((_data.DoneInsert) || (_data.DoneDelete)))
