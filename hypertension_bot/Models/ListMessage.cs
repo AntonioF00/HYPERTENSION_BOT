@@ -11,14 +11,13 @@ namespace hypertension_bot.Models
         private static readonly List<string> _messages = new List<string>
         {
             "list",
-            "elen",
-            "tut",
+            "elenc",
             "veder",
-            "visua",
+            "visualizz",
             "mostr",
-            "stam",
-            "val",
-            "misu"
+            "stamp",
+            "valor",
+            "misur"
         };
   
         public ListMessage()

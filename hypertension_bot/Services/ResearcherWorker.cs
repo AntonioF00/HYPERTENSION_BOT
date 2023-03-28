@@ -121,7 +121,6 @@ namespace hypertension_bot.Services
             else if (_data.HelloMessage.Messages.Any(_data.MessageText.Contains))
             {
                 _unknown = true;
-                NLPWorker _nlpWorker = new();
                 await _nlpWorker.RunAsync(_data.MessageText);
                 res.Add((string.IsNullOrWhiteSpace(_nlpWorker.res.ToString())) ? $"{_data.HelloMessage.ReplyMessages[_data.Random.Next(4)]} {_data.FirstName}!"
                                                                                : _nlpWorker.res.ToString());
