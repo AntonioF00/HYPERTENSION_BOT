@@ -19,8 +19,7 @@ namespace hypertension_bot.Models
             "giornaliero",
             "settimana",
             "settimanale",
-            "settimane",
-            "oggi",
+            "settimane"
         };
 
         public AverageMessage()

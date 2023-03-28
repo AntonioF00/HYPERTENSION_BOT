@@ -218,8 +218,8 @@ namespace hypertension_bot.Services
             }
             ///contesto d'un messaggio per ottenere la media o una lista delle misurazioni
             else if ((_data.AverageMessage.Messages.Any(_data.MessageText.Contains) || 
-                     (_data.MessageText.Contains("medio") || _data.MessageText.Contains("media"))) ||
-                     _data.ListMessage.Messages.Any(_data.MessageText.Contains))
+                      (_data.MessageText.Contains("medio") || _data.MessageText.Contains("media"))) ||
+                       _data.ListMessage.Messages.Any(_data.MessageText.Contains))
             {
                 _unknown = true;
 
