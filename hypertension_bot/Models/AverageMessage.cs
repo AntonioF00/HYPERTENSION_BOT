@@ -10,10 +10,17 @@ namespace hypertension_bot.Models
 
         private static readonly List<string> _messages = new List<string>
         {
-            "mensil",
-            "mes",
-            "giorn",
-            "settim"
+            "mensile",
+            "mese",
+            "mesi",
+            "giorno",
+            "giorni",
+            "giornalieri",
+            "giornaliero",
+            "settimana",
+            "settimanale",
+            "settimane",
+            "oggi",
         };
 
         public AverageMessage()

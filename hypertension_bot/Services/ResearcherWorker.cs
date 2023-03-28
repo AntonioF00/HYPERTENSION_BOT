@@ -217,12 +217,13 @@ namespace hypertension_bot.Services
                 }
             }
             ///contesto d'un messaggio per ottenere la media o una lista delle misurazioni
-            else if (_data.AverageMessage.Messages.Any(_data.MessageText.Contains) || 
-                    (_data.MessageText.Contains("medi") || _data.ListMessage.Messages.Any(_data.MessageText.Contains)))
+            else if ((_data.AverageMessage.Messages.Any(_data.MessageText.Contains) || 
+                     (_data.MessageText.Contains("medio") || _data.MessageText.Contains("media"))) ||
+                     _data.ListMessage.Messages.Any(_data.MessageText.Contains))
             {
                 _unknown = true;
 
-                if (_data.MessageText.Contains("mese") || _data.MessageText.Contains("mensile"))
+                if (_data.MessageText.Contains("mes") || _data.MessageText.Contains("mensil"))
                     res.Add((_data.MessageText.Contains("medi")) ? _data.AverageMessage.calculateMonthAVG(_data.Id, _data.FirstName)
                                                                  : _data.ListMessage.MonthList(_data.Id, _data.FirstName));
                 else if (_data.MessageText.Contains("settima"))
