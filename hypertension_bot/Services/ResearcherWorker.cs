@@ -184,7 +184,7 @@ namespace hypertension_bot.Services
                         _data.Sistolic = (num1 > num2) ? num1 : num2;
                         _data.Diastolic = (num1 > num2) ? num2 : num1;
 
-                        mess = (_data.Diastolic >= 100) ? mess = mess.Remove(0, 4) : mess = "x" + mess.Substring(3);
+                        mess = (_data.Diastolic >= 100) ? mess = mess.Remove(0, 5) : mess = "x" + mess.Substring(3);
 
                         success = int.TryParse(new string(mess
                                                 .SkipWhile(x => !char.IsDigit(x))
