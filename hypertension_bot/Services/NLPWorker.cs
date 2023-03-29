@@ -24,7 +24,6 @@ namespace hypertension_bot.Services
             try
             {
                 var api = new OpenAI_API.OpenAIAPI(Setting.Istance.Configuration.GPT3Api);
-
                 var chat = api.Chat.CreateConversation();
                 chat.AppendUserInput(text);
                 string response = await chat.GetResponseFromChatbot();
