@@ -68,12 +68,6 @@ namespace hypertension_bot.Services
                         res.Add("Per eliminare una misurazione indicarla nella seguente maniera:\n Ad esempio 'elimina la numero 14'");
                 }
             }
-            ///contesto su come si misura la pressione
-            else if (_data.PressureMessage.Messages.Any(_data.MessageText.Contains))
-            {
-                _unknown = true;
-                res.Add($"{_data.PressureMessage.HowToMessages[_data.Random.Next(1)]}");
-            }
             ///contesto d'un messaggio di ringraziamento
             else if (_data.ThankMessage.Messages.Any(_data.MessageText.Contains))
             {
@@ -214,6 +208,12 @@ namespace hypertension_bot.Services
                         }
                     }
                 }
+            }
+            ///contesto su come si misura la pressione
+            else if (_data.PressureMessage.Messages.Any(_data.MessageText.Contains))
+            {
+                _unknown = true;
+                res.Add($"{_data.PressureMessage.HowToMessages[_data.Random.Next(1)]}");
             }
             ///contesto d'un messaggio per ottenere la media o una lista delle misurazioni
             else if ((_data.AverageMessage.Messages.Any(_data.MessageText.Contains) || 
