@@ -41,7 +41,8 @@ namespace hypertension_bot.Models
         private string _subject;
         private string _attachments;
         private string _nickName;
-
+        /// Variabili chart
+        private string _chartPath;
         public string ConnectionString { get => _connectionString; set => _connectionString = value; }
         public ConnectionTypes ConnectionType { get => _connectionType; set => _connectionType = value; }
         public string BotToken { get => _botToken; set => _botToken = value; }
@@ -74,5 +75,6 @@ namespace hypertension_bot.Models
         public string Subject { get => _subject; set => _subject = value; }
         public string Attachments { get => _attachments; set => _attachments = value; }
         public string NickName { get => _nickName; set => _nickName = value; }
+        public string ChartPath { get => _chartPath; set => _chartPath = value; }
     }
 }

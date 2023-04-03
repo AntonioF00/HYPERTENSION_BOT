@@ -146,13 +146,15 @@ namespace hypertension_bot.Services
                     ChartWorker _chartWorker = new ChartWorker();
                     _chartWorker._id = _data.Id;
                     _chartWorker.Run(list);
-                    using (var stream = System.IO.File.OpenRead($"D:\\BACKUP\\Documenti\\PROGETTI_ANTONIO\\C#\\hypertension_bot\\hypertension_bot\\bin\\Debug\\net6.0\\grafico_{_data.Id}.png"))
+                    using (var stream = System.IO.File.OpenRead(Setting.Istance.Configuration.ChartPath + $"grafico_{_data.Id}.png"))
                     {
                         InputOnlineFile inputOnlineFile = new InputOnlineFile(stream);
                         _ = await _botClient.SendPhotoAsync(chatId: _data.ChatId,
                                                             photo: inputOnlineFile,
                                                             allowSendingWithoutReply: true);
                     }
+
+                    System.IO.File.Delete(Setting.Istance.Configuration.ChartPath + $"grafico_{_data.Id}.png");
 
                     res.Add($"{_data.ChartMessage.ReplyMessages[_data.Random.Next(2)]}!");
                 }

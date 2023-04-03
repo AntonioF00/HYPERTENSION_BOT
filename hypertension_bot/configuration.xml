@@ -151,6 +151,8 @@
 	<!--Valore minimo consentito per la diastolica, sopra questo valore il bot invierà un messaggio di allerta all'utente -->
 	<ValoreMinDi>40</ValoreMinDi>
 
+	<ChartPath>D:\\BACKUP\\Documenti\\PROGETTI_ANTONIO\\C#\\hypertension_bot\\hypertension_bot\\bin\\Debug\\net6.0\\</ChartPath>
+
 	<!--Smtp configuration-->
 	<Smtp>smtp-relay.sendinblue.com</Smtp>
 	<Username>AFlorio45@gmail.com</Username>
@@ -160,5 +162,7 @@
 	<RecipientUsername>Receiver</RecipientUsername>
 	<Subject></Subject>
 	<Body></Body>
+	
+
 	
 </Configuration>
