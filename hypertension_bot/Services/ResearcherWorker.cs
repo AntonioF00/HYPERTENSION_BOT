@@ -4,12 +4,14 @@ using hypertension_bot.Models;
 using hypertension_bot.Settings;
 using Telegram.Bot;
 using Telegram.Bot.Types;
+using System.IO;
+using Telegram.Bot.Types.InputFiles;
 
 namespace hypertension_bot.Services
 {
     public class ResearcherWorker
     {
-        private static readonly Datas _data = new();
+        private readonly Datas _data = new();
         private static readonly DbController _dbController = new();
         private readonly ITelegramBotClient _botClient;
         private NLPWorker _nlpWorker = new();
@@ -142,16 +144,17 @@ namespace hypertension_bot.Services
                     ///routine di creazione grafici
                     List<Dictionary<string, object>> list = _dbController.getMeasurementMonthList(_data.Id);
                     ChartWorker _chartWorker = new ChartWorker();
+                    _chartWorker._id = _data.Id;
                     _chartWorker.Run(list);
-                    IAlbumInputMedia[] inputMedia = new[]{
-                                                            new InputMediaPhoto(new InputMedia("grafico.png")) { 
-                                                                                                                 Caption = "grafico" 
-                                                                                                               }
-                                                         };
-                    _ = await _botClient.SendMediaGroupAsync(chatId: _data.ChatId,
-                                                              media: inputMedia,
-                                                              allowSendingWithoutReply: true);
-                    res.Add($"{_data.ChartMessage.ReplyMessages[_data.Random.Next(3)]}!");
+                    using (var stream = System.IO.File.OpenRead($"D:\\BACKUP\\Documenti\\PROGETTI_ANTONIO\\C#\\hypertension_bot\\hypertension_bot\\bin\\Debug\\net6.0\\grafico_{_data.Id}.png"))
+                    {
+                        InputOnlineFile inputOnlineFile = new InputOnlineFile(stream);
+                        _ = await _botClient.SendPhotoAsync(chatId: _data.ChatId,
+                                                            photo: inputOnlineFile,
+                                                            allowSendingWithoutReply: true);
+                    }
+
+                    res.Add($"{_data.ChartMessage.ReplyMessages[_data.Random.Next(2)]}!");
                 }
                 catch (Exception ex)
                 {
