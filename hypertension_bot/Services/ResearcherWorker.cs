@@ -39,6 +39,11 @@ namespace hypertension_bot.Services
             _data.FirstName = _firstName;
             _data.Id = id;
 
+
+
+
+
+
             ///messaggio iniziale /start
             if (_data.MessageText.Equals("/start"))
             {
