@@ -1,16 +1,11 @@
 ﻿<Properties StartupConfiguration="{E5FA4A25-5A16-40BC-B395-E521DF039C68}|Default">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.hypertension__bot PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/antonioflorio/Projects/hypertension_bot/hypertension_bot/Data/DbController.cs" relfile="hypertension_bot/Data/DbController.cs" line="69" column="1" />
-    </BreakpointStore>
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="hypertension_bot/Services/WitWorker.cs">
     <Files>
-      <File FileName="hypertension_bot/Services/WitWorker.cs" Line="24" Column="47" />
+      <File FileName="hypertension_bot/Services/WitWorker.cs" Line="14" Column="30" />
       <File FileName="hypertension_bot/Services/NLPWorker.cs" />
-      <File FileName="hypertension_bot/Services/ResearcherWorker.cs" Line="24" Column="36" />
+      <File FileName="hypertension_bot/Services/ResearcherWorker.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -22,9 +17,7 @@
               <Node name="Database" expanded="True" />
               <Node name="Loggers" expanded="True" />
               <Node name="Models" expanded="True" />
-              <Node name="Services" expanded="True">
-                <Node name="WitWorker.cs" selected="True" />
-              </Node>
+              <Node name="Services" expanded="True" />
               <Node name="Settings" expanded="True" />
             </Node>
           </Node>
@@ -32,6 +25,11 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/antonioflorio/Projects/hypertension_bot/hypertension_bot/Data/DbController.cs" relfile="hypertension_bot/Data/DbController.cs" line="69" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
 </Properties>

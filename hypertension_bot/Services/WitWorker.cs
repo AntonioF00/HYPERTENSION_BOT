@@ -13,9 +13,9 @@ namespace hypertension_bot.Services
         private string ACCESS_TOKEN = Setting.Istance.Configuration.WitToken;
         public WitWorker() {}
 
-		public void Run(string message)
-		{
-			response = new();
+        public void run(string message)
+        {
+            response = new();
 
             var actions = new WitActions();
             Wit client = new Wit(accessToken: ACCESS_TOKEN, actions: actions);
@@ -26,10 +26,12 @@ namespace hypertension_bot.Services
                 var r = res.Value;
                 foreach (var re in r)
                 {
-                    response.Append(re["value"].ToString().Replace('{', ' ').Replace('}', ' ').Trim());
+                    var confidence = double.Parse(re["confidence"].ToString().Replace('{', ' ').Replace('}', ' ').Trim());
+                    if (confidence > 0.80)
+                        response.Append(re["value"].ToString().Replace('{', ' ').Replace('}', ' ').Trim());
                 }
             }
         }
-	}
+    }
 }
 
