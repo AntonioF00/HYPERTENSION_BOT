@@ -133,7 +133,7 @@ namespace hypertension_bot.Services
                         if (mess.Length > 12)
                             mess = mess.Replace(num2.ToString(), "");
 
-                        mess = (_data.Diastolic >= 100) ? mess = mess.Remove(0, 4) : mess = "x" + mess.Substring(4);
+                        mess = (num2 >= 100) ?  mess.Remove(0, 4) : "x" + mess.Substring(3);
 
                         success = int.TryParse(new string($"{mess}"
                                               .SkipWhile(x => !char.IsDigit(x))
@@ -165,56 +165,56 @@ namespace hypertension_bot.Services
                     _unknown = true;
                     switch (_witWorker.response.ToString())
                     {
-                        case "a": ///verifico s'è un messaggio per la media giorno
+                        case "pressure_mean_day": ///verifico s'è un messaggio per la media giorno
                             {
                                 res.Add(_data.AverageMessage.calculateDayAVG(_data.Id, _data.FirstName));
                             }
                             break;
-                        case "b": ///verifico s'è un messaggio per la media settimana
+                        case "pressure_mean_week": ///verifico s'è un messaggio per la media settimana
                             {
                                 res.Add(_data.AverageMessage.calculateWeekAVG(_data.Id, _data.FirstName));
                             }
                             break;
-                        case "c": ///verifico s'è un messaggio per la media mese
+                        case "pressure_mean_month": ///verifico s'è un messaggio per la media mese
                             {
                                 res.Add(_data.AverageMessage.calculateMonthAVG(_data.Id, _data.FirstName));
                             }
                             break;
-                        case "d": ///verifico s'è un messaggio per la lista giorno
+                        case "pressure_get_past_day": ///verifico s'è un messaggio per la lista giorno
                             {
                                 res.Add(_data.ListMessage.DayList(_data.Id, _data.FirstName));
                             }
                             break;
-                        case "e": ///verifico s'è un messaggio per la lista settimana
+                        case "pressure_get_past_week": ///verifico s'è un messaggio per la lista settimana
                             {
                                 res.Add(_data.ListMessage.WeekList(_data.Id, _data.FirstName));
                             }
                             break;
-                        case "f": ///verifico s'è un messaggio per la lista mese
+                        case "pressure_get_past_month": ///verifico s'è un messaggio per la lista mese
                             {
                                 res.Add(_data.ListMessage.MonthList(_data.Id, _data.FirstName));
                             }
                             break;
-                        case "g": ///verifico s'è un messaggio di saluto
+                        case "hello": ///verifico s'è un messaggio di saluto
                             {
                                 await _nlpWorker.RunAsync(_data.MessageText);
                                 res.Add((string.IsNullOrWhiteSpace(_nlpWorker.res.ToString())) ? $"{_data.HelloMessage.ReplyMessages[_data.Random.Next(4)]} {_data.FirstName}!"
                                                                                                : _nlpWorker.res.ToString());
                             }
                             break;
-                        case "h": ///verifico s'è un messaggio di ringraziamento
+                        case "thanks": ///verifico s'è un messaggio di ringraziamento
                             {
                                 await _nlpWorker.RunAsync(_data.MessageText);
                                 res.Add((string.IsNullOrWhiteSpace(_nlpWorker.res.ToString())) ? $"{_data.ThankMessage.ReplyMessages[_data.Random.Next(5)]}"
                                                                                                : _nlpWorker.res.ToString());
                             }
                             break;
-                        case "i": ///verifico s'è un messaggio per come ci si misura la pressione
+                        case "pressure_info": ///verifico s'è un messaggio per come ci si misura la pressione
                             {
                                 res.Add($"{_data.PressureMessage.HowToMessages[_data.Random.Next(1)]}");
                             }
                             break;
-                        case "l": ///verifico s'è un messaggio per il grafico
+                        case "chart": ///verifico s'è un messaggio per il grafico
                             {
                                 ///routine di creazione grafici
                                 List<Dictionary<string, object>> list = _dbController.getMeasurementMonthList(_data.Id);
@@ -232,7 +232,7 @@ namespace hypertension_bot.Services
                                 res.Add($"{_data.ChartMessage.ReplyMessages[_data.Random.Next(2)]}!");
                             }
                             break;
-                        case "m": ///verifico s'è un messaggio per la mail
+                        case "send_email": ///verifico s'è un messaggio per la mail
                             {
                                 ///routine di invio email
                                 List<Dictionary<string, object>> list = _dbController.getMeasurementAllList(_data.Id);
