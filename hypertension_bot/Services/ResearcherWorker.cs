@@ -40,7 +40,7 @@ namespace hypertension_bot.Services
             _data.FirstName = _firstName;
             _data.Id = id; 
 
-            _witWorker.Run(_messageText);
+            /*_witWorker.Run(_messageText);
             if (!string.IsNullOrWhiteSpace(_witWorker.response.ToString()))
             {
                 ///switch case
@@ -61,7 +61,7 @@ namespace hypertension_bot.Services
                 ///verifico s'è un inserimento
                 ///verifico s'è un messaggio di accertazione o negazione
                 ///nlpWorker...
-            }
+            }*/
 
             ///messaggio iniziale /start
             if (_data.MessageText.Equals("/start"))
