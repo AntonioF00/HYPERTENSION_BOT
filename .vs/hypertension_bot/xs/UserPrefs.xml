@@ -8,8 +8,9 @@
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workbench ActiveDocument="hypertension_bot/Services/WitWorker.cs">
     <Files>
-      <File FileName="hypertension_bot/Services/WitWorker.cs" Line="15" Column="1" />
+      <File FileName="hypertension_bot/Services/WitWorker.cs" Line="24" Column="47" />
       <File FileName="hypertension_bot/Services/NLPWorker.cs" />
+      <File FileName="hypertension_bot/Services/ResearcherWorker.cs" Line="24" Column="36" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -18,10 +19,12 @@
             <Node name="hypertension_bot" expanded="True">
               <Node name="Dependencies" expanded="True" />
               <Node name="Data" expanded="True" />
-              <Node name="Database" expanded="True" selected="True" />
+              <Node name="Database" expanded="True" />
               <Node name="Loggers" expanded="True" />
               <Node name="Models" expanded="True" />
-              <Node name="Services" expanded="True" />
+              <Node name="Services" expanded="True">
+                <Node name="WitWorker.cs" selected="True" />
+              </Node>
               <Node name="Settings" expanded="True" />
             </Node>
           </Node>
