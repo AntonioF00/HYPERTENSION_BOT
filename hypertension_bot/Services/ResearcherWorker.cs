@@ -38,7 +38,7 @@ namespace hypertension_bot.Services
             _data.ChatId = _chatId;
             _data.MessageText = _messageText;
             _data.FirstName = _firstName;
-            _data.Id = id;
+            _data.Id = id; 
 
             _witWorker.Run(_messageText);
             if (!string.IsNullOrWhiteSpace(_witWorker.response.ToString()))
