@@ -6,6 +6,8 @@ using Telegram.Bot;
 using Telegram.Bot.Types;
 using System.IO;
 using Telegram.Bot.Types.InputFiles;
+using Newtonsoft.Json.Linq;
+using System.Linq.Expressions;
 
 namespace hypertension_bot.Services
 {
@@ -38,7 +40,7 @@ namespace hypertension_bot.Services
             _data.ChatId = _chatId;
             _data.MessageText = _messageText;
             _data.FirstName = _firstName;
-            _data.Id = id; 
+            _data.Id = id;
 
             ///messaggio iniziale /start
             if (_data.MessageText.Equals("/start"))
@@ -70,17 +72,7 @@ namespace hypertension_bot.Services
                     if (!text.Equals("Per visualizzare le misurazioni, inserirne prima una!"))
                         res.Add("Per eliminare una misurazione indicarla nella seguente maniera:\n Ad esempio 'elimina la numero 14'");
                 }
-            }
-            ///contesto d'un messaggio di ringraziamento
-            else if (_data.ThankMessage.Messages.Any(_data.MessageText.Contains))
-            {
-                _unknown = true;
-                NLPWorker _nlpWorker = new();
-                await _nlpWorker.RunAsync(_data.MessageText);
-                res.Add((string.IsNullOrWhiteSpace(_nlpWorker.res.ToString())) ? $"{_data.ThankMessage.ReplyMessages[_data.Random.Next(5)]}"
-                                                                               : _nlpWorker.res.ToString());
-            }
-            ///contesto d'un messaggi di negazione dovuto alla richiesta d'inesrimento o eliminazione
+            }            ///contesto d'un messaggi di negazione dovuto alla richiesta d'inesrimento o eliminazione
             else if ((_data.NegativeMessage.Messages.Any(_data.MessageText.Contains)) && ((_data.DoneInsert) || (_data.DoneDelete)))
             {
                 _unknown = true;
@@ -110,59 +102,8 @@ namespace hypertension_bot.Services
                 {
                     _data.DoneDelete = false;
                     var r = _dbController.DeleteMeasurement(_data.Id, _data.NumDelete);
-                    res.Add((r) ? $"{_data.DeleteMessage.DeleteMessages[_data.Random.Next(3)]}!\nData : {System.DateOnly.FromDateTime(System.DateTime.Now)}" 
+                    res.Add((r) ? $"{_data.DeleteMessage.DeleteMessages[_data.Random.Next(3)]}!\nData : {System.DateOnly.FromDateTime(System.DateTime.Now)}"
                                 : "Non ho trovato la misurazione che mi hai indicato!");
-                }
-            }
-            ///contesto d'un messaggio di saluto attualmente rimosso perchè interviene NLPworker
-            else if (_data.HelloMessage.Messages.Any(_data.MessageText.Contains))
-            {
-                _unknown = true;
-                await _nlpWorker.RunAsync(_data.MessageText);
-                res.Add((string.IsNullOrWhiteSpace(_nlpWorker.res.ToString())) ? $"{_data.HelloMessage.ReplyMessages[_data.Random.Next(4)]} {_data.FirstName}!"
-                                                                               : _nlpWorker.res.ToString());
-            }
-            ///contesto d'un messaggio di esportazione dei dati e invio via mail
-            else if (_data.ExportMessage.Messages.Any(_data.MessageText.Contains))
-            {
-                _unknown = true;
-                ///routine di invio email
-                List<Dictionary<string, object>> list = _dbController.getMeasurementAllList(_data.Id);
-                Setting.Istance.Configuration.Body = _data.DeleteMessage.listMessage(list);
-                Setting.Istance.Configuration.Subject = $"MISURAZIONI - {_data.Id} - {_data.FirstName} | {System.DateTime.Now}";
-                SmtpWorker _smtpWorker = new();
-                var send = _smtpWorker.Run();
-                res.Add(send ? $"{_data.ExportMessage.ReplyMessages[_data.Random.Next(3)]}!"
-                             : "Qualcosa dev'essere andato storto! Riprova ad inviare piu' tardi la mail!");
-
-            }
-            ///contesto d'un messaggio di una creazione di grafici
-            else if (_data.ChartMessage.Messages.Any(_data.MessageText.Contains))
-            {
-                _unknown = true;
-                try
-                {
-                    ///routine di creazione grafici
-                    List<Dictionary<string, object>> list = _dbController.getMeasurementMonthList(_data.Id);
-                    ChartWorker _chartWorker = new ChartWorker();
-                    _chartWorker._id = _data.Id;
-                    _chartWorker.Run(list);
-                    using (var stream = System.IO.File.OpenRead(Setting.Istance.Configuration.ChartPath + $"grafico_{_data.Id}.png"))
-                    {
-                        InputOnlineFile inputOnlineFile = new InputOnlineFile(stream);
-                        _ = await _botClient.SendPhotoAsync(chatId: _data.ChatId,
-                                                            photo: inputOnlineFile,
-                                                            allowSendingWithoutReply: true);
-                    }
-
-                    System.IO.File.Delete(Setting.Istance.Configuration.ChartPath + $"grafico_{_data.Id}.png");
-
-                    res.Add($"{_data.ChartMessage.ReplyMessages[_data.Random.Next(2)]}!");
-                }
-                catch (Exception ex)
-                {
-                    LogHelper.Log($"{System.DateTime.Now} | Message: {ex.Message} | StackTrace: {ex.StackTrace}");
-                    _unknown = false;
                 }
             }
             ///contesto d'un messaggio in cui sono presenti le misure di sistolica diastolica e frequenza cardiaca
@@ -216,33 +157,100 @@ namespace hypertension_bot.Services
                     }
                 }
             }
-            ///contesto su come si misura la pressione
-            else if (_data.PressureMessage.Messages.Any(_data.MessageText.Contains))
+            else 
             {
-                _unknown = true;
-                res.Add($"{_data.PressureMessage.HowToMessages[_data.Random.Next(1)]}");
-            }
-            ///contesto d'un messaggio per ottenere la media o una lista delle misurazioni
-            else if ((_data.AverageMessage.Messages.Any(_data.MessageText.Contains) || 
-                      (_data.MessageText.Contains("medio") || _data.MessageText.Contains("media"))) ||
-                       _data.ListMessage.Messages.Any(_data.MessageText.Contains))
-            {
-                _unknown = true;
-
-                if (_data.MessageText.Contains("mes") || _data.MessageText.Contains("mensil"))
-                    res.Add((_data.MessageText.Contains("medi")) ? _data.AverageMessage.calculateMonthAVG(_data.Id, _data.FirstName)
-                                                                 : _data.ListMessage.MonthList(_data.Id, _data.FirstName));
-                else if (_data.MessageText.Contains("settima"))
-                    res.Add((_data.MessageText.Contains("medi")) ? _data.AverageMessage.calculateWeekAVG(_data.Id, _data.FirstName)
-                                                                 : _data.ListMessage.WeekList(_data.Id, _data.FirstName));
-                else if (_data.MessageText.Contains("giorn") || _data.MessageText.Contains("oggi"))
-                    res.Add((_data.MessageText.Contains("medi")) ? _data.AverageMessage.calculateDayAVG(_data.Id, _data.FirstName)
-                                                                 : _data.ListMessage.DayList(_data.Id, _data.FirstName));
+                _witWorker.Run(_data.MessageText);
+                if (!string.IsNullOrWhiteSpace(_witWorker.response.ToString()))
+                {
+                    _unknown = true;
+                    switch (_witWorker.response.ToString())
+                    {
+                        case "a": ///verifico s'è un messaggio per la media giorno
+                            {
+                                res.Add(_data.AverageMessage.calculateDayAVG(_data.Id, _data.FirstName));
+                            }
+                            break;
+                        case "b": ///verifico s'è un messaggio per la media settimana
+                            {
+                                res.Add(_data.AverageMessage.calculateWeekAVG(_data.Id, _data.FirstName));
+                            }
+                            break;
+                        case "c": ///verifico s'è un messaggio per la media mese
+                            {
+                                res.Add(_data.AverageMessage.calculateMonthAVG(_data.Id, _data.FirstName));
+                            }
+                            break;
+                        case "d": ///verifico s'è un messaggio per la lista giorno
+                            {
+                                res.Add(_data.ListMessage.DayList(_data.Id, _data.FirstName));
+                            }
+                            break;
+                        case "e": ///verifico s'è un messaggio per la lista settimana
+                            {
+                                res.Add(_data.ListMessage.WeekList(_data.Id, _data.FirstName));
+                            }
+                            break;
+                        case "f": ///verifico s'è un messaggio per la lista mese
+                            {
+                                res.Add(_data.ListMessage.MonthList(_data.Id, _data.FirstName));
+                            }
+                            break;
+                        case "g": ///verifico s'è un messaggio di saluto
+                            {
+                                await _nlpWorker.RunAsync(_data.MessageText);
+                                res.Add((string.IsNullOrWhiteSpace(_nlpWorker.res.ToString())) ? $"{_data.HelloMessage.ReplyMessages[_data.Random.Next(4)]} {_data.FirstName}!"
+                                                                                               : _nlpWorker.res.ToString());
+                            }
+                            break;
+                        case "h": ///verifico s'è un messaggio di ringraziamento
+                            {
+                                await _nlpWorker.RunAsync(_data.MessageText);
+                                res.Add((string.IsNullOrWhiteSpace(_nlpWorker.res.ToString())) ? $"{_data.ThankMessage.ReplyMessages[_data.Random.Next(5)]}"
+                                                                                               : _nlpWorker.res.ToString());
+                            }
+                            break;
+                        case "i": ///verifico s'è un messaggio per come ci si misura la pressione
+                            {
+                                res.Add($"{_data.PressureMessage.HowToMessages[_data.Random.Next(1)]}");
+                            }
+                            break;
+                        case "l": ///verifico s'è un messaggio per il grafico
+                            {
+                                ///routine di creazione grafici
+                                List<Dictionary<string, object>> list = _dbController.getMeasurementMonthList(_data.Id);
+                                ChartWorker _chartWorker = new ChartWorker();
+                                _chartWorker._id = _data.Id;
+                                _chartWorker.Run(list);
+                                using (var stream = System.IO.File.OpenRead(Setting.Istance.Configuration.ChartPath + $"grafico_{_data.Id}.png"))
+                                {
+                                    InputOnlineFile inputOnlineFile = new InputOnlineFile(stream);
+                                    _ = await _botClient.SendPhotoAsync(chatId: _data.ChatId,
+                                                                        photo: inputOnlineFile,
+                                                                        allowSendingWithoutReply: true);
+                                }
+                                System.IO.File.Delete(Setting.Istance.Configuration.ChartPath + $"grafico_{_data.Id}.png");
+                                res.Add($"{_data.ChartMessage.ReplyMessages[_data.Random.Next(2)]}!");
+                            }
+                            break;
+                        case "m": ///verifico s'è un messaggio per la mail
+                            {
+                                ///routine di invio email
+                                List<Dictionary<string, object>> list = _dbController.getMeasurementAllList(_data.Id);
+                                Setting.Istance.Configuration.Body = _data.DeleteMessage.listMessage(list);
+                                Setting.Istance.Configuration.Subject = $"MISURAZIONI - {_data.Id} - {_data.FirstName} | {System.DateTime.Now}";
+                                SmtpWorker _smtpWorker = new();
+                                var send = _smtpWorker.Run();
+                                res.Add(send ? $"{_data.ExportMessage.ReplyMessages[_data.Random.Next(3)]}!"
+                                             : "Qualcosa dev'essere andato storto! Riprova ad inviare piu' tardi la mail!");
+                            }
+                            break;
+                    }
+                }
                 else
-                    res.Add((_data.MessageText.Contains("medi")) ? $"{_data.FirstName} specifica il tipo di media che vuoi visualizzare!\nMedia giornaliera / Media mensile / Media settimanale!"
-                                                                 : $"{_data.FirstName} specifica quale elenco vuoi visualizzare!\nElenco mensile / Elenco settimanale / Elenco giornaliero!");
+                {
+                    _unknown = false;
+                }
             }
-            ///contesto d'un messaggio in cui il contesto non è stato compreso
             if (!_unknown)
             {
                 ///chiamo il NLPWorker per gestire il contesto sconosciuto
