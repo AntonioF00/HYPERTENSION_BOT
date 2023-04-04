@@ -27,7 +27,7 @@ namespace hypertension_bot.Services
                 foreach (var re in r)
                 {
                     var confidence = double.Parse(re["confidence"].ToString().Replace('{', ' ').Replace('}', ' ').Trim());
-                    if (confidence > 0.80)
+                    if (confidence > 0.59)
                         response.Append(re["value"].ToString().Replace('{', ' ').Replace('}', ' ').Trim());
                 }
             }
