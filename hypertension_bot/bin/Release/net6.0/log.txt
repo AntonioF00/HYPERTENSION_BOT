@@ -1,8 +1,14 @@
-04/04/2023 17:48:55 | Message: System.ArgumentOutOfRangeException: startIndex cannot be larger than length of string. (Parameter 'startIndex')
-   at System.String.Substring(Int32 startIndex, Int32 length)
-   at hypertension_bot.Services.ResearcherWorker.FindResponse(Int64 _chatId, String _messageText, String _firstName, Int32 id) in D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\Services\ResearcherWorker.cs:line 136
-   at hypertension_bot.program.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken) in D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\Program.cs:line 69
-   at Telegram.Bot.Polling.DefaultUpdateHandler.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
-   at Telegram.Bot.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
-   at Telegram.Bot.TelegramBotClientExtensions.ReceiveAsync(ITelegramBotClient botClient, IUpdateHandler updateHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
-   at Telegram.Bot.TelegramBotClientExtensions.<>c__DisplayClass106_0.<<StartReceiving>b__0>d.MoveNext()
+02/05/2023 21:31:34 | Message: Error at chat/completions (https://api.openai.com/v1/chat/completions) with HTTP status code: TooManyRequests. Content: {
+    "error": {
+        "message": "You exceeded your current quota, please check your plan and billing details.",
+        "type": "insufficient_quota",
+        "param": null,
+        "code": null
+    }
+}
+ | StackTrace:    at OpenAI_API.EndpointBase.HttpRequestRaw(String url, HttpMethod verb, Object postData, Boolean streaming)
+   at OpenAI_API.EndpointBase.HttpRequest[T](String url, HttpMethod verb, Object postData)
+   at OpenAI_API.EndpointBase.HttpPost[T](String url, Object postData)
+   at OpenAI_API.Chat.ChatEndpoint.CreateChatCompletionAsync(ChatRequest request)
+   at OpenAI_API.Chat.Conversation.GetResponseFromChatbot()
+   at hypertension_bot.Services.NLPWorker.RunAsync(String text) in D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\Services\NLPWorker.cs:line 29
