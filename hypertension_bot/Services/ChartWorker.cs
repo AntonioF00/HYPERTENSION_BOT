@@ -1,5 +1,7 @@
 ﻿using hypertension_bot.Loggers;
+using ScottPlot;
 using System;
+using static ScottPlot.Plottable.PopulationPlot;
 
 namespace hypertension_bot.Services
 {
@@ -19,23 +21,39 @@ namespace hypertension_bot.Services
         {
             try
             {
-                double[] dataY = new double[100];
-                double[] dataX = new double[100];
-
+                double[] dataYs = new double[list.Count];
+                double[] dataYd = new double[list.Count];
+                string[] dataXLabel = new string[list.Count];                
+                
+                int y = 0;
                 foreach(var e in list)
                 {
-                    var i = 0;
-                    //SISTEMATE IL DATAX[i]
-                    dataX[i] = DateTime.Parse(e["datetime"].ToString()).ToOADate();
-                    dataY[i] = Double.Parse(e["systolic"].ToString());
-                    i++;
+                    dataXLabel[y] = e["datetime"].ToString();
+                    dataYs[y] = Double.Parse(e["systolic"].ToString());
+                    dataYd[y] = Double.Parse(e["diastolic"].ToString());
+                    y++;
+                }
+                y = 0;
+
+                double[] xPositions = new double[list.Count];
+                string[] xLabels = new string[list.Count];
+
+                foreach (var e in dataYs)
+                {
+                    xPositions[y] = y;
+                    xLabels[y] = dataXLabel[y];
+                    y++;
                 }
 
-                var plt = new ScottPlot.Plot(400, 300);
-                plt.AddScatter(dataX,dataY);
+                var plt = new ScottPlot.Plot(600, 400);
+                plt.AddSignal(dataYs, label: "Sistolic");
+                plt.AddSignal(dataYd, label: "Diastolic");
+                plt.XAxis.ManualTickPositions(xPositions, xLabels);
+                plt.Title("Sistolic/Diastolic");
                 plt.SaveFig($"grafico_{_id}.png");
 
-            }catch(Exception ex)
+            }
+            catch(Exception ex)
             {
                 LogHelper.Log($"{System.DateTime.Now} | Message: {ex.Message} | StackTrace: {ex.StackTrace}");
             }
