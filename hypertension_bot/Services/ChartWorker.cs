@@ -25,6 +25,7 @@ namespace hypertension_bot.Services
                 foreach(var e in list)
                 {
                     var i = 0;
+                    //SISTEMATE IL DATAX[i]
                     dataX[i] = DateTime.Parse(e["datetime"].ToString()).ToOADate();
                     dataY[i] = Double.Parse(e["systolic"].ToString());
                     i++;

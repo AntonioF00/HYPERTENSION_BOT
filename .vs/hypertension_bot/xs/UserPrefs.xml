@@ -1,11 +1,14 @@
 ﻿<Properties StartupConfiguration="{E5FA4A25-5A16-40BC-B395-E521DF039C68}|Default">
-  <MonoDevelop.Ide.ItemProperties.hypertension__bot PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="hypertension_bot/Services/WitWorker.cs">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="hypertension_bot/configuration.xml">
     <Files>
       <File FileName="hypertension_bot/Services/WitWorker.cs" Line="30" Column="42" />
       <File FileName="hypertension_bot/Services/NLPWorker.cs" />
-      <File FileName="hypertension_bot/Services/ResearcherWorker.cs" />
+      <File FileName="hypertension_bot/Services/ResearcherWorker.cs" Line="202" Column="48" />
+      <File FileName="hypertension_bot/Services/ChartWorker.cs" Line="35" Column="44" />
+      <File FileName="hypertension_bot/configuration.xml" Line="17" Column="19" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -19,6 +22,7 @@
               <Node name="Models" expanded="True" />
               <Node name="Services" expanded="True" />
               <Node name="Settings" expanded="True" />
+              <Node name="configuration.xml" selected="True" />
             </Node>
           </Node>
         </State>
@@ -30,6 +34,5 @@
       <Breakpoint file="/Users/antonioflorio/Projects/hypertension_bot/hypertension_bot/Data/DbController.cs" relfile="hypertension_bot/Data/DbController.cs" line="69" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.hypertension__bot PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>
