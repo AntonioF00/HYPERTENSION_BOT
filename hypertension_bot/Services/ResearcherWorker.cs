@@ -217,7 +217,61 @@ namespace hypertension_bot.Services
                         case "chart": ///verifico s'è un messaggio per il grafico
                             {
                                 ///routine di creazione grafici
+                                List<Dictionary<string, object>> list = _dbController.getMeasurementList(_data.Id);
+                                ChartWorker _chartWorker = new ChartWorker();
+                                _chartWorker._id = _data.Id;
+                                _chartWorker.Run(list);
+                                using (var stream = System.IO.File.OpenRead(Setting.Istance.Configuration.ChartPath + $"grafico_{_data.Id}.png"))
+                                {
+                                    InputOnlineFile inputOnlineFile = new InputOnlineFile(stream);
+                                    _ = await _botClient.SendPhotoAsync(chatId: _data.ChatId,
+                                                                        photo: inputOnlineFile,
+                                                                        allowSendingWithoutReply: true);
+                                }
+                                System.IO.File.Delete(Setting.Istance.Configuration.ChartPath + $"grafico_{_data.Id}.png");
+                                res.Add($"{_data.ChartMessage.ReplyMessages[_data.Random.Next(2)]}!");
+                            }
+                            break;
+                        case "chart_month": ///verifico s'è un messaggio per il grafico
+                            {
+                                ///routine di creazione grafici
                                 List<Dictionary<string, object>> list = _dbController.getMeasurementMonthList(_data.Id);
+                                ChartWorker _chartWorker = new ChartWorker();
+                                _chartWorker._id = _data.Id;
+                                _chartWorker.Run(list);
+                                using (var stream = System.IO.File.OpenRead(Setting.Istance.Configuration.ChartPath + $"grafico_{_data.Id}.png"))
+                                {
+                                    InputOnlineFile inputOnlineFile = new InputOnlineFile(stream);
+                                    _ = await _botClient.SendPhotoAsync(chatId: _data.ChatId,
+                                                                        photo: inputOnlineFile,
+                                                                        allowSendingWithoutReply: true);
+                                }
+                                System.IO.File.Delete(Setting.Istance.Configuration.ChartPath + $"grafico_{_data.Id}.png");
+                                res.Add($"{_data.ChartMessage.ReplyMessages[_data.Random.Next(2)]}!");
+                            }
+                            break;
+                        case "chart_day": ///verifico s'è un messaggio per il grafico
+                            {
+                                ///routine di creazione grafici
+                                List<Dictionary<string, object>> list = _dbController.getMeasurementDayList(_data.Id);
+                                ChartWorker _chartWorker = new ChartWorker();
+                                _chartWorker._id = _data.Id;
+                                _chartWorker.Run(list);
+                                using (var stream = System.IO.File.OpenRead(Setting.Istance.Configuration.ChartPath + $"grafico_{_data.Id}.png"))
+                                {
+                                    InputOnlineFile inputOnlineFile = new InputOnlineFile(stream);
+                                    _ = await _botClient.SendPhotoAsync(chatId: _data.ChatId,
+                                                                        photo: inputOnlineFile,
+                                                                        allowSendingWithoutReply: true);
+                                }
+                                System.IO.File.Delete(Setting.Istance.Configuration.ChartPath + $"grafico_{_data.Id}.png");
+                                res.Add($"{_data.ChartMessage.ReplyMessages[_data.Random.Next(2)]}!");
+                            }
+                            break;
+                        case "chart_week": ///verifico s'è un messaggio per il grafico
+                            {
+                                ///routine di creazione grafici
+                                List<Dictionary<string, object>> list = _dbController.getMeasurementWeekList(_data.Id);
                                 ChartWorker _chartWorker = new ChartWorker();
                                 _chartWorker._id = _data.Id;
                                 _chartWorker.Run(list);
