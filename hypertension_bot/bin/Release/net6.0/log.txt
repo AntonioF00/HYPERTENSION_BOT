@@ -1,4 +1,4 @@
-17/05/2023 23:23:03 | Message: System.IO.FileNotFoundException: Could not find file 'D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Debug\net6.0\grafico_1114657515.png'.
+19/05/2023 14:09:48 | Message: System.IO.FileNotFoundException: Could not find file 'D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Debug\net6.0\grafico_1114657515.png'.
 File name: 'D:\BACKUP\Documenti\PROGETTI_ANTONIO\C#\hypertension_bot\hypertension_bot\bin\Debug\net6.0\grafico_1114657515.png'
    at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
    at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize)
