@@ -217,7 +217,7 @@ namespace hypertension_bot.Services
                         case "chart": ///verifico s'è un messaggio per il grafico
                             {
                                 ///routine di creazione grafici
-                                List<Dictionary<string, object>> list = _dbController.getMeasurementList(_data.Id);
+                                List<Dictionary<string, object>> list = _dbController.getMeasurementAllList(_data.Id);
                                 ChartWorker _chartWorker = new ChartWorker();
                                 _chartWorker._id = _data.Id;
                                 _chartWorker.Run(list);
